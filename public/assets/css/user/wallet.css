@@ -1,0 +1,164 @@
+.balanceAmount {
+    min-height: 150px;
+    /* background-color: tan; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.balanceBox {
+    cursor: pointer;
+    min-height: 140px;
+    background-color: rgb(237, 237, 237);
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+.rightAngle{
+    margin-right: 20px;
+}
+.balanceBox img {
+    height: 75px;
+    width: 75px;
+}
+
+.balanceBox i {
+    font-size: 58pt;
+
+}
+
+.Box {
+    width: 80%;
+}
+
+.Box span {
+    font-size: 13pt;
+    font-weight: bold;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* background-color: aliceblue; */
+}
+
+.Box h5 {
+    padding-top: 5px;
+    font-size: 14pt;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.detailsRow {
+    padding: 0;
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    height: 90px;
+    background-color: white;
+}
+
+.detailsRow img {
+    height: 70px;
+    width: 70px;
+}
+
+.columnHeading {
+    padding: 0;
+    height: 50px;
+    background-color: white;
+    display: flex;
+}
+
+.SI {
+    /* background-color: aliceblue; */
+    height: 50px;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.productData{
+    /* background-color: rgb(19, 85, 142); */
+    height: 50px;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.transactionDetails{
+    /* background-color: rgb(153, 195, 232); */
+    height: 50px;
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.amount{
+    /* background-color: rgb(153, 195, 232); */
+    height: 50px;
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-window {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.25);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+    &:target {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+    & > div {
+      width: 500px;
+      
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 2em;
+      background: white;
+    }
+    header {
+      font-weight: bold;
+    }
+    h1 {
+      font-size: 150%;
+      margin: 0 0 15px;
+    }
+  }
+  
+  .modal-close {
+    color: #aaa;
+    line-height: 50px;
+    font-size: 80%;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 70px;
+    text-decoration: none;
+    &:hover {
+      color: black;
+    }
+  }
+  .modal-window {
+    & > div {
+      border-radius: 1rem;
+    }
+  }
+  
+  .modal-window div:not(:last-of-type) {
+    margin-bottom: 15px;
+  }

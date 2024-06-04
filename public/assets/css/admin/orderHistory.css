@@ -1,0 +1,361 @@
+.filterRow {
+    /* background-color: thistle; */
+    height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.filterBox {
+    border: 1px solid rgb(213, 213, 213);
+    background-color: white;
+    width: 460px;
+    display: flex;
+    height: 35px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+}
+
+.filterBox a {
+    padding: 0;
+    margin: 0;
+
+}
+
+#all {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 30px;
+    background-color: transparent;
+}
+
+#Cancelled {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 30px;
+    background-color: transparent;
+}
+
+#Delivered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 30px;
+    background-color: transparent;
+}
+
+#Processing {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 30px;
+    background-color: transparent;
+}
+
+.dateBox {
+    width: 160px;
+    border-radius: 7px;
+    height: 35px;
+    background-color: white;
+    border: 1px solid rgb(216, 216, 216);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dateBox2 {
+    width: 160px;
+    border-radius: 7px;
+    height: 35px;
+    background-color: white;
+    border: 1px solid rgb(216, 216, 216);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.dateInput {
+    border: none;
+    font-family: Poppins;
+    font-size: 11pt;
+    color: #4d4d4d;
+}
+
+.dateInput:focus {
+    outline: none;
+    border: none;
+}
+
+.filter-col5 {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.Pro-Row {
+    min-height: 50px;
+    display: flex;
+    padding: 0;
+    border-top: 1px solid rgb(112, 112, 112);
+    background-color: white;
+    /* padding-left: 15px; */
+    border-bottom: 1px solid rgb(112, 112, 112);
+
+}
+
+.Pro-Details-Row {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    min-height: 80px;
+    /* padding-left: 15px; */
+    border-bottom: 1px solid rgb(112, 112, 112);
+}
+
+.SI {
+    width: 6%;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11pt;
+    padding: 0;
+    font-family: Poppins;
+    font-weight: bolder;
+}
+.product-Image{
+    height: 70px;
+}
+.Pro-Name {
+    width: 20%;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 11pt;
+    padding: 0;
+    font-family: Poppins;
+}
+
+.Pro-Name h5 {
+    font-size: 11pt;
+    padding: 0;
+    font-family: Poppins;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-weight: 600;
+}
+
+.headBox {
+    width: 12.33%;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.headBox h5 {
+    font-size: 11pt;
+    padding: 0;
+    font-family: Poppins;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-weight: 600;
+}
+
+.action {
+    width: 3.813vw;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action h5 {
+    font-size: 11pt;
+    padding: 0;
+    font-family: Poppins;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-weight: 600;
+}
+
+.outerDiv {
+    position: relative;
+    transition: 0.5s;
+}
+
+.outerDiv#blur.active-blur {
+    filter: blur(15px);
+}
+
+.popup {
+    position: fixed;
+    top: 51%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30vw;
+    height: 400px;
+    padding: 0 5px 30px;
+    background-color: white;
+    border: 1px solid rgb(153, 153, 153);
+    border-radius: 5px;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.05s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup.active-popup {
+    visibility: visible;
+    opacity: 1;
+    transition: 0.05s ease;
+}
+
+.stop-scrolling {
+    overflow: hidden;
+}
+
+.popup h2 {
+    font-size: 18pt;
+    font-family: Poppins;
+    font-weight: bold;
+}
+
+.popup p {
+    width: 370px;
+    text-align: center;
+    margin-top: 7px;
+}
+
+.btn {
+    margin-top: 25px;
+    background-color: black;
+    width: 130px;
+    font-family: Poppins;
+    font-size: 12pt;
+    border: none;
+    color: white;
+    height: 36px;
+    /* border-radius: 25px; */
+}
+
+.btn:hover {
+    color: white;
+}
+
+.btnSubmit {
+    margin-left: 10px;
+}
+
+.col-3 h3 {
+    
+    text-shadow: 2px 2px #c7c7c7;
+    font-weight: 500;
+    font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
+}
+
+
+   
+.modal-window {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.25);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+    &:target {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+    & > div {
+      width: 500px;
+      
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 2em;
+      background: white;
+    }
+    header {
+      font-weight: bold;
+    }
+    h1 {
+      font-size: 150%;
+      margin: 0 0 15px;
+    }
+  }
+  
+  .modal-close {
+    color: #aaa;
+    line-height: 50px;
+    font-size: 80%;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 70px;
+    text-decoration: none;
+    &:hover {
+      color: black;
+    }
+  }
+  .modal-window {
+    & > div {
+      border-radius: 1rem;
+    }
+  }
+  .addCoupon-head-Row {
+    text-shadow: 2px 2px #c9c9c9;
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 15pt;
+    position: absolute;
+    left: 0;
+    text-align: center;
+    top: 0;
+    width: 140px;
+    text-decoration: none;
+    padding-bottom: 10px;
+  }
+  .dropbtn {
+    background-color: white;
+    border: 1px solid rgb(204, 204, 204);
+    color: #495057;
+    width: 100%;
+    height: 34px;
+    font-size: 10pt;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: Poppins;
+}
+.btnAdd {
+    background-color: black;
+    color: white;
+    width: 200px;
+    border-radius: 15px;
+}

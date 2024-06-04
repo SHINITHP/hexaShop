@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <title>Document</title>
+</head>
+<body style="padding: 0;margin: 0;">
+  <div class="container-fluid" style="width: 100%;height: 1350px;">
+    <div class="row" style="padding: 20px;margin: 0;text-align: end;padding-right: 30px;">
+      <h1 style="font-size: 38pt;font-family: Poppins;color: rgb(38, 38, 38);font-weight: 600;padding: 0;margin: 0;letter-spacing: 3px;">Hexa<span >Shop</span></h1>
+      <p style="padding: 0;margin: 0;padding-top: 7px;font-family: Poppins;font-size: 13pt;padding-right: 7px;">hexashop49@gmail.com</p>
+      <p style="padding: 0;margin: 0;padding-top: 7px;font-family: Poppins;font-size: 13pt;padding-right: 7px;">+91 7306552573</p>
+    </div>
+    <div class="row" style="padding: 20px;">
+      <h4 style="font-size: 30pt;color: rgb(38, 38, 38);font-weight: 600;padding: 0;margin: 0;letter-spacing: 3px;">INVOICE</h4>
+      <p style="padding: 0;margin: 0;padding-top: 7px;font-family: Poppins;font-size: 13pt;padding-right: 7px;letter-spacing: 2px;color: rgb(51, 51, 51);">Invoice Number : INV-<%=invoiceNum%></p>
+      <p style="padding: 0;margin: 0;padding-top: 7px;font-family: Poppins;font-size: 13pt;padding-right: 7px;letter-spacing: 2px;color: rgb(51, 51, 51);">Date : <%=formattedDate%></p>
+    </div>
+    <br><br>
+    <table style="width: 100%;">
+      <tr style="width: 100%;">
+        <td style="width: 50%;padding-left: 5px;font-family: Poppins;"><h4 style="font-size: 15pt;color: rgb(38, 38, 38);font-weight: 600;padding: 0;margin: 0;letter-spacing: 2px;">BILL TO:</h4></td>
+        <td style="width: 50%;font-family: Poppins;"><h4 style="font-size: 15pt;color: rgb(38, 38, 38);font-weight: 600;padding: 0;margin: 0;letter-spacing: 2px;">PAYMENT INFORMATION:</h4></td>
+      </tr>
+      <tr style="width: 100%;">
+        <td style="padding: 0;margin: 0;padding-top: 7px;font-family: Poppins;font-size: 13pt;padding-right: 7px; width: 50%;letter-spacing: 1px;"><%=invoiceData[0].addressID.fullName%> , <%=invoiceData[0].addressID.phoneNo%></td>
+        <td style="padding: 0;margin: 0;padding-top: 7px;font-family: Poppins;font-size: 13pt;padding-right: 7px; width: 50%;letter-spacing: 1px;">Payment Method: <%=invoiceData[0].PaymentMethod%></td>
+      </tr>
+      <tr style="width: 100%;">
+        <td style="padding: 0;margin: 0;padding-top: 7px;font-family: Poppins;font-size: 13pt;padding-right: 7px; width: 50%;letter-spacing: 1px;"><%=invoiceData[0].addressID.address%></td>
+        <td style="padding: 0;margin: 0;padding-top: 7px;font-family: Poppins;font-size: 13pt;padding-right: 7px; width: 50%;letter-spacing: 1px;">Order-Date: <%= new Date(invoiceData[0].OrderDate).toLocaleDateString() %></td>
+
+      </tr>
+      <tr style="width: 100%;">
+        <td style="padding: 0;margin: 0;padding-top: 7px;font-family: Poppins;font-size: 13pt;padding-right: 7px; width: 50%;letter-spacing: 1px;"><%=invoiceData[0].addressID.state%> , <%=invoiceData[0].addressID.country%> , <%=invoiceData[0].addressID.pincode%></td>
+        <!-- <td style="padding: 0;margin: 0;padding-top: 7px;font-family: Poppins;font-size: 13pt;padding-right: 7px; width: 50%;letter-spacing: 1px;">Name:</td> -->
+
+      </tr>
+    </table>
+    <br><br>
+    <table style="width: 100%;padding: 0;margin: 0;">
+      <tr style="width: 100%;height: 60px;border-bottom: 1px solid rgb(149, 149, 149);border-top: 1px solid rgb(149, 149, 149);">
+        <td style="width: 4%;text-align: center;height: 60px;font-weight: bold;font-size: 11pt;font-family: Poppins;">SI.NO</td>
+        <td style="width: 20%;text-align: center;height: 60px;font-weight: bold;font-size: 11pt;font-family: Poppins;">ITEM</td>
+        <td style="width: 15.2%;text-align: center;height: 60px;font-weight: bold;font-size: 11pt;font-family: Poppins;">MRP</td>
+        <td style="width: 15.2%;text-align: center;height: 60px;font-weight: bold;font-size: 11pt;font-family: Poppins;">QUANTITY</td>
+        <td style="width: 15.2%;text-align: center;height: 60px;font-weight: bold;font-size: 11pt;font-family: Poppins;">PRICE</td>
+        <td style="width: 15.2%;text-align: center;height: 60px;font-weight: bold;font-size: 11pt;font-family: Poppins;">DELIVERY-CHARGE</td>
+        <td style="width: 15.2%;text-align: center;height: 60px;font-weight: bold;font-size: 11pt;font-family: Poppins;">TAX</td>
+      </tr>
+      <% invoiceData.forEach((val,i) => { %>
+      <tr style="width: 100%;height: 80px;border-bottom: 1px solid rgb(149, 149, 149);">
+        <td style="width: 4%;text-align: center;height: 80px;font-weight: bold;font-size: 11pt;font-family: Poppins;"><%=i+1%></td>
+        <td style="width: 20%;text-align: center;height: 80px;font-weight: bold;font-size: 11pt;font-family: Poppins;"><%=val.productID.ProductName%></td>
+        <td style="width: 15.2%;text-align: center;height: 80px;font-weight: bold;font-size: 11pt;font-family: Poppins;"><%=val.productID.MRP%></td>
+        <td style="width: 15.2%;text-align: center;height: 80px;font-weight: bold;font-size: 11pt;font-family: Poppins;"><%=val.Quantity%></td>
+        <td style="width: 15.2%;text-align: center;height: 80px;font-weight: bold;font-size: 11pt;font-family: Poppins;"><%=val.productID.SalesRate%></td>
+        <td style="width: 15.2%;text-align: center;height: 80px;font-weight: bold;font-size: 11pt;font-family: Poppins;"><%=val.deliveryCharge%></td>
+        <td style="width: 15.2%;text-align: center;height: 80px;font-weight: bold;font-size: 11pt;font-family: Poppins;"><%= (val.productID.SalesRate *  val.Quantity) * val.productID.VATAmount / 100 %></td>
+      </tr>
+      <% }) %>
+     
+    </table>
+<br>
+    <table style="width: 100%;">
+      <tr style="width: 100%;">
+        <td style="width: 100%;text-align: end;">
+          <label for="" style="min-width: 250px;min-height: 60px;border:1px solid rgb(145, 145, 145);text-align: center;padding-top: 18px;font-size: 13pt;font-family: Poppins;">TOTAL-AMT : <%=invoiceData[0].Amount%></label>
+        </td>
+      </tr>
+    </table>
+
+    <!-- <br><br><br><br><br>
+  -->
+  </div>
+  <footer style="width: 100%;text-align: center;">Thank you for your order. We hope you enjoy your new [product/service]!</footer>
+</body>
+</html>

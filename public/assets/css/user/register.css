@@ -1,0 +1,105 @@
+.con-form h1 {
+    color: #404040;
+    font-family: Poppins;
+    font-size: 30px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.con-form {
+    height: 480px;
+    /* background-color: teal; */
+    margin-top: 90px;
+}
+
+.registerFrm {
+    height: 410px;
+    background-color: #F7F5F5;
+    border: 1px solid rgb(172, 172, 172);
+}
+
+.frmRow {
+    height: 400px;
+    display: flex;
+    justify-content: center;
+}
+
+.loginHeader {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.loginbtn {
+    text-align: center;
+    color: #404040;
+    font-size: 22px;
+}
+
+.loginHeader .loginbtn:hover {
+    color: #404040;
+}
+
+.registerbtn {
+    text-align: center;
+    margin-left: 30px;
+    font-size: 22px;
+    color: red;
+}
+
+.loginHeader .registerbtn:hover {
+    color: red;
+}
+
+.inputDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 330px;
+    /* background-color: tan; */
+
+}
+
+.SubmitFrm {
+    width: 100%;
+    height: 260px;
+}
+
+.input-container {
+    height: 260px;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    /* background-color: rebeccapurple; */
+}
+
+.inputemail {
+    height: 45px;
+    font-size: 10pt;
+}
+
+.inputpass {
+    margin-top: 20px;
+    height: 45px;
+    font-size: 8pt;
+}
+
+.checkForm {
+    height: 30px;
+    margin-left: 50px;
+}
+
+.forgotpassword {
+    font-size: 13px;
+    margin-top: 2px;
+    color: #404040;
+}
+
+.btnRegister {
+    background-color: #FFFFFF;
+    width: 130px;
+    border: 1px solid #404040;
+}

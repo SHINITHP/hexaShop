@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/assets/css/user/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/admin/newDashboard.css">
+    <link rel="stylesheet" href="/assets/css/admin/addProducts.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css"
+        integrity="sha512-hvNR0F/e2J7zPPfLC9auFe3/SE0yG4aJCOd/qxew74NN7eyiSKjr7xJJMu1Jy2wf7FXITpWS1E/RY8yzuXN7VA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+
+
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container-fluid outerDiv  mainConatainer " id="blur" style="display: flex;">
+
+        <div class="col-0 left-Menu-Bar-active" style="display: none;">
+            <div class="row" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+                <img class="adminPanel" src="/assets/images/admin-panel2.png" style="margin-left: 0;" alt="">
+                <br><br>
+                <a class="active-Icons " onclick="btnClick(this)" href="/adminLogin/adminDashboard"><i
+                        class="fa fa-home menuBtn" style="font-size: 30px;"></i></a>
+                <a class="active-Icons active" onclick="btnClick(this)" href="/adminLogin/ProductList"><img
+                        src="/assets/images/productIcon.png" alt=""></a>
+                <a class="active-Icons" onclick="btnClick(this)" href="/adminLogin/Category"><img src="/assets/images/category.png"
+                        alt=""></a>
+                <a class="active-Icons" onclick="btnClick(this)" href="/adminLogin/orderHistory"><img
+                        src="/assets/images/orderHistory.png" alt=""></a>
+                <a class="active-Icons" onclick="btnClick(this)" href="/adminLogin/coupon"><img src="/assets/images/couponIcon.png"
+                        alt=""></a>
+                <a class="active-Icons" onclick="btnClick(this)" href="/adminLogin/salesReport"><img src="/assets/images/sales.png"
+                        style="width: 30px;height: 30px;" alt=""></a>
+                <a class="active-Icons" onclick="btnClick(this)" href="/adminLogin/CustomerDetails"><img
+                        src="/assets/images/userRport.png" alt=""></a>
+                <a class="active-Icons" onclick="btnClick(this)" href="/adminLogin/offers"><img src="/assets/images/coupon.png"
+                        style="width: 30px;height: 30px;" alt=""></a>
+            </div>
+        </div>
+
+        <div class="left-Menu-Bar">
+            <div class="row">
+                <img class="adminPanel" src="/assets/images/admin-panel2.png" alt="">
+                <span>Admin</span>
+            </div>
+            <div class="row">
+                <br><br>
+                <div class="menu_section">
+
+                    <ul class="nav side-menu">
+                        <li class="side-menu-li " onclick="menuBtn(this)">
+                            <a href="/adminLogin/adminDashboard" class="side-menu-a-tag">
+                                <i class="fa fa-home menuBtn"><span>DashBoard</span></i>
+                                <span class="fa fa-chevron-right"></span>
+                            </a>
+                        </li>
+                        <li class="side-menu-li active" onclick="menuBtn(this)">
+                            <a href="/adminLogin/ProductList" class="side-menu-a-tag">
+                                <i class="menuBtn"><img src="/assets/images/productIcon.png"
+                                        style="width: 19px;height: 19px;" alt="">
+                                    <span
+                                        style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Products</span></i>
+                                <span class="fa fa-chevron-right"></span>
+                            </a>
+                        </li>
+                        <li class="side-menu-li" onclick="menuBtn(this)">
+                            <a href="/adminLogin/Category" class="side-menu-a-tag">
+                                <i class="menuBtn"><img src="/assets/images/category.png"
+                                        style="width: 19px;height: 23px;" alt="">
+                                    <span
+                                        style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Category</span></i>
+                                <span class="fa fa-chevron-right"></span>
+
+                            </a>
+                        </li>
+                        <li class="side-menu-li" onclick="menuBtn(this)">
+                            <a href="/adminLogin/orderHistory" class="side-menu-a-tag">
+                                <i class="menuBtn"><img src="/assets/images/orderHistory.png"
+                                        style="width: 19px;height: 19px;" alt="">
+                                    <span
+                                        style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Order
+                                        History</span></i>
+                                <span class="fa fa-chevron-right"></span>
+                            </a>
+                        </li>
+                        <li class="side-menu-li" onclick="menuBtn(this)">
+                            <a href="/adminLogin/coupon" class="side-menu-a-tag">
+                                <i class="menuBtn"><img src="/assets/images/couponIcon.png"
+                                        style="width: 22px;height: 22px;" alt="">
+                                    <span
+                                        style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Coupon</span></i>
+                                <span class="fa fa-chevron-right"></span>
+                            </a>
+                        </li>
+                        <li class="side-menu-li" onclick="menuBtn(this)">
+                            <a href="/adminLogin/salesReport" class="side-menu-a-tag">
+                                <i class="menuBtn"><img src="/assets/images/sales.png" style="width: 22px;height: 22px;"
+                                        alt="">
+                                    <span
+                                        style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Sales
+                                        Report</span></i>
+                                <span class="fa fa-chevron-right"></span>
+                            </a>
+                        </li>
+                        <li class="side-menu-li" onclick="menuBtn(this)">
+                            <a href="/adminLogin/CustomerDetails" class="side-menu-a-tag">
+                                <i class="menuBtn"><img src="/assets/images/userRport.png"
+                                        style="width: 19px;height: 19px;" alt="">
+                                    <span
+                                        style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">User
+                                        Report</span></i>
+                                <span class="fa fa-chevron-right"></span>
+                            </a>
+                        </li>
+                        <li class="side-menu-li" onclick="menuBtn(this)">
+                            <a href="/adminLogin/offers" class="side-menu-a-tag">
+                                <i class="menuBtn"><img src="/assets/images/coupon.png"
+                                        style="width: 22px;height: 22px;" alt="">
+                                    <span
+                                        style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Offers</span></i>
+                                <span class="fa fa-chevron-right"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="right-Menu-Bar">
+            <div class="row NavbarRow">
+                <div class="menuIcon"><a id="MenuBtn"><i class="fa fa-bars"></i></a></div>
+                <div class="other-Settings">
+                    <a class="msgIcon" href="messageBox"><i class="fa fa-envelope-o"></i> <span
+                            class="badge bg-green">6</span></a>
+                    <a href="" class="profileName">
+                        <b>hexashop@gmail.com</b><span class="fa fa-chevron-down"></span>
+                    </a>
+                </div>
+            </div>
+            <!-- <div class="row log-DropDown">
+                                        <div class="logoutTab">
+
+                                        </div>
+                                </div> -->
+            <div class="row">
+                <div class="col-12 row2">
+                    <div class="col-4 col1">
+                        <h3>Edit Products</h3>
+                    </div>
+
+                    <div class="col-8 col2">
+                        <a href="/adminLogin/ProductList">
+                            <button class="btnCancel"><span><i class="fa-solid fa-xmark"
+                                        style="color: #ffffff;"></i></span>Cancel</button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-12 MessageRow">
+                    <p style="width: 100%;text-align: center;">
+                        <%= success %>
+                    </p>
+                </div>
+
+                <div class="col-12 form-container">
+                    <form action="editProducts?id=<%= productInfo._id %>&_method=PUT" class="frmRow3" method="post" >
+                        <div class="AddProduct-Form">
+                            <br>
+                            <h5 class="generalInfo">General Information</h5>
+                            <div class="row box1">
+                                <div class="col-12 box1-col1">
+                                    <div class="col-6">
+                                        <label class="lbl" for="">Product Name</label>
+                                        <input type="text" class="form-control inputpass" name="ProductName"
+                                            id="ProductName" placeholder="Enter Product Name"
+                                            value="<%= productInfo.ProductName %>">
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="lbl" for="">Brand Name</label>
+                                        <input type="text" class="form-control inputpass" name="BrandName"
+                                            id="ProductName" placeholder="Enter Brand Name"
+                                            value="<%= productInfo.BrandName %>">
+                                    </div>
+                                </div>
+                                <div class="col-12 box1-col1">
+                                    <div class="col-4 categoryRow">
+                                        <label class="lbl" for="">Category Name</label>
+
+                                        <select name="CategoryName" class="dropbtn">
+                                            <option value="Mens" <%=productInfo.CategoryName==='Mens'
+                                                ? 'selected' : '' %> >Mens</option>
+                                            <option value="Womens" <%=productInfo.CategoryName==='Womens'
+                                                ? 'selected' : '' %> >Womens</option>
+                                            <option value="Kids" <%=productInfo.CategoryName==='Kids'
+                                                ? 'selected' : '' %> >Kids</option>
+                                            <option value="Accessories"
+                                                <%=productInfo.CategoryName==='Accessories' ? 'selected'
+                                                : '' %> >Accessories</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-4">
+                                        <label class="lbl" for="">Stock Quantity</label>
+                                        <input type="text" class="form-control inputpass"
+                                            name="StockQuantity" id="CategoryName"
+                                            placeholder="Enter Stock Quantity"
+                                            value="<%= productInfo.StockQuantity %>">
+                                    </div>
+
+                                    <div class="col-4 categoryRow">
+                                        <label class="lbl" for="">Sub-Category Name</label>
+
+                                        <select name="subCategory" class="dropbtn">
+                                            <% subCategory.forEach((data)=> { %>
+                                                <option value="<%= data %>">
+                                                    <%= data %>
+                                                </option>
+                                                <% }) %>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-12 box1-col1">
+                                    <div class="col-4">
+                                        <label class="lbl" for="">Purchase Rate</label>
+                                        <input type="text" class="form-control inputpass"
+                                            name="PurchaseRate" id="PurchaseRate"
+                                            placeholder="Enter Purchase Rate"
+                                            value="<%= productInfo.PurchaseRate %>">
+                                    </div>
+                                    <div class="col-4">
+                                        <label class="lbl" for="">Sales Rate</label>
+                                        <input type="text" class="form-control inputpass" name="SalesRate"
+                                            id="SalesRate" placeholder="Enter Sales Rate"
+                                            value="<%= productInfo.SalesRate %>">
+                                    </div>
+                                    <div class="col-4">
+                                        <label class="lbl" for="">Color Name</label>
+
+                                        <select name="ColorNames" class="dropbtn">
+                                            <option value="Red" <%=productInfo.ColorNames==='Red'
+                                                ? 'selected' : '' %> >Red</option>
+                                            <option value="Blue" <%=productInfo.ColorNames==='Blue'
+                                                ? 'selected' : '' %> >Blue</option>
+                                            <option value="Black" <%=productInfo.ColorNames==='Black'
+                                                ? 'selected' : '' %> >Black</option>
+                                            <option value="White" <%=productInfo.ColorNames==='White'
+                                                ? 'selected' : '' %> >White</option>
+                                            <option value="yellow" <%=productInfo.ColorNames==='yellow'
+                                                ? 'selected' : '' %> >yellow</option>
+                                            <option value="green" <%=productInfo.ColorNames==='green'
+                                                ? 'selected' : '' %> >green</option>
+                                            <option value="grey" <%=productInfo.ColorNames==='grey'
+                                                ? 'selected' : '' %> >grey</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-12 box1-col1 Description">
+                                    <div class="col-12 textAreaRow">
+                                        <label class="lbl" for="">Product Description</label>
+
+                                        <textarea class="inputDescription" name="ProductDescription" id=""
+                                            placeholder="Enter your Product Description" cols="30" rows="10"
+                                            name="ProductDescription"><%= productInfo.ProductDescription %></textarea>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-12 box1-col1">
+                                    <div class="col-12 sizeRow">
+                                        <label class="lbl" for="">Select Product Size</label>
+                                        <div class="col-12 checkRow">
+                                            <% productInfo.ProductSize.forEach((sizeObject)=> { %>
+
+                                                <label class="container">
+                                                    <%= sizeObject.size==='S' ? 'Small' :
+                                                        sizeObject.size==='M' ? 'Medium' :
+                                                        sizeObject.size==='L' ? 'Large' :
+                                                        sizeObject.size==='XL' ? 'Extra Large' :
+                                                        sizeObject.size==='XXL' ? 'Double Extra Large'
+                                                        : 'Unknown Size' %>
+
+                                                        <input type="checkbox" class="checkBox" name="sizes"
+                                                            value="<%= sizeObject.size %>" checked="checked"
+                                                            <%=sizeObject.size==='S' ? 'checked' : '' %> >
+                                                        <span class="checkmark"></span>
+                                                        <input type="text" class="form-control inputSmall"
+                                                            name="SizeQuantity" id="TotalPrice"
+                                                            placeholder="S Quantity"
+                                                            value="<%= sizeObject.quantity %>">
+                                                </label>
+                                                <% }) %>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 box1-col1">
+                                    <div class="col-4">
+                                        <label class="lbl" for="">VAT Amount (%)</label>
+                                        <input type="text" class="form-control inputpass" name="VATAmount"
+                                            id="SalesRate" placeholder="Enter VAT Amount"
+                                            value="<%= productInfo.VATAmount %>">
+                                    </div>
+                                    <div class="col-4">
+                                        <label class="lbl" for="">MRP</label>
+                                        <input type="text" class="form-control inputpass"
+                                            name="DiscountPrecentage" id="TotalPrice"
+                                            placeholder="Enter Discount Precentage"
+                                            value="<%= productInfo.MRP %>">
+                                    </div>
+                                    <div class="col-4 categoryRow">
+                                        <label class="lbl" for="">Add Images</label>
+                                        <input type="file" id="selectImage" style="padding: 0;"
+                                            onchange="cropImage()" class="form-control inputpass"
+                                            accept="image/*" multiple>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Image-Form ImgRow" >
+                            <div class="col-12 col11-2">
+                               
+                                <h5>Product Images</h5>
+                                <br>
+                                <div class="row">
+                                    <div class="col-12 imgInput">
+
+
+                                        <% productInfo.files.forEach((val,i)=> { %>
+                                            <label for="input-file<%=i+1%>" id="drop-area<%=i+1%>"
+                                                style="display: flex;align-items: start;justify-content: end; margin-left: 20px;">
+                                                <a class="dltImage" href="" onclick="deleteImage('<%=i%>','<%= productInfo._id %>')">
+                                                    <i class="fa-solid fa-xmark" style="color: #000000;"></i></a>
+                                                <div id="img-view<%=i+1%>" class="border"
+                                                    style="background-image: url('<%= productInfo.files[i].url %>');">
+                                                </div>
+                                            </label>
+                                        <% }) %>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row SaveBtnRow">
+                            <button type="submit" class="btnSaveProduct">Save Products</button>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div><br><br><br><br>
+        </div>
+    </div>
+
+    <div id="popup">
+        <div class="row" style="display: flex;">
+            <p>Crop Your Image Here </p>
+            <span class="btnSpan"><button class="btn " id="SaveBtn">Save</button></span>
+        </div>
+
+        <div class="row imageRow">
+            <div class="Showimage imgDiv" style="width: 50%;">
+                <img src="/assets/images/cropImage.jpg" alt="" id="image">
+            </div>
+            <div class="Showimage" id="" style="width: 40%;">
+                <div id="imageContainer" style="width: 100%;">
+
+                </div>
+                <div class="btnRow">
+                    <a href="addProducts">
+                        <button class="Cancel"><span><i class="fa-solid fa-xmark"
+                                    style="color: #ffffff;"></i></span>Cancel</button>
+                    </a>
+                    <button type="button" id="cropBtn" class="crop"><span><i class="fa-solid fa-crop"
+                                style="color: #ffffff;"></i></span>Crop</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/assets/js/dashboard.js"></script>
+
+
+
+    <script src="/assets/js/editProducts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
+</html>

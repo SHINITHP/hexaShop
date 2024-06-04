@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+            rel="stylesheet">
+        <!-- Additional CSS Files -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/user/bootstrap.min.css">
+        <!-- <link rel="stylesheet" type="text/css" href="/assets/css/user/font-awesome.css"> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+        <link rel="stylesheet" href="/assets/css/user/templatemo-hexashop.css">
+        <!-- <link rel="stylesheet" href="/assets/css/user/owl-carousel.css"> -->
+        <!-- <link rel="stylesheet" href="/assets/css/user/lightbox.css"> -->
+        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+        <link rel="stylesheet" href="/assets/css/user/wishlist.css">
+        <link rel="stylesheet" href="/assets/css/user/myOrder.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" />
+
+        <title>Document</title>
+    </head>
+
+    <body>
+
+
+
+
+        <!-- ***** Header Area Start ***** -->
+        <header class="header-area header-sticky" style="position: fixed;">
+            <a class='menu-trigger' id="menuTrigger" style="position: relative;">
+                <span>Menu</span>
+            </a>
+            <div class="container Nav-con-1">
+                <div class="row row1">
+                    <div class="col-10">
+                        <nav class="main-nav" style=" margin-left: 20px;">
+
+                            <!-- ***** Logo Start ***** -->
+                            <a href="/" class="logo" style="padding: 0;">
+                                <img src="/assets/images/logo.png">
+                            </a>
+                            <!-- ***** Logo End ***** -->
+                            <!-- ***** Menu Start ***** -->
+                            <ul class="nav">
+                                <li class="scroll-to-section"><a href="/#top" class="active">Home</a></li>
+                                <li class="scroll-to-section"><a href="/#men">Men's</a></li>
+                                <li class="scroll-to-section"><a href="/#women">Women's</a></li>
+                                <li class="scroll-to-section"><a href="/#kids">Kid's</a></li>
+                                <li class="scroll-to-section"><a href="/#Contact">Contact</a></li>
+                            </ul>
+
+
+                        </nav>
+
+
+                    </div>
+                    <div class="col-2 col2">
+                        <a><i class="fa-solid fa-magnifying-glass searchIcon" id="searchBtn"
+                                style="color: #404040;"></i></a>
+                        <a href="/shoppingcart">
+                            <i class="fa-solid fa-cart-shopping cartIcon" style="color: #404040;"></i>
+                        </a>
+                        <a href="/Profile" class="profileLogo">
+                            <img src="/assets/images/profile-Icon.png" class="profileIcon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- ***** Header Area End ***** -->
+
+
+        <div class="row searchBar"
+            style="height: 70px;  display: flex;justify-content: center;padding-top: 90px; display: none;cursor: pointer;">
+            <label for=""
+                style="width: 70vw;height: 50px; background-color: #e7e7e7;display: flex;align-items: center;padding-left: 20px;">
+                <input type="text" style="border: none;outline: none; width: 64vw;background: transparent;"
+                    placeholder="Search For Products , Brands and More...">
+                <a href="" style="width: 6vw;text-align: center;"><i class="fa-solid fa-magnifying-glass"
+                        style="color: #000000; font-size: 18pt;"></i></a>
+            </label>
+        </div>
+
+
+        <div class="container-fluid outerDiv" id="blur" style="padding: 0px;">
+            <div class="container-fluid conF-1" style="margin-top: 100px;">
+                <!-- <h3 class="myAccount">My Account</h3> -->
+                <div class="row" style="min-height: 100vh;">
+                    <div class="col-md-3 col-sm-12 col3">
+
+                        <div class="row"
+                            style="display: flex;align-items: center; padding-left: 20px; padding-top: 20px;">
+                            <label for="imgInput">
+                                <div class="circle">
+                                    <img class="profile-pic" id="profilePic"
+                                        src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
+                                </div>
+                                <input class="file-upload" id="imgInput" hidden type="file" accept="image/*"
+                                    onclick="cropImage('imgInput','profilePic')" />
+
+                            </label>
+                            <p>Welcome , Shinith </p>
+                        </div>
+
+
+                        <ul>
+                            <a id="changeIcon">
+                                <li><i class="fa-regular fa-user menuIcon" style="color: black;"></i><span
+                                        class="spanText">Account
+                                        Settings</span>
+                                    <span>
+                                        <i id="icon" class="fa rightAngle">&#xf105;</i>
+                                    </span>
+                                </li>
+                            </a>
+
+
+                            <a href="/Profile" id="DropDownLi1" style="display: none;">
+                                <li style="padding-left: 50px; height: 50px;">Profile Information <span
+                                        style="width: 30px;"><i style="font-size:24px;color:#494949;padding-left:55px;"
+                                            class="fa rightAngle">&#xf105;</i></span></li>
+                            </a>
+
+                            <a href="profileMenu?menu=manageAddress" id="DropDownLi2" style="display: none;">
+                                <li style="padding-left: 50px;height: 50px;">Manage Address <span
+                                        style="width: 30px;"><i style="font-size:24px;color:#494949;padding-left:69px;"
+                                            class="fa rightAngle">&#xf105;</i></span></li>
+                            </a>
+
+
+
+                            <a href="profileMenu?menu=myOrders">
+                                <li style="background-color: #afafaf;"><i
+                                        class="fa-solid fa-cart-shopping cartIcon menuIcon"
+                                        style="color: black;"></i><span class="spanText">My
+                                        Orders</span>
+                                    <span>
+                                        <i style="font-size:24px;color:#494949;" class="fa rightAngle">&#xf105;</i>
+                                    </span>
+                                </li>
+                            </a>
+                            <a href="profileMenu?menu=wishlist">
+                                <li><i class="fa fa-heart menuIcon" style="color: black;"></i><span
+                                        class="spanText">Wishlist</span>
+                                    <span>
+                                        <i style="font-size:24px;color:#494949;" class="fa rightAngle">&#xf105;</i>
+                                    </span>
+                                </li>
+                            </a>
+                            <a href="">
+                                <li><i class="fa-solid fa-receipt menuIcon" style="color: black;"></i><span
+                                        class="spanText">Coupons</span>
+                                    <span>
+                                        <i style="font-size:24px;color:#494949;" class="fa rightAngle">&#xf105;</i>
+                                    </span>
+                                </li>
+                            </a>
+                            <a href="profileMenu?menu=Wallet">
+                                <li><i class="fa-solid fa-wallet menuIcon" style="color: #000000;"></i><span
+                                        class="spanText">Wallet</span>
+                                    <span>
+                                        <i style="font-size:24px;color:#494949;" class="fa rightAngle">&#xf105;</i>
+                                    </span>
+                                </li>
+                            </a>
+                            <a href="/logout">
+                                <li><img src="/assets/images/logout.png" class="logoutImg"><span class="spanText"
+                                        style="padding-left: 30px; font-size: 13pt;">Logout</span>
+                                    <span>
+                                        <i style="font-size:24px;padding-left: 10px; color:#494949;"
+                                            class="fa rightAngle">&#xf105;</i>
+                                    </span>
+                                </li>
+                            </a>
+                        </ul>
+                    </div>
+
+
+
+                    <div class="col-md-9 col-sm-12 col9" id="orderList">
+                        <h3 style="width: 100%;">My Orders</h3>
+
+                        <% orderDetails.forEach((item)=> { %>
+                            <div class="container con2" style="margin-top: 13px;">
+                                <div class="row con2Row1">
+                                    <div class="col-1 rowcol6-1">
+                                        <img src="<%=item.productID.files[0].url%>" alt="">
+                                    </div>
+                                    <div class="col-7 rowcol6-2">
+                                        <p>
+                                            <%=item.productID.ProductName%>
+                                        </p>
+                                        <ul class="stars">
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-4 rowcol6-3">
+
+                                        <a href="profileMenu?menu=trackOrder&id=<%=item._id%>"><button class="btn"
+                                                id="remove">TrackOrder</button></a>
+
+
+
+                                    </div>
+                                </div>
+                                <% let id %>
+                                    <% let orderDate=new Date(item.OrderDate); let deliveryDate=new
+                                        Date(orderDate.setDate(orderDate.getDate() + 7)); %>
+                                        <div class="row con2Row2">
+                                            <div class="col-4 rowcol4-1">
+                                                <h5>Delivery Date</h5>
+                                                <p>
+                                                    <%= deliveryDate.toLocaleDateString() %>
+                                                </p>
+                                            </div>
+                                            <div class="col-4 rowcol4-2">
+                                                <h5>Total Amount</h5>
+                                                <p>₹<%=item.Amount%>
+                                                </p>
+                                            </div>
+                                            <div class="col-4 rowcol4-3">
+                                                <h5>Status</h5>
+                                                <% if(item.Status !=='Failed' ){ %>
+                                                    <p>
+                                                        <%=item.Status%>
+                                                    </p>
+                                                    <% } else{ %>
+                                                        <p style="color: red;">
+                                                            Payment Failed
+                                                        </p>
+
+                                                        <% } %>
+                                            </div>
+                                        </div>
+                            </div>
+                            <% }) %>
+                    </div>
+
+
+                    <!-- track order -->
+                    <div class="col-md-9 col-sm-12 col9" id="trackOrder" style="display: none;">
+                        <div class="row deliveryAddress">
+                            <div class="col-6 leftRow">
+                                <h4>Delivery Address</h4>
+                                <p id="name"
+                                    style="font-size: 13pt;margin-top: 13px;font-family:Poppins; font-weight: 500;">
+                                </p>
+                                <p id="address"
+                                    style="font-size: 11pt;font-weight: 400; width: 350px; padding: 0; margin-top: 5px;">
+                                </p>
+                                <h6 style="margin-top: 10px;font-family: Poppins;font-size: 12pt;">Phone Number : <span
+                                        style="padding-left: 2px;font-size: 11pt;color:#404040;" id="mob-number"></span>
+                                </h6>
+                                <h6 style="margin-top: 10px;font-family: Poppins;font-size: 12pt;">Email : <span
+                                        style="padding-left: 2px;font-size: 11pt;color:#404040;" id="email"></span>
+                                </h6>
+                            </div>
+                            <div class="col-6 rightRow">
+                                <h4>Product Details <span>
+
+                                        <input type="button" id="cancelOrderbtn" style="display: none;"
+                                            onclick="cancelOrder()" class="btn btncancelOrder" value="Cancel Order">
+
+
+                                        <input type="button" style="display: none;" class="btn btncancelOrder"
+                                            id="btnReturnOrder" value="Return Order">
+                                    </span></h4>
+                                <a href="" style="display:flex;align-items: center;">
+                                    <img src="" alt="" style="height: 80px;width: 80px; " id="productImg">
+                                    <p style="padding-left: 20px;" id="productName"></p>
+                                </a>
+                                <h6 style="padding-top: 10px;">Brand Name : <span style="color: #404040;"
+                                        id="brandName"></span></h6>
+                                <h6 style="padding-top: 10px;">Price : ₹<span style="color: #404040; padding-left: 5px;"
+                                        id="price"></span></h6>
+                            </div>
+                        </div>
+
+                        <div class="card card-timeline px-2 border-none orderCancelled" style="display: none; ">
+                            <ul class="bs4-order-tracking" style="display: flex;justify-content: center;">
+                                <li class="step active" id="CancellineOne">
+                                    <div><i class="fas fa-user"></i></div>Order Placed
+                                </li>
+
+                                <li class="step active" id="CancellineFour">
+                                    <div><i class="fas fa-birthday-cake"></i></div>order Cancelled
+                                </li>
+
+                            </ul>
+                            <h5 class="Cancel text-center">Order successfully Cancelled</h5>
+                        </div>
+
+
+                        <div class="card card-timeline px-2 border-none trackDetails">
+                            <ul class="bs4-order-tracking">
+                                <li class="step " id="lineOne">
+                                    <div><i class="fas fa-user"></i></div>Order Placed
+                                </li>
+                                <li class="step" id="lineTwo">
+                                    <div><i class="fas fa-bread-slice"></i></div>Order Confirmed
+                                </li>
+                                <li class="step" id="lineThree">
+                                    <div><i class="fas fa-truck"></i></div>Out For Delivery
+                                </li>
+                                <li class="step" id="lineFour">
+                                    <div><i class="fas fa-birthday-cake"></i></div>Delivered
+                                </li>
+                            </ul>
+                            <h5 class="text-center content">The confirmation for your return order has been processed.
+                            </h5>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <div id="SuccessDiv">
+            <div class="container cancel-Confirmation">
+                <img src="/assets/images/CancelOrder.png"
+                    style="height: 80px;width: 130px; margin-bottom: 10px;padding-right: 29px;" alt="">
+                <h6>Are you Sure?</h6>
+                <p style="width: 300px;text-align: center; margin-top: 10px;">Are you sure you want to proceed with
+                    canceling the order!</p>
+                <select name="CancelReason" id="canceldropdown" class="dropbtn">
+                    <option value="Order Placed By Mistake">Reason For Cancellation</option>
+                    <option value="Order Placed By Mistake">Order Placed By Mistake</option>
+                    <option value="Item arrived too late">Item arrived too late</option>
+                    <option value="Financial reasons">Financial reasons</option>
+                    <option value="Other ">Other</option>
+                </select>
+                <label for="">Comment(optional)
+                    <input type="text" id="reqReason" class="commentInput">
+                </label>
+                <div class="row">
+                    <input type="button" class="btn" id="cancelBtn" value="Cancel">
+                    <input type="button" class="btn" id="submitBtn" onclick="submitRequest()" value="Submit Request">
+                </div>
+
+            </div>
+
+            <div class="container submit-Order" style="display: none;">
+                <i class="fa-regular fa-circle-check" style="color: #10aa0e;font-size: 40pt;padding-bottom: 10px;"></i>
+                <p id="content" style="width: 400px;text-align: center; margin-top: 10px;">Your order cancellation
+                    request is being
+                    processed. Expect confirmation shortly</p>
+                <a href=""><input type="button" class="btn" id="checkstatusBtn" value="Check Status"></a>
+            </div>
+
+            <div class="container returnOrder" style="display: none;">
+                <img src="/assets/images/return.png"
+                    style="height: 80px;width: 120px; margin-bottom: 10px;padding-right: 29px;" alt="">
+
+                <h6>Are you Sure?</h6>
+                <p style="width: 300px;text-align: center; margin-top: 10px;">Are you sure you want to proceed with
+                    return the order!</p>
+                <select name="returnReason" id="returndropdown" class="dropbtn">
+                    <option value="Order Placed By Mistake">Reason For Return</option>
+                    <option value="Order Placed By Mistake">Order Placed By Mistake</option>
+                    <option value="The product has sustained damage.">The product has sustained damage.</option>
+                    <option value="Buy another Product">Buy another Product</option>
+                    <option value="Other ">Other</option>
+                </select>
+
+                <label for="">Comment(optional)
+                    <input type="text" id="requestReason" class="commentInput">
+                </label>
+                <div class="row">
+                    <input type="button" class="btn" id="returnCancelBtn" value="Cancel">
+                    <input type="button" class="btn" id="returnSubmitBtn" onclick="returnOrder()" value="Submit">
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- eFooter starts here... -->
+        <%- include('../../views/user/footer.ejs') %>
+            <!-- Footer end  here... -->
+
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+            <script>
+
+                const urlParams = new URLSearchParams(window.location.search);
+                const success = urlParams.get('success');
+
+                if (success === 'true') {
+                    // Display the success toast
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Payment successfully paid',
+                        timer: 5000,
+                        toast: true,
+                        position: 'top',
+                        showConfirmButton: false
+                    });
+                    urlParams.delete('success');
+                    const newUrl = window.location.pathname + '?' + urlParams.toString(); // Construct new URL
+                    history.replaceState(null, '', newUrl);
+                }else if (success === 'false'){
+                    Swal.fire({
+                        icon: 'info',
+                        title: '<span style="font-size:9pt;color: red">Payment Failed!</span>',
+                        timer: 4000, // Duration in milliseconds
+                        toast: true,
+                        position: 'top', // Toast position
+                        showConfirmButton: false
+                    });
+                    urlParams.delete('success');
+                    const newUrl = window.location.pathname + '?' + urlParams.toString(); // Construct new URL
+                    history.replaceState(null, '', newUrl);
+                }
+
+
+                function returnOrder() {
+
+                    const submitOrder = document.querySelector('.submit-Order')
+                    SuccessDiv.style.height = '300px'
+                    document.querySelector('.returnOrder').style.display = 'none'
+                    submitOrder.style.display = 'block'
+                    submitOrder.style.display = 'flex'
+                    console.log('return ', orderID)
+                    let content = 'Your return request is being processed. Expect confirmation shortly';
+                    document.getElementById('content').innerHTML = content
+                    const reason = document.getElementById('returndropdown').value
+                    const optionalreason = document.getElementById('requestReason').value
+
+                    console.log(optionalreason)
+                    axios.put('/profileMenu?type=returnOrder', { orderID, reason, optionalreason }) // Sending productID as data
+                        .then(function (response) {
+                            // Handle success response if needed
+
+                        })
+                        .catch(function (error) {
+                            console.error('Error adding product to cart:', error);
+                            // Handle error if needed
+                        });
+                }
+
+
+                document.getElementById('searchBtn').addEventListener('click', function () {
+                    document.querySelector('.searchBar').style.display = 'block'
+                    document.querySelector('.searchBar').style.display = 'flex'
+                    document.querySelector('.outerDiv').style.paddingTop = '10px';
+                    document.querySelector('.conF-1').style.marginTop = '50px';
+                })
+
+                let orderID;
+
+                function TrackOrder(orderId, orderDetails) {
+                    const orderList = document.getElementById('orderList')
+                    const trackOrder = document.getElementById('trackOrder')
+                    orderList.style.display = 'none'
+                    trackOrder.style.display = 'block'
+                    orderID = orderId;
+                    console.log(orderID)
+                    const productData = JSON.parse(orderDetails)
+                    const data = productData.filter((val) => {
+                        return val._id == orderId ? true : false
+                    })
+
+                    console.log('orderDetails', data[0].rejected)
+
+                    if (data[0].Status === 'Order Returned' || data[0].Status === 'Order Cancelled' || data[0].Status === 'Out For Delivery' || data[0].rejected === true) {
+                        document.getElementById('cancelOrderbtn').style.display = 'none'
+                        document.getElementById('btnReturnOrder').style.display = 'none'
+                    } else if (data[0].Status === 'Delivered' && data[0].rejected === false) {
+                        document.getElementById('cancelOrderbtn').style.display = 'none'
+                        document.getElementById('btnReturnOrder').style.display = 'block'
+                    } else {
+                        document.getElementById('btnReturnOrder').style.display = 'none'
+                        document.getElementById('cancelOrderbtn').style.display = 'block'
+                    }
+
+
+
+                    document.getElementById('name').innerHTML = data[0].addressID.fullName
+                    document.getElementById('address').innerHTML = `${data[0].addressID.address} , ${data[0].addressID.state} , ${data[0].addressID.cityDistrictTown}-${data[0].addressID.pincode}`
+                    document.getElementById('mob-number').innerHTML = data[0].addressID.phoneNo
+                    document.getElementById('email').innerHTML = data[0].addressID.emailAddress
+                    document.getElementById('productImg').src = data[0].productID.files[0].url
+                    document.getElementById('productName').innerHTML = data[0].productID.ProductName
+                    document.getElementById('brandName').innerHTML = data[0].productID.BrandName
+                    document.getElementById('price').innerHTML = data[0].Amount
+
+                    let lineOne = document.getElementById('lineOne');
+                    let lineTwo = document.getElementById('lineTwo');
+                    let lineThree = document.getElementById('lineThree');
+                    let lineFour = document.getElementById('lineFour');
+                    let textcenter = document.querySelector('.content')
+                    console.log(data[0].Status)
+                    if (data[0].Status === 'Order Placed') {
+                        lineOne.classList.toggle('active');
+                        textcenter.innerHTML = 'Your order has been successfully placed.'
+                    }
+                    else if (data[0].Status === 'Order Confirmed') {
+                        lineOne.classList.toggle('active');
+                        lineTwo.classList.toggle('active');
+                        textcenter.innerHTML = 'Your order has been confirmed and is being processed!'
+                    }
+                    else if (data[0].Status === 'Out For Delivery') {
+                        lineOne.classList.toggle('active');
+                        lineTwo.classList.toggle('active');
+                        lineThree.classList.toggle('active');
+                        textcenter.innerHTML = 'Your order is on its way and is currently marked as Out For Delivery.'
+                    }
+                    else if (data[0].Status === 'Delivered' && data[0].rejected === false) {
+                        lineOne.classList.toggle('active');
+                        lineTwo.classList.toggle('active');
+                        lineThree.classList.toggle('active');
+                        lineFour.classList.toggle('active');
+                        textcenter.innerHTML = 'Your order has been successfully delivered.'
+
+
+                        console.log('iam in the ')
+                        saveLastShownDate();
+
+                    } else if (data[0].Status === 'Delivered' && data[0].rejected === true) {
+                        lineOne.classList.toggle('active');
+                        lineTwo.classList.toggle('active');
+                        lineThree.classList.toggle('active');
+                        lineFour.classList.toggle('active');
+                        textcenter.innerHTML = 'Your return request has been rejected.'
+
+                        console.log('iam in the ')
+                        saveLastShownDate();
+
+                    } else if (data[0].Status === 'Order Cancelled') {
+                        document.querySelector('.trackDetails').style.display = 'none'
+                        document.querySelector('.orderCancelled').style.display = 'block'
+                    }
+
+
+                }
+
+
+                document.addEventListener('DOMContentLoaded', function () {
+                    const returnOrderButton = document.getElementById('btnReturnOrder');
+                    const lastShownDate = localStorage.getItem('lastShownDate');
+                    console.log('i am in the difference')
+                    if (lastShownDate) {
+                        const sevenDaysInMillis = 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
+                        const currentTime = new Date().getTime();
+                        const difference = currentTime - parseInt(lastShownDate, 10);
+                        console.log('i am in the difference')
+                        if (difference >= sevenDaysInMillis) {
+                            console.log('i am in the difference')
+                            // More than 7 days have passed since the button was last shown, remove the button
+                            returnOrderButton.remove();
+                        }
+                    }
+                });
+
+                // Function to save the current date when the button is shown
+                function saveLastShownDate() {
+                    const currentTime = new Date().getTime();
+                    localStorage.setItem('lastShownDate', currentTime);
+                }
+
+
+
+
+
+                function submitRequest() {
+                    const SuccessDiv = document.getElementById('SuccessDiv')
+                    const cancelConfirmation = document.querySelector('.cancel-Confirmation')
+                    const submitOrder = document.querySelector('.submit-Order')
+
+                    const reqReason = document.getElementById('canceldropdown').value;
+                    const optionalReason = document.getElementById('reqReason');
+                    const data = optionalReason.value
+
+                    let name = document.getElementById('productName').innerText;
+                    console.log('document.getElementBy', orderID, reqReason, data)
+
+                    SuccessDiv.style.height = '300px'
+                    cancelConfirmation.style.display = 'none'
+                    submitOrder.style.display = 'block'
+                    submitOrder.style.display = 'flex'
+
+                    function send(orderID, reqReason, data) {
+                        axios.put('/profileMenu?type=cancelRequest', { orderID, reqReason, data }) // Sending productID as data
+                            .then(function (response) {
+                                // Handle success response if needed
+                            })
+                            .catch(function (error) {
+                                console.error('Error adding product to cart:', error);
+                                // Handle error if needed
+                            });
+                    }
+
+                    send(orderID, reqReason, data)
+
+                }
+
+                document.getElementById('cancelBtn').addEventListener('click', function () {
+
+                    let blur = document.getElementById('blur');
+                    blur.classList.remove('active');
+
+                    let popup = document.getElementById('SuccessDiv');
+                    popup.classList.remove('active');
+
+                    let body = document.querySelector('body');
+
+                    // Add a class to the body to stop scrolling
+                    body.classList.remove('stop-scrolling');
+
+                })
+
+                function cancelOrder() {
+
+                    let blur = document.getElementById('blur');
+                    blur.classList.toggle('active');
+
+                    let popup = document.getElementById('SuccessDiv');
+                    popup.classList.toggle('active');
+
+                    let body = document.querySelector('body');
+
+                    // Add a class to the body to stop scrolling
+                    body.classList.add('stop-scrolling');
+
+                }
+
+                const changeIcon = document.getElementById('changeIcon');
+                const dropDownLi1 = document.getElementById('DropDownLi1');
+                const dropDownLi2 = document.getElementById('DropDownLi2');
+                let isDropDownVisible = true;
+
+                changeIcon.addEventListener('click', function () {
+                    let icon = document.getElementById('icon');
+
+                    if (isDropDownVisible) {
+                        icon.innerHTML = '&#xf107;'; // Change to the new icon
+                        dropDownLi1.style.display = 'block';
+                        dropDownLi2.style.display = 'block';
+
+
+                    } else {
+                        icon.innerHTML = '&#xf105;'; // Change back to the original icon
+                        dropDownLi1.style.display = 'none';
+                        dropDownLi2.style.display = 'none';
+                    }
+
+                    // Toggle the state
+                    isDropDownVisible = !isDropDownVisible;
+                });
+
+
+
+            </script>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"
+                integrity="sha512-9KkIqdfN7ipEW6B6k+Aq20PV31bjODg4AA52W+tYtAE0jE0kMx49bjJ3FgvS56wzmyfMUHbQ4Km2b7l9+Y/+Eg=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+    </body>
+
+    </html>
+
+</body>
+
+</html>

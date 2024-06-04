@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="/assets/css/user/bootstrap.min.css">
+        <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/css/admin/newDashboard.css">
+        <link rel="stylesheet" href="/assets/css/admin/orderHistory.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gentelella/1.3.0/css/custom.css"> -->
+
+
+
+        <title>Document</title>
+</head>
+
+<body>
+        <div class="container-fluid mainConatainer outerDiv" id="blur" style="display: flex;">
+
+                <div class="col-0 left-Menu-Bar-active" style="display: none;">
+                        <div class="row"
+                                style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+                                <img class="adminPanel" src="/assets/images/admin-panel2.png" style="margin-left: 0;"
+                                        alt="">
+                                <br><br>
+                                <a class="active-Icons " onclick="btnClick(this)" href="adminDashboard"><i
+                                                class="fa fa-home menuBtn" style="font-size: 30px;"></i></a>
+                                <a class="active-Icons" onclick="btnClick(this)" href="ProductList"><img
+                                                src="/assets/images/productIcon.png" alt=""></a>
+                                <a class="active-Icons" onclick="btnClick(this)" href="Category"><img
+                                                src="/assets/images/category.png" alt=""></a>
+                                <a class="active-Icons active" onclick="btnClick(this)" href="orderHistory"><img
+                                                src="/assets/images/orderHistory.png" alt=""></a>
+                                <a class="active-Icons" onclick="btnClick(this)" href="coupon"><img
+                                                src="/assets/images/couponIcon.png" alt=""></a>
+                                <a class="active-Icons" onclick="btnClick(this)" href="salesReport"><img
+                                                src="/assets/images/sales.png" style="width: 30px;height: 30px;"
+                                                alt=""></a>
+                                <a class="active-Icons" onclick="btnClick(this)" href="CustomerDetails"><img
+                                                src="/assets/images/userRport.png" alt=""></a>
+                                <a class="active-Icons" onclick="btnClick(this)" href="offers"><img
+                                                src="/assets/images/coupon.png" style="width: 30px;height: 30px;"
+                                                alt=""></a>
+                        </div>
+                </div>
+
+                <div class="left-Menu-Bar">
+                        <div class="row">
+                                <img class="adminPanel" src="/assets/images/admin-panel2.png" alt="">
+                                <span>Admin</span>
+                        </div>
+                        <div class="row">
+                                <br><br>
+                                <div class="menu_section">
+
+                                        <ul class="nav side-menu">
+                                                <li class="side-menu-li " onclick="menuBtn(this)">
+                                                        <a href="adminDashboard" class="side-menu-a-tag">
+                                                                <i class="fa fa-home menuBtn"><span>DashBoard</span></i>
+                                                                <span class="fa fa-chevron-right"></span>
+                                                        </a>
+                                                </li>
+                                                <li class="side-menu-li" onclick="menuBtn(this)">
+                                                        <a href="ProductList" class="side-menu-a-tag">
+                                                                <i class="menuBtn"><img
+                                                                                src="/assets/images/productIcon.png"
+                                                                                style="width: 19px;height: 19px;"
+                                                                                alt="">
+                                                                        <span
+                                                                                style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Products</span></i>
+                                                                <span class="fa fa-chevron-right"></span>
+                                                        </a>
+                                                </li>
+                                                <li class="side-menu-li" onclick="menuBtn(this)">
+                                                        <a href="Category" class="side-menu-a-tag">
+                                                                <i class="menuBtn"><img
+                                                                                src="/assets/images/category.png"
+                                                                                style="width: 19px;height: 23px;"
+                                                                                alt="">
+                                                                        <span
+                                                                                style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Category</span></i>
+                                                                <span class="fa fa-chevron-right"></span>
+
+                                                        </a>
+                                                </li>
+                                                <li class="side-menu-li active" onclick="menuBtn(this)">
+                                                        <a href="orderHistory" class="side-menu-a-tag">
+                                                                <i class="menuBtn"><img
+                                                                                src="/assets/images/orderHistory.png"
+                                                                                style="width: 19px;height: 19px;"
+                                                                                alt="">
+                                                                        <span
+                                                                                style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Order
+                                                                                History</span></i>
+                                                                <span class="fa fa-chevron-right"></span>
+                                                        </a>
+                                                </li>
+                                                <li class="side-menu-li" onclick="menuBtn(this)">
+                                                        <a href="coupon" class="side-menu-a-tag">
+                                                                <i class="menuBtn"><img
+                                                                                src="/assets/images/couponIcon.png"
+                                                                                style="width: 22px;height: 22px;"
+                                                                                alt="">
+                                                                        <span
+                                                                                style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Coupon</span></i>
+                                                                <span class="fa fa-chevron-right"></span>
+                                                        </a>
+                                                </li>
+                                                <li class="side-menu-li" onclick="menuBtn(this)">
+                                                        <a href="salesReport" class="side-menu-a-tag">
+                                                                <i class="menuBtn"><img src="/assets/images/sales.png"
+                                                                                style="width: 22px;height: 22px;"
+                                                                                alt="">
+                                                                        <span
+                                                                                style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Sales
+                                                                                Report</span></i>
+                                                                <span class="fa fa-chevron-right"></span>
+                                                        </a>
+                                                </li>
+                                                <li class="side-menu-li" onclick="menuBtn(this)">
+                                                        <a href="CustomerDetails" class="side-menu-a-tag">
+                                                                <i class="menuBtn"><img
+                                                                                src="/assets/images/userRport.png"
+                                                                                style="width: 19px;height: 19px;"
+                                                                                alt="">
+                                                                        <span
+                                                                                style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">User
+                                                                                Report</span></i>
+                                                                <span class="fa fa-chevron-right"></span>
+                                                        </a>
+                                                </li>
+                                                <li class="side-menu-li" onclick="menuBtn(this)">
+                                                        <a href="offers" class="side-menu-a-tag">
+                                                                <i class="menuBtn"><img src="/assets/images/coupon.png"
+                                                                                style="width: 22px;height: 22px;"
+                                                                                alt="">
+                                                                        <span
+                                                                                style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Offers</span></i>
+                                                                <span class="fa fa-chevron-right"></span>
+                                                        </a>
+                                                </li>
+                                        </ul>
+                                </div>
+
+                        </div>
+                </div>
+                <div class="right-Menu-Bar">
+                        <div class="row NavbarRow">
+                                <div class="menuIcon"><a id="MenuBtn"><i class="fa fa-bars"></i></a></div>
+                                <div class="other-Settings">
+                                        <a class="msgIcon" href="messageBox"><i class="fa fa-envelope-o"></i> <span
+                                                        class="badge bg-green">6</span></a>
+                                        <a href="" class="profileName">
+                                                <b>hexashop@gmail.com</b><span class="fa fa-chevron-down"></span>
+                                        </a>
+                                </div>
+                        </div>
+                        <!-- <div class="row log-DropDown">
+                                        <div class="logoutTab">
+
+                                        </div>
+                                </div> -->
+                        <div class="row">
+                            <div class="col-12 row2">
+                                <br>
+                                <div class="col-3" style="padding-left: 10px;">
+                                    <h3>Order History</h3>
+                                </div>
+                            </div>
+        
+                        </div>
+
+                        <br><br>
+                        <div class="row filterRow">
+                            <div class="col-7 filter-col7">
+                                <div class="filterBox">
+                                    <a href="/adminLogin/orderHistory?task=all" style="color: blue;" id="all">All Status</a>
+                                    <span><a href="/adminLogin/orderHistory?task=OrderPlaced" style="color: rgb(108, 243, 17);" id="Processing">Order
+                                            Placed</a></span>
+                                    <span><a href="/adminLogin/orderHistory?task=Delivered" style="color: green;"
+                                            id="Delivered">Delivered</a></span>
+                                    <span><a href="/adminLogin/orderHistory?task=Cancelled" style="color: red;"
+                                            id="Cancelled">Cancelled</a></span>
+                                </div>
+                            </div>
+                            <div class="col-5 filter-col5">
+                                <div class="dateBox">
+                                    <input type="date" onchange="customDateFilter()" class="dateInput" id="startDate">
+                                </div>
+                                <div class="dateBox2">
+                                    <input type="date" onchange="customDateFilter()" class="dateInput" id="endDate">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row Pro-Row">
+                            <div class="SI">
+                                SI-No
+                            </div>
+                            <div class="Pro-Name" style="display: flex;justify-content: center;align-items: center;">
+                                <h5>Product Name</h5>
+                            </div>
+                            <div class="headBox">
+                                <h5>Customer No</h5>
+                            </div>
+                            <div class="headBox">
+                                <h5>Amount</h5>
+                            </div>
+                            <div class="headBox">
+                                <h5>Order Date</h5>
+                            </div>
+                            <div class="headBox">
+                                <h5>Payment</h5>
+                            </div>
+                            <div class="headBox">
+                                <h5>Status</h5>
+                            </div>
+                            <div class=" headBox" >
+                                <h5>Action</h5>
+                            </div>
+                        </div>
+                        <% let Status %>
+                            <% orderDetails.forEach((items,index)=> { %>
+                                <% Status=items.Status %>
+                                    <div class="row Pro-Details-Row">
+                                        <div class="SI">
+                                            <%=index + 1 %>
+                                        </div>
+                                        <div class="Pro-Name">
+                                            <img class="product-Image" src="<%=items.productID.files[0].url%>" alt="">
+                                            <h5 style="padding-left: 7px;text-align: center;">
+                                                <%=items.productID.ProductName %>
+                                            </h5>
+                                        </div>
+                                        <div class="headBox">
+                                            <h5>
+                                                <%=items.userID.phoneNo %>
+                                            </h5>
+                                        </div>
+                                        <div class="headBox">
+                                            <h5>
+                                                <%=items.Amount%>
+                                            </h5>
+                                        </div>
+                                        <div class="headBox">
+                                            <h5>
+                                                <%=items.OrderDate.toLocaleDateString()%>
+                                            </h5>
+                                        </div>
+                                        <div class="headBox">
+                                            <h5>
+                                                <%=items.PaymentMethod%>
+                                            </h5>
+                                        </div>
+                                        <div class="headBox">
+                                            <h5>
+                                                <%=items.Status%>
+                                            </h5>
+                                        </div>
+                                        <div class="headBox">
+                                            <% if(items.Status !='Order Cancelled' && items.Status !='Order Returned' ) { %>
+                                                <a id="editIcon" href="#open-modal" onclick="changeOrderStatus('<%=items.Status%>','<%=items._id%>')"
+                                                    style="cursor: pointer;"><img src="/assets/images/edit.png" alt=""
+                                                        style="width: 25px;height: 25px;"></a>
+                                                <% } else { %>
+                                                    <a id="" style="cursor: pointer;"><img src="/assets/images/edit.png"
+                                                            alt="" style="width: 25px;height: 25px;"></a>
+                                                    <% } %>
+                                        </div>
+                                    </div>
+                                    <% }) %>
+
+                                    <br><br><br><br>
+
+
+
+                </div>
+
+        </div>
+
+        
+        <div id="open-modal" class="modal-window">
+            <div>
+                    <h3 class="addCoupon-head-Row">Change Status</h3>
+                    <a href="#" title="Close" class="modal-close">Close</a>
+                    <br><br>
+                    <div class="row" style="display: flex;flex-direction: column;align-items: center;justify-content: center; padding-left: 15px;padding-right: 15px;">
+                        <img src="/assets/images/ordering.png" style="height: 80px;width: 90px; " alt="">
+                        <p style="width: 80%;text-align: center;">Before proceeding, could you confirm your intention to change the order status</p>
+                        <select name="orderStatus" id="orderstatusDropDown" class="dropbtn" style="width:80%;">
+                            <option value="Order Placed">Order Placed</option>
+                            <option value="Order Confirmed">Order Confirmed</option>
+                            <option value="Out For Delivery">Out For Delivery</option>
+                            <option value="Delivered">Delivered</option>
+                            <option value="Cancel Order">Cancel Order</option>
+                        </select>
+                    </div>
+
+
+                   <br>
+                    <div class="row" style="display: flex;justify-content: center;">
+                            <a onclick="changeStatus()" id="submit-Btn" href="" ><input type="button" class="btn btnAdd"  value="Submit"></a>
+                    </div>
+
+            </div>
+    </div>
+
+      
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script>
+
+
+            function customDateFilter() {
+                const startDate = document.getElementById('startDate').value
+                const endDate = document.getElementById('endDate').value
+                if (startDate && endDate) {
+                    location.href = `/adminLogin/orderHistory?task=customDate&startDate=${startDate}&endDate=${endDate}`
+                }
+            }
+
+            function changeOrderStatus(Status, id) {
+
+                let selectElement = document.getElementById('orderstatusDropDown');
+                for (let i = 0; i < selectElement.options.length; i++) {
+                    console.log('i am here');
+                    if (selectElement.options[i].value === Status) {
+                        // Set the selected attribute if the option's value matches the Status
+                        selectElement.options[i].selected = true;
+                    }
+                }
+
+                document.getElementById('submit-Btn').addEventListener('click',function(){
+                    changeStatus(id)
+                })
+
+            }
+
+
+            function changeStatus(orderID) {
+                let selectElement = document.getElementById('orderstatusDropDown')
+
+                const orderStatus = selectElement.value;
+
+                axios.patch('/adminLogin/orderHistory?task=updateStatus&_method=PATCH', { orderID, orderStatus: orderStatus })// Sending productID as data
+                    .then(function (response) {
+                        location.href = '/adminLogin/orderHistory?success=true'
+                        // Handle success response if needed
+                    })
+                    .catch(function (error) {
+                        console.error('Error adding product to cart:', error);
+                        // Handle error if needed
+                    });
+
+            }
+
+
+
+            const urlParams = new URLSearchParams(window.location.search);
+                const success = urlParams.get('success');
+                
+                if (success === 'true') {
+                    // Display the success toast
+                    Swal.fire({
+                        icon: 'success',
+                        title: '<span style="color: #5cb85c;font-size14pt;">Order status changed successfull!</span>',
+                        timer: 5000,
+                        toast: true,
+                        position: 'top',
+                        showConfirmButton: false
+                    });
+                    urlParams.delete('success');
+                    const newUrl = window.location.pathname + '?' + urlParams.toString(); // Construct new URL
+                    history.replaceState(null, '', newUrl);
+                }
+
+
+        </script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="/assets/js/dashboard.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+
+<%- include('../../views/user/DoctypeHeader.ejs') %>
+
+    <!-- ***** Header Area Start ***** -->
+    <%- include('../../views/user/navbar.ejs') %>
+    <!-- ***** Header Area End ***** -->
+
+
+
+
+
+    <div class="container con-form">
+        <h1>Login & Register</h1>
+        <br>
+
+        <div class="col-8 loginform">
+            <nav class="col-12 loginHeader">
+                <a href="/login" class="loginbtn">Login</a>
+                <a href="/register" class="registerbtn">Register</a>
+            </nav>
+            <br>
+
+            <div class="col-12 inputDiv">
+
+                <form class="SubmitFrm" action="/login" method="post">
+                    <div class="form-group input-container">
+                        <input type="email" class="form-control inputemail" name="emailAddress" required="true" id="exampleFormControlInput1"
+                            placeholder="Enter your email ">
+                        <input type="password" class="form-control inputpass" name="password" required="true" id="password"
+                            placeholder="Enter your password " maxlength="15" minlength="7" >
+                    </div>
+                    <div class="form-check checkForm">
+
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label lblcheckout" for="flexCheckDefault">Show Password</label>
+                    
+                        <div class="col-4 forgot">
+                            <a class="forgotpassword" href="/sendEmailOtp">forgotPassword</a>
+                        </div>
+
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-secondary btnLogin">Login</button>
+              
+                    <p style="color: red; margin-top:10px;font-family:Poppins;" class="text-center"><%=error%></p>
+
+
+                    <label class="row googleBox" for="googleLink">
+                        <div class="col-12" style="text-align: center;">
+                            <p>--------OR--------</p>
+                        </div>
+                    
+                        <div class="col-8 google">
+                            <img src="/assets/images/googleLogo.png" alt="" style="height: 30px; width:35px">
+                            <a href="/google" class="googlefont" id="googleLink">
+                                Login with Google
+                            </a>
+                        </div>
+                    </label>
+
+                    
+                </form>
+
+                
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+<!-- eFooter starts here... -->
+<%- include('../../views/user/footer.ejs') %>
+<!-- Footer end  here... -->
+
+<%- include('../../views/user/DoctypeFooter.ejs') %>

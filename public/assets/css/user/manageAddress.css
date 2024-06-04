@@ -1,0 +1,282 @@
+html,
+body {
+    font-family: "Montserrat", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+a:hover {
+    color: black;
+}
+.rightAngle{
+    margin-right: 20px;
+}
+.conF-1 {
+    min-height: 800px;
+    margin: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.myAccount {
+    height: 70px;
+    font-family: Poppins;
+    margin-top: 100px;
+    text-shadow: 2px 2px #c7c7c7;
+    padding-left: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.col3 {
+    background-color: #f3f3f3;
+    min-height: 600px;
+    border-top: 15px solid white;
+    border-bottom: 15px solid white;
+    border-left: 15px solid white;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+.col9{
+    min-height: 600px;
+    padding-bottom: 30px;
+    border: 15px solid white;
+    background-color: #f3f3f3;
+    display: flex;
+    flex-direction: column;
+}
+.default{
+    background-color: #f3f3f3;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+}
+
+.col3 ul {
+    padding: 15px;
+    margin: 0;
+}
+
+.col3 ul li {
+    padding: 0;
+    margin: 0;
+    margin-top: 4px;
+    background-color: white;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.menuIcon {
+    width: 40px;
+    font-size: 24px;
+    padding-left: 7px;
+}
+
+.col3 ul li span {
+    font-family: Poppins;
+    padding-left: 20px;
+    font-size: 1.03rem;
+}
+
+.spanText {
+    width: 230px;
+}
+
+.col3 p {
+    font-family: Poppins;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-size: 12pt;
+    justify-content: start;
+    padding-left: 20px;
+}
+
+.logoutImg {
+    height: 30px;
+}
+
+.circle {
+    border-radius: 100% !important;
+    overflow: hidden;
+    width: 128px;
+    height: 128px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    outline: 1px solid rgb(201, 201, 201);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.imgLabel {
+    border: 1px solid rgb(182, 182, 182);
+}
+
+.col9 h3 {
+    font-family: Poppins;
+    text-shadow: 2px 2px #c7c7c7;
+    font-size: 17pt;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.rightAngle {
+    font-size: 24px;
+    color: #494949;
+}
+
+.plusBtn {
+    font-size: 20pt;
+    padding-left: 10px;
+}
+
+.con1 {
+    min-height: 80px;
+    border: 3px solid rgb(184, 184, 184);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.con2{
+    min-height: 140px;
+    border: 3px solid rgb(184, 184, 184);
+    cursor: pointer;
+}
+.con2Row1{
+    height: 50px;
+    /* background-color: teal; */
+    display: flex;
+    align-items: center;
+}
+.rowcol6-2{
+    display: flex;
+    justify-content: end;
+}
+
+.btn {
+    margin-left: 10px;
+    background-color: black;
+    width: 120px;
+    font-family: Poppins;
+    font-size: 12pt;
+    border: none;
+    color: white;
+    height: 36px;
+}
+.btn:hover{
+    color: white;
+}
+.rowcol6-1 p{
+    padding-left: 10px;
+    font-size: 11pt;
+    font-weight: bold;
+    color: rgb(123, 123, 123);
+}
+.con2Row2{
+    height: 40px;
+    /* background-color: teal; */
+}
+.con2Row2 h5{
+    width: 160px;
+    font-family: Poppins;
+    font-size: 15pt;
+    padding-left: 17px;
+}
+.con2Row2 h6{
+    padding-left:40px;
+}
+
+.con2Row3 p{
+    padding-left: 17px;
+    width: 100%;
+    word-wrap: break-word;
+    padding-right: 200px;
+    font-family: Poppins;
+    font-size: 11pt;
+    /* background-color: teal; */
+    
+}
+
+.firstNameInput {
+    width: 100%;
+    height: 40px;
+}
+
+#savebtn {
+    background-color: black;
+    border: none;
+    margin-left: 20px;
+    width: 250px;
+    font-family: Poppins;
+    color: white;
+    height: 38px;
+    border-radius: 20px;
+    font-size: 12pt;
+    /* display: none; */
+}
+
+.dropbtn {
+    background-color: white;
+    border: 1px solid rgb(204, 204, 204);
+    color: #495057;
+    width: 100%;
+    height: 42px;
+    font-size: 10pt;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: Poppins;
+    outline: none;
+}
+.addressTxtArea{
+    padding: 10px;
+    width: 100%;
+    border: 1px solid rgb(203, 203, 203);
+    height: 80px;
+    font-size: 11pt;
+    font-family: Poppins;
+    border-radius: 5px;
+    outline: none;
+}
+.editForm{
+    border: 3px solid rgb(184, 184, 184);
+    cursor: pointer;
+    padding: 25px;
+    display: none;
+}
+.updateTxt{
+    font-size: 11pt;
+    font-weight: bold;
+    color: rgb(123, 123, 123);
+}
+.addForm{
+    cursor: pointer;
+    padding: 3px;
+    width: 100%;
+}
+#addAddress{
+    border: 3px solid rgb(184, 184, 184);
+    display: none;
+}
+.addAddressTxt{
+    padding-top: 5px;
+    font-size: 14pt;
+    font-weight: bold;
+    color: rgb(123, 123, 123);
+}
+.col3 ul li:hover {
+    background-color: #afafaf;
+}

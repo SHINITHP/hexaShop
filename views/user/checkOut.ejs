@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/user/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/user/font-awesome.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <link rel="stylesheet" href="/assets/css/user/templatemo-hexashop.css">
+
+    <link rel="stylesheet" href="/assets/css/user/owl-carousel.css">
+
+    <link rel="stylesheet" href="/assets/css/user/lightbox.css">
+
+    <link rel="stylesheet" href="/assets/css/user/profile.css">
+
+    <link rel="stylesheet" href="/assets/css/user/manageAddress.css">
+
+    <link rel="stylesheet" href="/assets/css/user/checkOut.css">
+
+
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <div class="container-fluid" style="padding: 0;margin: 0;">
+
+        <!-- ***** Header Area Start ***** -->
+        <header class="header-area header-sticky" style="position: fixed;">
+            <a class='menu-trigger' id="menuTrigger" style="position: relative;">
+                <span>Menu</span>
+            </a>
+            <div class="container Nav-con-1">
+                <div class="row row1">
+                    <div class="col-10">
+                        <nav class="main-nav" style=" margin-left: 20px;">
+
+                            <!-- ***** Logo Start ***** -->
+                            <a href="/" class="logo" style="padding: 0;">
+                                <img src="/assets/images/logo.png">
+                            </a>
+                            <!-- ***** Logo End ***** -->
+                            <!-- ***** Menu Start ***** -->
+                            <ul class="nav">
+                                <li class="scroll-to-section"><a href="/#top" class="active">Home</a></li>
+                                <li class="scroll-to-section"><a href="/#men">Men's</a></li>
+                                <li class="scroll-to-section"><a href="/#women">Women's</a></li>
+                                <li class="scroll-to-section"><a href="/#kids">Kid's</a></li>
+                                <li class="scroll-to-section"><a href="/#Contact">Contact</a></li>
+                            </ul>
+
+
+                        </nav>
+
+
+                    </div>
+                    <div class="col-2 col2">
+                        <a href=""><i class="fa-solid fa-magnifying-glass searchIcon" style="color: #404040;"></i></a>
+                        <a href="/shoppingcart">
+                            <i class="fa-solid fa-cart-shopping cartIcon" style="color: #404040;"></i>
+                        </a>
+                        <a href="/Profile" class="profileLogo">
+                            <img src="/assets/images/profile-Icon.png" class="profileIcon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- ***** Header Area End ***** -->
+
+
+
+
+        <!-- Product Details and address starts here -->
+        <div class="container-fluid outerDiv" id="blur">
+            <div class="container-fluid conF-2" id="OrderBox">
+                <div class="col-8">
+                    <div class="col-12 addressRow" style="border: 1px solid rgb(189, 189, 189); ">
+                        <div class="col-9" style="display: flex;flex-direction: column; justify-content: center;">
+                            <h1>Delivery Address</h1>
+                            <% userInfo.forEach((info)=> { %>
+                                <p style="padding-left: 10px;">
+                                    <%=info.address%> <span>
+                                            <%=info.cityDistrictTown%>
+                                        </span> <span>,<%=info.state%></span><span>-<%=info.pincode%></span>
+                                </p>
+                                <% }) %>
+                        </div>
+                        <div class="col-3"
+                            style="display: flex;align-items: center;justify-content: end;padding-right: 15px;">
+                            <button class="btn update" id="changeBtn" data-index="">Change</button>
+                        </div>
+                    </div>
+                    <% let totalDiscount=cartDetails.reduce((acc, curr)=> acc + (curr.totalMRP -
+                        (curr.productID.SalesRate * curr.quantity)), 0); %>
+                        <div class="col-12 orderSummary">
+                            <h1>Order Summary</h1>
+                            <% let count=0 , discount %>
+                                <% cartDetails.forEach((item,index)=> { %>
+                                    <% count=(index +1) %>
+                                        <div class="col-12 orderedItems" style="border: 1px solid rgb(189, 189, 189);;">
+                                            <div class="container" style="padding: 0; display: flex;">
+                                                <div class="col-2 imageCol">
+                                                    <img src="<%=item.productID.files[0].url%>"
+                                                        style="width: 100px;height: 100px;border: 1px solid rgb(189, 189, 189);"
+                                                        alt="">
+
+                                                    <div class="proQty">
+                                                        <a href=""
+                                                            style="display: flex;align-items: center;justify-content: center;">
+                                                            <input type="button" class="inc-dec dec"
+                                                                onclick="quantityIncDec('<%=index%>','<%=item._id%>','<%= JSON.stringify(cartDetails) %>','decrement')"
+                                                                value="-">
+                                                        </a>
+                                                        <input type="text" id="showQty<%=index%>" class="Qty" readonly
+                                                            value="<%=item.quantity%>">
+                                                        <a href=""
+                                                            style="display: flex;align-items: center;justify-content: center;">
+                                                            <input type="button" id="increment<%=index%>"
+                                                                class="inc-dec"
+                                                                onclick="quantityIncDec('<%=index%>','<%=item._id%>','<%= JSON.stringify(cartDetails) %>','increment')"
+                                                                value="+">
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-10 pro-Details">
+                                                    <h5>
+                                                        <%=item.productID.ProductName%>
+                                                    </h5>
+                                                    <p>Size : <span>
+                                                            <%=item.size%>
+                                                        </span></p>
+                                                    <p>Brand Name : <span>
+                                                            <%=item.productID.BrandName%>
+                                                        </span></p>
+                                                    <h5 style="padding-top:5px ; ">₹<span id="totalPrice<%=index%>"
+                                                            style="padding-right: 15px;" class="TotalAmount">
+
+                                                            <%  if(item.productID.offer > 0) { %>
+                                        
+                                                                ₹ <%= (item.productID.SalesRate - item.productID.SalesRate * item.productID.offer / 100) * item.quantity %> <b style="font-weight: 500;text-decoration: line-through;"><%=item.MRP%></b>
+                                                                
+                                                            <% } else{ %>
+                                                                <%=item.productID.SalesRate * item.quantity%>
+                                                            <% } %>
+                                                            
+
+                                                          
+                                                        </span> ₹<span id="discount<%=index%>" class="discount"
+                                                            style="text-decoration: line-through;">
+                                                            <%=item.productID.MRP * item.quantity%>
+                                                        </span>
+                                                    </h5>
+                                                    <a href="/checkOut"><input type="button"
+                                                            onclick="removeProducts('<%=item._id%>')"
+                                                            class="btn remove-Pro" name="" value="Remove" id=""></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% discount=item.discount %>
+                                            <% }) %>
+                        </div>
+
+                        <br>
+
+                        <div class="discount__content" style="display: flex;align-items: center;justify-content: end;">
+                            <h6>Discount codes</h6>
+                            <label>
+                                <input type="text" id="couponCode" placeholder="Enter your coupon code">
+                                <button type="submit" onclick="applyCouuponCode()" class="site-btn">Apply</button>
+                            </label>
+                        </div>
+
+
+                </div>
+                <div class="col-4">
+                    <div class="col-11" style="min-height: 550px;border: 1px solid rgb(189, 189, 189);">
+                        <div class="row priceDetailsRow">
+                            PRICE DETAILS
+                        </div>
+                        <% let totalPrice=cartDetails.reduce((acc, curr)=> acc + (curr.productID.MRP * curr.quantity),
+                            0); %>
+
+                            <% let checkOutTotal=cartDetails.reduce((acc,curr)=> acc + (curr.totalPrice),0); %>
+                                <div class="row priceDetails">
+                                    <div class="col-8 priceDetails-Left">
+                                        <p>Price( <%= count %> items)</p>
+                                        <p>Discount</p>
+                                        <p>Delivery Charge</p>
+                                        <p>------------------------</p>
+                                        <p>Total Price</p>
+                                    </div>
+                                    <div class="col-4 priceDetails-Left"
+                                        style="display: flex;flex-direction: column;justify-content: center;align-items: center;padding-left: 0;">
+                                        <p>₹ <span id="cartTotal">
+                                                <%= totalPrice %>
+                                            </span></p>
+                                        <p>-₹<span id="discountAmt">
+                                            <% let Discount = cartDetails.reduce((acc, curr) => acc + (curr.totalMRP - (curr.productID.SalesRate * curr.quantity) + curr.productID.SalesRate * curr.productID.offer / 100 ), 0); %>
+                                                <%=Discount%>
+                                            </span></p>
+                                            <p>₹<span id="deliveryCharge"></span></p>    
+                                        <p style="padding-right: 27px;">----------</p>
+                                        <p>₹<span id="toTalAmount"></span></p>
+                                    </div>
+                                </div>
+
+                                <div class="row selectPayment">
+                                    <p>-------------------------------------</p>
+                                    <h5>Payment Method</h5>
+                                    <label for="Selectpayment">
+                                        <input type="radio" id="Selectpayment" name="payment" class="paymentRadioBtn"
+                                            value="Cash On Delivery">
+                                        <span style="padding-left: 10px;">Cash On Delivery</span>
+                                    </label>
+                                    <label for="onlinePayment" style="margin: 0;padding-top: 0;">
+                                        <input type="radio" id="onlinePayment" name="payment"
+                                            style="transform: scale(1.3);" class="paymentRadioBtn" value="RazorPay">
+                                        <span style="padding-left: 10px;">Online Payment</span>
+                                    </label>
+                                    <label for="wallet" style="margin: 0;padding-top:7px;">
+                                        <input type="radio" id="wallet" name="payment" style="transform: scale(1.3);"
+                                            class="paymentRadioBtn" value="Wallet">
+                                        <span style="padding-left: 10px;">Wallet</span>
+                                    </label>
+                                    <% if(userInfo.length> 0 ) { %>
+                                        <label style=" display: flex;align-items: center;justify-content: center;"
+                                            id="COD"><a class="primary-btn PlaceOrder" onclick="successMessage('<%= JSON.stringify(cartDetails) %>')">Place
+                                                Order</a></label>
+                                        <label
+                                            style=" display: flex;align-items: center;justify-content: center;display: none; margin-bottom: 10px;"
+                                            id="onlinePaymentBTN"><a class="primary-btn PlaceOrder"
+                                                onclick="RazorPayment('<%= JSON.stringify(cartDetails) %>','<%= JSON.stringify(userInfo) %>')">Place
+                                                Order</a></label>
+
+                                    <% } else{ %>
+                                            <label
+                                                style=" display: flex;align-items: center;justify-content: center;margin-bottom: 10px;"><a
+                                                    class="primary-btn PlaceOrder" onclick="messageBox()">Place
+                                                    Order</a></label>
+                                            <% } %>
+                                </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Product Details and address end here -->
+
+            <!-- change Address starts here.... -->
+            <div class="container-fluid conF-1" id="addressBox" style="display: none;">
+                <div class="row" style="margin: 0;">
+                    <div class="col-8 leftSide">
+                        <div class="col-12" id="addAddressDiv">
+                            <i class="fa-solid fa-plus plusBtn" id="addIcon" style="color: #030303;"></i>
+                            <p style="padding-left: 30px;font-size: 14pt;font-family: Poppins;">ADD A NEW ADDRESS</p>
+                        </div>
+
+                        <div class="container" id="addAddress">
+                            <div class="row">
+                                <div class="col-7" style="padding-top: 5px;">
+                                    <p class="addAddressTxt">Add Address</p>
+                                </div>
+                                <div class="col-5" style="padding-top:8px; display: flex;justify-content: end;">
+                                    <button class="btn" style="display: none;" id="addAddressCancel">Cancel</button>
+                                </div>
+                            </div>
+
+                            <form action="/checkOut?task=addAddress" class="addForm" id="addAddressForm" method="post">
+                                <div class="row">
+                                    <div class="col-6"
+                                        style=" min-height: 350px;  display: flex; flex-direction: column; justify-content: space-around;">
+                                        <label class="lbl" for="firstName">Full Name
+                                            <input type="text" class="form-control firstNameInput" name="fullName"
+                                                id="firstName" placeholder="Enter Full Name" required>
+                                        </label>
+
+                                        <label class="lbl" for="MobileNo"> Mobile Number
+                                            <input type="tel" class="form-control firstNameInput" name="phoneNo"
+                                                id="MobileNo" placeholder="Enter Mobile Number" required>
+                                        </label>
+
+                                        <label class="lbl" for="EmailAddress"> City/District/Town
+                                            <input type="text" class="form-control firstNameInput"
+                                                name="cityDistrictTown" id="cityDistrictTown"
+                                                placeholder="City/District/Town" required>
+                                        </label>
+
+                                        <label class="lbl" for="State"> Country
+                                            <select name="country" class="dropbtn firstNameInput" id="State">
+                                                <option value="India">India</option>
+                                                <option value="Australia">Australia</option>
+                                                <option value="New Zealand">New Zealand</option>
+                                            </select>
+                                        </label>
+
+                                    </div>
+
+                                    <div class="col-6"
+                                        style=" min-height: 350px;  display: flex; flex-direction: column; justify-content: space-around;">
+                                        <label class="lbl" for="EmailAddress"> Email Address
+                                            <input type="email" class="form-control firstNameInput" name="emailAddress"
+                                                id="EmailAddress" placeholder="Enter Email Address" required>
+                                        </label>
+                                        <label class="lbl" for="gender"> Gender
+                                            <div class="firstNameInput" style="padding-top: 10px; font-size: 12pt;">
+                                                <input type="radio" id="gender" name="gender" value="Male"> Male
+                                                <input type="radio" name="gender" value="Female"> Female
+                                            </div>
+
+                                        </label>
+                                        <label class="lbl" for="State"> State
+                                            <select name="state" class="dropbtn firstNameInput" id="State">
+                                                <option value="Kerala">Kerala</option>
+                                                <option value="Karnadaka">Karnadaka</option>
+                                                <option value="TamilNadu">TamilNadu</option>
+                                            </select>
+                                        </label>
+                                        <label class="lbl" for="PinCode"> Pin-Code
+                                            <input type="text" class="form-control firstNameInput" name="pincode"
+                                                id="PinCode" placeholder="Enter Pin-Code" required>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-12" style="min-height: 120px;">
+                                        <label class="lbl" for="txtAddress" style="width: 100%; height: 100px;">Address
+                                            <textarea name="address" id="txtAddress" cols="30" rows="10"
+                                                class="addressTxtArea" placeholder="Enter your Address"></textarea>
+                                        </label>
+                                    </div>
+                                    <div class="col-7" style="display: flex;padding-left: 30px;">
+                                        <input type="radio" id="gender" name="addressType" value="Home"> Home
+                                        <input type="radio" name="addressType" value="Workspace"
+                                            style="margin-left: 20px;">
+                                        Workspace
+                                    </div>
+
+                                </div>
+
+                                <a style="width: 100%;display: flex; justify-content: center; margin-bottom: 20px;">
+                                    <input type="submit" class="saveChanges" style="display: block;" value="Submit"
+                                        id="savebtn">
+                                </a>
+                            </form>
+                        </div>
+
+
+
+                        <% addresses.forEach((info,index)=> { %>
+                            <div class="row deliveryAddress"
+                                style="margin: 0;margin-top: 15px;padding-left: 25px;padding-right: 25px;">
+
+                                <div class="col-12 heading" style="padding: 0;">
+                                    <div class="col-6" style="display: flex; padding: 0; padding-top: 10px;">
+                                        <i class="fa-solid fa-truck"
+                                            style="color: rgb(10, 110, 10); padding-top: 3px;"></i><span>
+                                            <h1>Delivery Address</h1>
+                                        </span>
+                                    </div>
+                                    <div class="col-6"
+                                        style="display: flex;justify-content: end; align-items: center; padding: 0;padding-right: 10px;">
+                                        <button class="btn update" data-index="<%=index%>"
+                                            onclick="updateAddress('<%=index%>','<%=info._id%>')">Update</button>
+                                        <a href=""><button class="btn remove" data-index="<%=index%>"
+                                                onclick="selectDeliveryAddress('<%=info._id%>')" id="">Deliver
+                                                Here</button></a>
+                                        <button class="btn cancelBtn" data-index="<%=index%>"
+                                            onclick="cancelUpdate('<%=index%>')" style="display: none;"
+                                            id="">Cancel</button>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 addressRow" style="padding: 0;">
+                                    <div class="col-12 addressInfo" style="padding: 0;">
+                                        <a href=""> <span class="UserName">
+                                                <%=info.fullName%> <span class="useraddressType">
+                                                        <%=info.addressType%>
+                                                    </span> <span style="margin-left: 25px; font-size: 11pt">
+                                                        <%=info.phoneNo%>
+                                                    </span>
+                                            </span></a>
+                                        <p>
+                                            <%=info.address%> <span>
+                                                    <%=info.cityDistrictTown%>
+                                                </span>
+                                                <span>,<%=info.state%></span><span>-<%=info.pincode%></span>
+                                        </p>
+                                    </div>
+                                </div>
+
+
+                                <!-- update-Form starts here -->
+                                <form action="/checkOut?task=updateAddress&_method=PUT&id=<%=info._id%>" method="post"
+                                    class="editForm updateForm" id="form_<%= index %>">
+                                    <p class="updateTxt">Update Address</p>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-6"
+                                            style=" min-height: 350px;  display: flex; flex-direction: column; justify-content: space-around;">
+                                            <label class="lbl" for="firstName">Full Name
+                                                <input type="text" class="form-control firstNameInput" name="fullName"
+                                                    id="firstName" placeholder="Enter Full Name" required
+                                                    value="<%=info.fullName%>">
+                                            </label>
+
+                                            <label class="lbl" for="MobileNo"> Mobile Number
+                                                <input type="text" class="form-control firstNameInput" name="mobileNo"
+                                                    id="MobileNo" placeholder="Enter Mobile Number" required
+                                                    value="<%=info.phoneNo%>">
+                                            </label>
+
+                                            <label class="lbl" for="EmailAddress"> City/District/Town
+                                                <input type="text" class="form-control firstNameInput"
+                                                    name="cityDistrictTown" id="EmailAddress"
+                                                    placeholder="City/District/Town" required
+                                                    value="<%=info.cityDistrictTown%>">
+                                            </label>
+
+                                            <label class="lbl" for="State"> Country
+                                                <select name="country" class="dropbtn firstNameInput" id="State">
+                                                    <option value="" <%=info.country==='' ? 'selected' :'' %>>Select
+                                                        Country</option>
+                                                    <option value="India" <%=info.country==='India' ? 'selected' : '' %>
+                                                        >India</option>
+                                                    <option value="Australia" <%=info.country==='Australia' ? 'selected'
+                                                        : '' %>>Australia</option>
+                                                    <option value="New Zealand" <%=info.country==='New Zealand'
+                                                        ? 'selected' : '' %>>New Zealand</option>
+                                                </select>
+                                            </label>
+
+                                        </div>
+
+                                        <div class="col-6"
+                                            style=" min-height: 350px;  display: flex; flex-direction: column; justify-content: space-around;">
+                                            <label class="lbl" for="EmailAddress"> Email Address
+                                                <input type="email" class="form-control firstNameInput"
+                                                    name="emailAddress" id="EmailAddress"
+                                                    placeholder="Enter Email Address" required
+                                                    value="<%=info.emailAddress%>">
+                                            </label>
+                                            <label class="lbl" for="gender"> Gender
+                                                <div class="firstNameInput" style="padding-top: 10px; font-size: 12pt;">
+                                                    <input type="radio" id="gender" name="gender" value="Male"
+                                                        <%=info.gender==='Male' ? 'checked' : '' %> > Male
+                                                    <input type="radio" name="gender" value="Female"
+                                                        <%=info.gender==='Female' ? 'checked' : '' %>> Female
+                                                </div>
+
+                                            </label>
+                                            <label class="lbl" for="State"> State
+                                                <select name="state" class="dropbtn firstNameInput" id="State">
+                                                    <option value="" <%=info.state==='' ? 'selected' :'' %>>Select State
+                                                    </option>
+                                                    <option value="Kerala" <%=info.state==='Kerala' ? 'selected' : '' %>
+                                                        >Kerala</option>
+                                                    <option value="Karnadaka" <%=info.state==='Karnadaka' ? 'selected'
+                                                        : '' %> >Karnadaka</option>
+                                                    <option value="TamilNadu" <%=info.state==='TamilNadu' ? 'selected'
+                                                        : '' %> >TamilNadu</option>
+                                                </select>
+                                            </label>
+                                            <label class="lbl" for="PinCode"> Pin-Code
+                                                <input type="text" class="form-control firstNameInput" name="pinCode"
+                                                    id="PinCode" placeholder="Enter Pin-Code" required
+                                                    value="<%=info.pincode%>">
+                                            </label>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label class="lbl" for="txtAddress" style="width: 100%;">Address
+                                                <textarea name="address" id="txtAddress" cols="30" rows="10"
+                                                    class="addressTxtArea"
+                                                    placeholder="Enter your Address"><%=info.address%></textarea>
+                                            </label>
+                                        </div>
+                                        <div class="col-7" style="display: flex;padding-left: 30px;">
+                                            <input type="radio" id="gender" name="addressType" value="Home"
+                                                <%=info.addressType==='Home' ? 'checked' : '' %>> Home
+                                            <input type="radio" name="addressType" value="Workspace"
+                                                style="margin-left: 20px;" <%=info.addressType==='Workspace' ? 'checked'
+                                                : '' %>> Workspace
+                                        </div>
+
+                                    </div>
+
+                                    <a style="width: 100%;display: flex; justify-content: center; margin-bottom: 20px;">
+                                        <input type="submit" id="savebtn" value="Save Changes">
+                                    </a>
+
+                                </form>
+                                <!-- update-Form End here -->
+                                <br>
+                            </div>
+                            <% }) %>
+
+                    </div>
+                    <div class="col-4">
+                        <div class="col-11" style="height: 500px;border: 1px solid rgb(189, 189, 189);">
+                            <div class="row priceDetailsRow">
+                                PRICE DETAILS
+                            </div>
+                            <div class="row priceDetails">
+                                <div class="col-8 priceDetails-Left">
+                                    <p>Price( <%= count %> items)</p>
+                                    <p>Discount</p>
+                                    <p>-----------------------</p>
+                                    <p>Total Price</p>
+                                </div>
+                                <div class="col-4 priceDetails-Left"
+                                    style="display: flex;flex-direction: column;justify-content: center;align-items: center;padding-left: 0;">
+                                    <p>₹ <span id="cartTotal">
+                                            <%= totalPrice %>
+                                        </span></p>
+                                    <p>-₹<span id="discountAmt">
+
+                                            <%=totalDiscount%>
+                                        </span></p>
+                                    <p style="padding-right: 27px;">---------</p>
+                                    <p>₹<span id="toTalAmount"></span></p>
+                                </div>
+                            </div>
+
+                            <div class="row selectPayment">
+                                <p>----------------------------------------</p>
+                                <h5>Payment Method</h5>
+                                <label for="Selectpayment">
+                                    <input type="radio" id="Selectpayment" name="payment" class="paymentRadioBtn"
+                                        value="Cash On Delivery">
+                                    <span style="padding-left: 10px;">Cash On Delivery</span>
+                                </label>
+                                <label for="onlinePayment" style="margin: 0;padding-top: 0;">
+                                    <input type="radio" id="onlinePayment" name="payment" style="transform: scale(1.3);"
+                                        class="paymentRadioBtn" value="Cash On Delivery">
+                                    <span style="padding-left: 10px;">Online Payment</span>
+                                </label>
+                                <label for="wallet" style="margin: 0;padding-top:7px;">
+                                    <input type="radio" id="wallet" name="payment" style="transform: scale(1.3);"
+                                        class="paymentRadioBtn" value="Wallet">
+                                    <span style="padding-left: 10px;">Wallet</span>
+                                </label>
+                                <% if(userInfo.length > 0 ) { %>
+                                    <label style=" display: flex;align-items: center;justify-content: center;"
+                                        id="COD"><a class="primary-btn PlaceOrder" onclick="successMessage()">Place
+                                            Order</a></label>
+                                    <label
+                                        style=" display: flex;align-items: center;justify-content: center;display: none; margin-bottom: 10px;"
+                                        id="onlinePaymentBTN"><a class="primary-btn PlaceOrder"
+                                            onclick="RazorPayment('<%= JSON.stringify(cartDetails) %>','<%= JSON.stringify(userInfo) %>')">Place
+                                            Order</a></label>
+
+                                    <% } else{ %>
+                                        <label
+                                            style=" display: flex;align-items: center;justify-content: center;margin-bottom: 10px;"><a
+                                                class="primary-btn PlaceOrder" onclick="messageBox()">Place
+                                                Order</a></label>
+                                        <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="SuccessDiv">
+            <div class="col-12 confirmation"
+                style="display: flex;flex-direction: column;align-items: center;justify-content: center;">
+                <div class="row px-3" style="width: 80%;">
+                    <ul id="progressbar" style="width: 100%;">
+                        <li class="step0 active " id="step1">Address</li>
+                        <li class="step0 active text-center" id="step2">Payment Menthod</li>
+                        <li class="step0  text-muted text-right" id="step3">Confirmation</li>
+                    </ul>
+                </div>
+
+                <!-- <p style="margin-top: 10px;">Hey Shinith.P</p> -->
+                <h2>Are you sure to Confirm</h2>
+                <h6>Shall we go ahead and make this order official!</h6>
+                <h6>Just confirm your order please.</h6>
+                <div class="row btnRow" style="margin: 0;margin-top: 15px;">
+                    <a class="primary-btn" onclick="CancelOrder()">Cancel</a>
+                    <a class="primary-btn "
+                        onclick="ConfirmOrder('<%= JSON.stringify(cartDetails) %>','<%= JSON.stringify(userInfo) %>')"
+                        style="margin-left: 10px;">Confirm</a>
+                </div>
+            </div>
+            <div class="row SuccessRow" style="display: none;">
+                <i class="fa-regular fa-circle-check" style="color: #10aa0e;font-size: 40pt;padding-bottom: 10px;"></i>
+                <!-- <p>Hey Shinith.P</p> -->
+                <h2>Your Order Is Confirmed</h2>
+                <h6>We'll send you a shipping confirmation email</h6>
+                <h6>as soon as your order ships.</h6>
+                <br>
+                <a href="/profileMenu?menu=myOrders" class="primary-btn PlaceOrder">Check Status</a>
+                <!-- /profileMenu?menu=myOrders -->
+            </div>
+
+            <div class="row failedRow"
+                style="display: flex;flex-direction: column;align-items: center;justify-content: center; display: none;">
+                <h2 style="width: 70%;font-size: 15pt;text-align: center;">Your Wallet have not enough Money to buy this
+                    Order</h2>
+                <br>
+                <a class="primary-btn btn" id="btnOkey" href="">Okey</a>
+            </div>
+        </div>
+        <!-- change Address end here.... -->
+
+
+        <!-- eFooter starts here... -->
+        <%- include('../../views/user/footer.ejs') %>
+            <!-- Footer end  here... -->
+
+    </div>
+
+    <div id="open-modal" class="modal-window">
+        <div>
+          <a href="#" title="Close" class="modal-close">Close</a>
+         
+          <div class="row" style="display: flex;flex-direction: column;justify-content: center;align-items: center;padding: 20px;padding-bottom: 0;">
+            <h1 style="font-size: 12pt;width: 100%;text-align: center;margin: 0;margin-bottom: 7px;">Add money to wallet</h1>
+            <div style="border: 1px solid rgb(186, 186, 186);border-radius: 10px;width: 100px;height: 50px;background-color: rgb(237, 237, 237);display: flex;align-items: center;justify-content: center;">
+                <img src="/assets/images/wallet.png" alt="" style="width: 30px;height: 30px;">
+                <b style="margin-left: 8px;font-size: 12pt;">₹ <span id="walletAmount"></span></b>
+            </div>
+          </div>
+          <div class="row" style="display: flex;flex-direction: column;justify-content:center;">
+            <label for="oldEmailOTP" style="width: 100%;padding: 10px;">
+                <p style="font-size: 9pt;">You need to add : <span id="otpLabel"></span></p>
+                <input type="number" min="0" id="AddAmount" class="form-control" style="width: 100%;height: 40px;">
+            </label>
+          </div>
+          
+          <div class="row" style="display: flex;align-items: center;justify-content: center;">
+            <a onclick="AddMoneyTOWallet('<%= JSON.stringify(userInfo) %>')" ><button class="btn btnEdit" style="border-radius:20px;height: 40px;width: 160px;">Add To Wallet</button></a>
+          </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="/assets/js/checkout.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+    <!-- <script src="/assets/js/profile.js">  </script> -->
+
+
+
+
+
+
+</body>
+
+</html>

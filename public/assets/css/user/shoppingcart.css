@@ -1,0 +1,172 @@
+.con-f1 {
+    padding-top: 120px;
+    min-height: 750px;
+}
+
+.colms {
+    background-color: #e2e2e2;
+    height: 80px;
+    /* border: 1px solid rgb(152, 152, 152); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.colms2 {
+    background-color: #efefef;
+    min-height: 100px;
+    /* border: 1px solid rgb(219, 219, 219); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.colms h5 {
+    font-size: 13pt;
+    font-family: Poppins;
+    font-weight: bold;
+}
+
+.row-1 {
+    margin-top: 3px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.row-2 {
+    display: flex;
+    justify-content: center;
+    margin-top: 3px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.pro-qty input {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    font-family: Poppins;
+    font-size: 12pt;
+}
+
+.cartImage {
+    height: 95px;
+    width: 95px;
+    border: 1px solid rgb(152, 152, 152);
+}
+
+.col_5 {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+
+.pro-qty {
+    border: 1px solid rgb(152, 152, 152);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pro-qty .qtybtn {
+    font-size: 20pt;
+}
+
+.cart__close span {
+    height: 45px;
+    border: 1px solid rgb(152, 152, 152);
+    width: 45px;
+    border-radius: 50%;
+    font-size: 18px;
+    color: #111111;
+    line-height: 44px;
+    text-align: center;
+    display: inline-block;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.row-3 {
+    padding-left: 70px;
+    padding-right: 70px;
+}
+a{
+    color:black;
+    text-decoration: none;
+}
+.checkoutBtn{
+    font-weight: bold;
+}
+.checkoutBtn:hover{
+    color: black;
+}
+.col5-col12{
+    padding-left: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 5px;
+    /* background-color: teal; */
+    min-height: 100px;
+}
+.proQty{
+    margin-top: 10px;
+    /* width: 120px; */
+    height: 40px;
+    border-radius: 20px;
+    /* background-color: tan; */
+    display: flex;
+    justify-content: space-evenly;
+    border: 1px solid rgb(189, 189, 189);
+}
+.inc-dec{
+    font-size: 17pt;
+    font-family: Poppins;
+    border: none;
+    width: 30px;
+    text-align: center;
+    background-color: transparent;
+}
+.Qty{
+    background-color: transparent;
+    font-size: 13pt;
+    font-family: Poppins;
+    text-align: center;
+    border: none;
+    width: 50px;
+    outline: none;
+    
+}
+.TotalAmount{
+    background-color: transparent;
+    font-size: 13pt;
+    font-family: Poppins;
+    text-align: center;
+    border: none;
+    outline: none;
+    padding: 0;
+    width: 50px;
+}
+.cartAmount{
+    background-color: transparent;
+    font-size: 13pt;
+    font-family: Poppins;
+    text-align: center;
+    border: none;
+    outline: none;
+    padding: 0;
+    width: 100px;
+}
+.disAmount{
+    background-color: transparent;
+    font-size: 13pt;
+    font-family: Poppins;
+    text-align: center;
+    border: none;
+    outline: none;
+    padding: 0;
+    width: 100px;
+}

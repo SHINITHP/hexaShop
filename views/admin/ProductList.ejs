@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/assets/css/user/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/admin/newDashboard.css">
+    <link rel="stylesheet" href="/assets/css/admin/dashboard.css">
+    <link rel="stylesheet" href="/assets/css/admin/productList.css">
+
+
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gentelella/1.3.0/css/custom.css"> -->
+
+
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container-fluid mainConatainer" style="display: flex;">
+
+        <div class="col-0 left-Menu-Bar-active" style="display: none;">
+            <div class="row" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+                <img class="adminPanel" src="/assets/images/admin-panel2.png" style="margin-left: 0;" alt="">
+                <br><br>
+                <a class="active-Icons " onclick="btnClick(this)" href="adminDashboard"><i class="fa fa-home menuBtn"
+                        style="font-size: 30px;"></i></a>
+                <a class="active-Icons active" onclick="btnClick(this)" href="ProductList"><img
+                        src="/assets/images/productIcon.png" alt=""></a>
+                <a class="active-Icons" onclick="btnClick(this)" href="Category"><img src="/assets/images/category.png"
+                        alt=""></a>
+                <a class="active-Icons" onclick="btnClick(this)" href="orderHistory"><img
+                        src="/assets/images/orderHistory.png" alt=""></a>
+                <a class="active-Icons" onclick="btnClick(this)" href="coupon"><img src="/assets/images/couponIcon.png"
+                        alt=""></a>
+                <a class="active-Icons" onclick="btnClick(this)" href="salesReport"><img src="/assets/images/sales.png"
+                        style="width: 30px;height: 30px;" alt=""></a>
+                <a class="active-Icons" onclick="btnClick(this)" href="CustomerDetails"><img
+                        src="/assets/images/userRport.png" alt=""></a>
+                <a class="active-Icons" onclick="btnClick(this)" href="offers"><img src="/assets/images/coupon.png"
+                        style="width: 30px;height: 30px;" alt=""></a>
+            </div>
+        </div>
+
+        <div class="left-Menu-Bar">
+            <div class="row">
+                <img class="adminPanel" src="/assets/images/admin-panel2.png" alt="">
+                <span>Admin</span>
+            </div>
+            <div class="row">
+                <br><br>
+                <div class="menu_section">
+
+                    <ul class="nav side-menu">
+                        <li class="side-menu-li " onclick="menuBtn(this)">
+                            <a href="adminDashboard" class="side-menu-a-tag">
+                                <i class="fa fa-home menuBtn"><span>DashBoard</span></i>
+                                <span class="fa fa-chevron-right"></span>
+                            </a>
+                        </li>
+                        <li class="side-menu-li active" onclick="menuBtn(this)">
+                            <a href="ProductList" class="side-menu-a-tag">
+                                <i class="menuBtn"><img src="/assets/images/productIcon.png"
+                                        style="width: 19px;height: 19px;" alt="">
+                                    <span
+                                        style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Products</span></i>
+                                <span class="fa fa-chevron-right"></span>
+                            </a>
+                        </li>
+                        <li class="side-menu-li" onclick="menuBtn(this)">
+                            <a href="Category" class="side-menu-a-tag">
+                                <i class="menuBtn"><img src="/assets/images/category.png"
+                                        style="width: 19px;height: 23px;" alt="">
+                                    <span
+                                        style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Category</span></i>
+                                <span class="fa fa-chevron-right"></span>
+
+                            </a>
+                        </li>
+                        <li class="side-menu-li" onclick="menuBtn(this)">
+                            <a href="orderHistory" class="side-menu-a-tag">
+                                <i class="menuBtn"><img src="/assets/images/orderHistory.png"
+                                        style="width: 19px;height: 19px;" alt="">
+                                    <span
+                                        style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Order
+                                        History</span></i>
+                                <span class="fa fa-chevron-right"></span>
+                            </a>
+                        </li>
+                        <li class="side-menu-li" onclick="menuBtn(this)">
+                            <a href="coupon" class="side-menu-a-tag">
+                                <i class="menuBtn"><img src="/assets/images/couponIcon.png"
+                                        style="width: 22px;height: 22px;" alt="">
+                                    <span
+                                        style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Coupon</span></i>
+                                <span class="fa fa-chevron-right"></span>
+                            </a>
+                        </li>
+                        <li class="side-menu-li" onclick="menuBtn(this)">
+                            <a href="salesReport" class="side-menu-a-tag">
+                                <i class="menuBtn"><img src="/assets/images/sales.png" style="width: 22px;height: 22px;"
+                                        alt="">
+                                    <span
+                                        style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Sales
+                                        Report</span></i>
+                                <span class="fa fa-chevron-right"></span>
+                            </a>
+                        </li>
+                        <li class="side-menu-li" onclick="menuBtn(this)">
+                            <a href="CustomerDetails" class="side-menu-a-tag">
+                                <i class="menuBtn"><img src="/assets/images/userRport.png"
+                                        style="width: 19px;height: 19px;" alt="">
+                                    <span
+                                        style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">User
+                                        Report</span></i>
+                                <span class="fa fa-chevron-right"></span>
+                            </a>
+                        </li>
+                        <li class="side-menu-li" onclick="menuBtn(this)">
+                            <a href="offers" class="side-menu-a-tag">
+                                <i class="menuBtn"><img src="/assets/images/coupon.png"
+                                        style="width: 22px;height: 22px;" alt="">
+                                    <span
+                                        style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Offers</span></i>
+                                <span class="fa fa-chevron-right"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="right-Menu-Bar">
+            <div class="row NavbarRow">
+                <div class="menuIcon"><a id="MenuBtn"><i class="fa fa-bars"></i></a></div>
+                <div class="other-Settings">
+                    <a class="msgIcon" href="messageBox"><i class="fa fa-envelope-o"></i> <span
+                            class="badge bg-green">6</span></a>
+                    <a  class="profileName">
+                        <b>hexashop@gmail.com</b><span class="fa fa-chevron-down"></span>
+                    </a>
+                </div>
+            </div>
+            <!-- <div class="row log-DropDown">
+                                        <div class="logoutTab">
+
+                                        </div>
+                                </div> -->
+            <div class="row details-Row">
+                <div class="row row2">
+                    <div class="col-3 cols" style="justify-content: flex-start;padding-left: 25px;">
+                        <h3>Product Details</h3>
+                    </div>
+                    <div class="col-5 cols" style="display: flex;justify-content: flex-end;">
+                        <div class="col-12 col1">
+                            <form action="/adminLogin/ProductList/search" method="post">
+                                <input type="text" class="searchInput" name="search" required="true"
+                                    id="exampleFormControlInput1" placeholder="Search ">
+                                <span> <button class="btnSearch" type="submit"><a><i
+                                                class="fa-solid fa-magnifying-glass searchBtn"
+                                                style="color: #8b8e99;"></i></a> </button></span>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-4 cols">
+                        <a href="/Export"><button class="btnExport"><span><i class="fa-solid fa-download"
+                                        style="color: #ffffff;"></i></span>Export Info</button></a>
+                        <span> <a href="/adminLogin/ProductList/addProducts"><button class="btnAddProducts"><span><i
+                                            class="fa-regular fa-plus" style="color: #ffffff;"></i></span>Add
+                                    products</button></span></a>
+                    </div>
+                </div>
+
+                <div class="row MessageRow ">
+                    <p id="ErrorMessage">
+                        <%= message %>
+                    </p>
+                </div>
+
+                <div class="row row3">
+                    <div class="col-7 col7">
+                        <div class=" sort-UsageRow">
+                            <a href="" id="all" style="color:blue;">All</a>
+                            <span><a href="" id="Listed" style="color:green;">Listed</a></span>
+                            <span><a href="" id="Unlisted" style="color:red;">Unlisted</a></span>
+
+                        </div>
+                    </div>
+                    <div class="col-5 sort-AddedRow">
+                        <div class="dateBox">
+                            <input type="date" onchange="customDateFilter()" class="dateInput" id="startDate">
+                        </div>
+                        <div class="dateBox2">
+                            <input type="date" onchange="customDateFilter()" class="dateInput" id="endDate">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row product-heading">
+                    <div class="Si-num pro-list-heading">SI</div>
+                    <div class="product-Field pro-list-heading">Products</div>
+                    <div class="discripion-Field pro-list-heading">Description </div>
+                    <div class="pro-list-heading">Category</div>
+                    <div class="pro-list-heading">Stock</div>
+                    <div class="pro-list-heading">PRate</div>
+                    <div class="pro-list-heading">SRate</div>
+                    <div class="pro-list-heading">Inventory</div>
+                    <div class="pro-list-heading">Added</div>
+                    <div class="pro-list-heading">Action</div>
+                </div>
+
+
+                <% productDetails.forEach((data,index)=> { %>
+                <div class="row product-listing">
+                    <div class="Si-num pro-listing"><%=index + 1%></div>
+                    <div class="product-Field pro-listing" style="display: flex;align-items: center;justify-content: flex-start;">
+                        <img class="product-Image " src="<%= data.files[0].url %>" alt=""><b style="font-size: 9pt;width: 71%;"><%=data.ProductName%></b>
+                    </div>
+                    <div class="discripion-Field pro-listing" style="font-size: 9pt;padding-left: 5px;"> <%=data.ProductDescription%></div>
+                    <div class="pro-listing"><%=data.CategoryName%></div>
+                    <div class="pro-listing"><%=data.StockQuantity%></div>
+                    <div class="pro-listing"><%=data.PurchaseRate%></div>
+                    <div class="pro-listing"><%=data.SalesRate%></div>
+                    <div class="pro-listing inventory"><%=data.Inventory%></div>
+                    <div class="pro-listing"><%= data.Added.toLocaleDateString() %></div>
+                    <div class="pro-listing">
+                        <a href="/adminLogin/editProducts?id=<%= data._id %>"><i class="fa-solid fa-pen edit"
+                                style="color: #5e5e5e;"></i></a>
+                        <span class="listed">
+                            <form class="actionForm" method="post" id="ListedForm"
+                                action="ProductList?ID=<%= data._id %>">
+                                <% if(data.Inventory==="Listed" ) {%>
+                                    <button class="iconbtns">
+                                        <a id="activeIcon" onclick="AlertBox('activeIcon')">
+                                            <i class="fa-solid fa-eye" style="color: #5e5e5e;"></i>
+                                        </a>
+                                    </button>
+
+                                    <% } else if(data.Inventory==="Unlisted" ) {%>
+                                        <button class="iconbtns">
+                                            <a id="blockedIcon" onclick="AlertBox('blockedIcon')">
+                                                <i class="fa-solid fa-eye-slash" style="color: #5e5e5e;"></i>
+                                            </a>
+                                        </button>
+
+                                        <% } %>
+                            </form>
+                        </span>
+                        <form action="deleteInventory?delete=Products&id=<%= data._id %>&_method=DELETE" method="post">
+                            <span class="delete"><button class="iconbtns" type="submit" id="dltBtn"
+                                    onclick="AlertBox('dltBtn')"><i class="fa-solid fa-trash "
+                                        style="color: #5e5e5e;"></i></button></span>
+                            </span>
+                        </form>
+
+
+                    </div>
+                </div>
+                <% }) %>
+
+
+            </div>
+
+            <br><br><br><br>
+        </div>
+
+    </div>
+
+
+    <script>
+        const inventory = document.querySelectorAll('.inventory')
+        inventory.forEach((val) => {
+            if(val.innerText ==='Listed'){
+                val.style.color='green'
+            }else{
+                val.style.color='red'
+            }
+        })
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/assets/js/dashboard.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
+</html>

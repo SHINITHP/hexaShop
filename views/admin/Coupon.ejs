@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="/assets/css/user/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+        <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/css/admin/newDashboard.css">
+        <link rel="stylesheet" href="/assets/css/admin/coupon.css">
+        <link rel="stylesheet" href="/assets/css/admin/dashboard.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gentelella/1.3.0/css/custom.css"> -->
+
+
+
+        <title>Document</title>
+</head>
+
+<body>
+        <div class="container-fluid mainConatainer" style="display: flex;">
+
+                <div class="col-0 left-Menu-Bar-active" style="display: none;">
+                        <div class="row"
+                                style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+                                <img class="adminPanel" src="/assets/images/admin-panel2.png" style="margin-left: 0;"
+                                        alt="">
+                                <br><br>
+                                <a class="active-Icons " onclick="btnClick(this)" href="adminDashboard"><i
+                                                class="fa fa-home menuBtn" style="font-size: 30px;"></i></a>
+                                <a class="active-Icons" onclick="btnClick(this)" href="ProductList"><img
+                                                src="/assets/images/productIcon.png" alt=""></a>
+                                <a class="active-Icons" onclick="btnClick(this)" href="Category"><img
+                                                src="/assets/images/category.png" alt=""></a>
+                                <a class="active-Icons" onclick="btnClick(this)" href="orderHistory"><img
+                                                src="/assets/images/orderHistory.png" alt=""></a>
+                                <a class="active-Icons active" onclick="btnClick(this)" href="coupon"><img
+                                                src="/assets/images/couponIcon.png" alt=""></a>
+                                <a class="active-Icons" onclick="btnClick(this)" href="salesReport"><img
+                                                src="/assets/images/sales.png" style="width: 30px;height: 30px;"
+                                                alt=""></a>
+                                <a class="active-Icons" onclick="btnClick(this)" href="CustomerDetails"><img
+                                                src="/assets/images/userRport.png" alt=""></a>
+                                <a class="active-Icons" onclick="btnClick(this)" href="offers"><img
+                                                src="/assets/images/coupon.png" style="width: 30px;height: 30px;"
+                                                alt=""></a>
+                        </div>
+                </div>
+
+                <div class="left-Menu-Bar">
+                        <div class="row">
+                                <img class="adminPanel" src="/assets/images/admin-panel2.png" alt="">
+                                <span>Admin</span>
+                        </div>
+                        <div class="row">
+                                <br><br>
+                                <div class="menu_section">
+
+                                        <ul class="nav side-menu">
+                                                <li class="side-menu-li " onclick="menuBtn(this)">
+                                                        <a href="adminDashboard" class="side-menu-a-tag">
+                                                                <i class="fa fa-home menuBtn"><span>DashBoard</span></i>
+                                                                <span class="fa fa-chevron-right"></span>
+                                                        </a>
+                                                </li>
+                                                <li class="side-menu-li" onclick="menuBtn(this)">
+                                                        <a href="ProductList" class="side-menu-a-tag">
+                                                                <i class="menuBtn"><img
+                                                                                src="/assets/images/productIcon.png"
+                                                                                style="width: 19px;height: 19px;"
+                                                                                alt="">
+                                                                        <span
+                                                                                style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Products</span></i>
+                                                                <span class="fa fa-chevron-right"></span>
+                                                        </a>
+                                                </li>
+                                                <li class="side-menu-li" onclick="menuBtn(this)">
+                                                        <a href="Category" class="side-menu-a-tag">
+                                                                <i class="menuBtn"><img
+                                                                                src="/assets/images/category.png"
+                                                                                style="width: 19px;height: 23px;"
+                                                                                alt="">
+                                                                        <span
+                                                                                style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Category</span></i>
+                                                                <span class="fa fa-chevron-right"></span>
+
+                                                        </a>
+                                                </li>
+                                                <li class="side-menu-li" onclick="menuBtn(this)">
+                                                        <a href="orderHistory" class="side-menu-a-tag">
+                                                                <i class="menuBtn"><img
+                                                                                src="/assets/images/orderHistory.png"
+                                                                                style="width: 19px;height: 19px;"
+                                                                                alt="">
+                                                                        <span
+                                                                                style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Order
+                                                                                History</span></i>
+                                                                <span class="fa fa-chevron-right"></span>
+                                                        </a>
+                                                </li>
+                                                <li class="side-menu-li active" onclick="menuBtn(this)">
+                                                        <a href="coupon" class="side-menu-a-tag">
+                                                                <i class="menuBtn"><img
+                                                                                src="/assets/images/couponIcon.png"
+                                                                                style="width: 22px;height: 22px;"
+                                                                                alt="">
+                                                                        <span
+                                                                                style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Coupon</span></i>
+                                                                <span class="fa fa-chevron-right"></span>
+                                                        </a>
+                                                </li>
+                                                <li class="side-menu-li" onclick="menuBtn(this)">
+                                                        <a href="salesReport" class="side-menu-a-tag">
+                                                                <i class="menuBtn"><img src="/assets/images/sales.png"
+                                                                                style="width: 22px;height: 22px;"
+                                                                                alt="">
+                                                                        <span
+                                                                                style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Sales
+                                                                                Report</span></i>
+                                                                <span class="fa fa-chevron-right"></span>
+                                                        </a>
+                                                </li>
+                                                <li class="side-menu-li" onclick="menuBtn(this)">
+                                                        <a href="CustomerDetails" class="side-menu-a-tag">
+                                                                <i class="menuBtn"><img
+                                                                                src="/assets/images/userRport.png"
+                                                                                style="width: 19px;height: 19px;"
+                                                                                alt="">
+                                                                        <span
+                                                                                style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">User
+                                                                                Report</span></i>
+                                                                <span class="fa fa-chevron-right"></span>
+                                                        </a>
+                                                </li>
+                                                <li class="side-menu-li" onclick="menuBtn(this)">
+                                                        <a href="offers" class="side-menu-a-tag">
+                                                                <i class="menuBtn"><img src="/assets/images/coupon.png"
+                                                                                style="width: 22px;height: 22px;"
+                                                                                alt="">
+                                                                        <span
+                                                                                style="font-family: Helvetica Neue, Roboto, Arial, Droid Sans, sans-serif;padding-left: 5px;">Offers</span></i>
+                                                                <span class="fa fa-chevron-right"></span>
+                                                        </a>
+                                                </li>
+                                        </ul>
+                                </div>
+
+                        </div>
+                </div>
+                <div class="right-Menu-Bar">
+                        <div class="row NavbarRow">
+                                <div class="menuIcon"><a id="MenuBtn"><i class="fa fa-bars"></i></a></div>
+                                <div class="other-Settings">
+                                        <a class="msgIcon" href="messageBox"><i class="fa fa-envelope-o"></i> <span
+                                                        class="badge bg-green">6</span></a>
+                                        <a href="" class="profileName">
+                                                <b>hexashop@gmail.com</b><span class="fa fa-chevron-down"></span>
+                                        </a>
+                                </div>
+                        </div>
+                        <!-- <div class="row log-DropDown">
+                                        <div class="logoutTab">
+
+                                        </div>
+                                </div> -->
+                        <br>
+                        <div class="row" style="padding: 0;">
+                                <div class="col-12 row2" style="padding: 0;padding-left: 10px;padding-right: 10px;">
+                                        <div class="col-3 pageHead">
+                                                <h3>Coupons</h3>
+                                        </div>
+                                        <div class="col-6 col2">
+                                                <div class="col-12 col3">
+
+                                                        <input type="text" class="searchInput" name="search"
+                                                                required="true" id="exampleFormControlInput1"
+                                                                placeholder="Search ">
+                                                        <span><a href=""><i class="fa-solid fa-magnifying-glass searchBtn"
+                                                                                style="color: #8b8e99;"></i></a></span>
+                                                        </form>
+                                                </div>
+                                        </div>
+                                        <div class="col-3 col2">
+                                                <a href="#open-modal"><button class="btnExport" 
+                                                                id="addCoupon"><span><i class="fa-regular fa-plus"
+                                                                                style="color: #ffffff;"></i></span>Add
+                                                                Coupons</button></a>
+                                        </div>
+                                </div>
+                        </div>
+
+
+                        <div class="row row3">
+                                <div class="col-7 col7" style="padding-left: 10px;padding-right: 10px;">
+                                        <div class=" sort-UsageRow">
+                                                <a href="/adminLogin/coupon?task=All" id="all"
+                                                        style="color:blue;">All</a>
+                                                <span><a href="/adminLogin/coupon?task=Active" id="active"
+                                                                style="color:green;">Active</a></span>
+                                                <span><a href="/adminLogin/coupon?task=Expired" id="Expired"
+                                                                style="color:red;">Expired</a></span>
+
+                                        </div>
+                                </div>
+                                <div class="col-5 sort-AddedRow">
+                                        <div class="dateBox">
+                                                <input type="date" onchange="customDateFilter()" class="dateInput"
+                                                        id="startDate">
+                                        </div>
+                                        <div class="dateBox2">
+                                                <input type="date" onchange="customDateFilter()" class="dateInput"
+                                                        id="endDate">
+                                        </div>
+                                </div>
+                        </div>
+
+                        <br>
+                        <div class="row"
+                                style="padding-left: 0;padding-right: 0;border-top: 1px solid rgb(112, 112, 112);border-bottom: 1px solid rgb(112, 112, 112);">
+
+                                <div class="headingDiv" style="width: 6%;">SI</div>
+                                <div class="headingDiv">Title</div>
+                                <div class="headingDiv">code</div>
+                                <div class="headingDiv">percentage</div>
+                                <div class="headingDiv">open date</div>
+                                <div class="headingDiv">end date</div>
+                                <div class="headingDiv">minimum</div>
+                                <div class="headingDiv">maximum</div>
+                                <div class="headingDiv">Status</div>
+                                <div class="headingDiv">Action</div>
+                        </div>
+
+
+                        <% coupons.forEach((val,index)=> { %>
+                                <div class="row"
+                                        style="padding-left: 0;padding-right: 0;border-bottom: 1px solid rgb(112, 112, 112);">
+
+                                        <div class="contentDiv" style="width: 6%;font-weight: bold;">
+                                                <%= index+1 %>
+                                        </div>
+                                        <div class="contentDiv">
+                                                <%=val.title %>
+                                        </div>
+                                        <div class="contentDiv">
+                                                <%=val.couponCode%>
+                                        </div>
+                                        <div class="contentDiv">
+                                                <%=val.discountAmount%>
+                                        </div>
+                                        <div class="contentDiv">
+                                                <%=val.startDate.toLocaleDateString()%>
+                                        </div>
+                                        <div class="contentDiv">
+                                                <%=val.Expire.toLocaleDateString()%>
+                                        </div>
+                                        <div class="contentDiv">
+                                                <%=val.minimumPurchase%>
+                                        </div>
+                                        <div class="contentDiv">
+                                                <%=val.maxAmount%>
+                                        </div>
+                                        <div class="contentDiv status">
+                                                <%=val.status%>
+                                        </div>
+                                        <div class="contentDiv ">
+                                                <% if(val.status==='Listed' ) { %>
+                                                        <a onclick="changeStatus('Listed','<%=val._id%>')" href=""><i
+                                                                        class="fa-solid fa-eye"
+                                                                        style="color: #5e5e5e; font-size: 13pt; cursor: pointer;"></i></a>
+                                                        <% } else { %>
+                                                                <a onclick="changeStatus('Unlisted','<%=val._id%>')"
+                                                                        href=""><i class="fa-solid fa-eye-slash"
+                                                                                style="color: #5e5e5e; font-size: 13pt;cursor: pointer;"></i></a>
+                                                                <% } %>
+                                                                        <a onclick="deleteOffer('<%=val._id%>')"
+                                                                                href=""><i class="fa-solid fa-trash"
+                                                                                        style="color: #5e5e5e;font-size: 13pt;margin-left: 15px;cursor: pointer;"></i></a>
+                                        </div>
+                                </div>
+
+                                <% }) %>
+
+<br><br><br><br>
+
+
+                </div>
+
+        </div>
+
+        
+
+        <div id="open-modal" class="modal-window">
+                <div>
+                        <h3 class="addCoupon-head-Row">Add Coupon</h3>
+                        <a href="#" title="Close" class="modal-close">Close</a>
+                        <br><br>
+                        <div class="row" style="display: flex;flex-direction: c;align-items: center;justify-content: center;">
+                                <p class="labelText">Coupon Code</p>
+                               <div class="col-12" style="padding-bottom: 10px;display: flex;">
+                                <label for="" class="codeLabel" style="display: flex;">
+                                        <input type="text" class="form-control CouponcodeInput"
+                                        name="couponCode" id="code"
+                                    placeholder="Please Generate your Coupon Code" required>
+
+                                    <button class="btngenerate" onclick="GenerateCode()">Generate</button>
+                                </label>
+                            
+                               
+                               </div>
+
+                        </div>
+
+                        <div class="row" style="display: flex;align-items: center;justify-content: center;margin-bottom: 5px;">
+                                <label for="" class="codeLabel" style="padding-left: 15px;padding-right: 15px;">Percentage %
+                                        <input type="text" class="form-control CouponcodeInput"
+                                         id="percentage" style="border-right-color:#ced4da ;  border-top-right-radius: 5px;border-bottom-right-radius: 5px;"
+                                    placeholder="Enter Percentage of Discount" required>
+                                </label>
+                        </div>
+
+                        <div class="row" style="display: flex;align-items: center;justify-content: center;margin-bottom: 5px;">
+                                <label for="" class="codeLabel" style="padding-left: 15px;padding-right: 15px;">Title
+                                        <input type="text" class="form-control CouponcodeInput"
+                                        id="title" style="border-right-color:#ced4da ;  border-top-right-radius: 5px;border-bottom-right-radius: 5px;"
+                                    placeholder="Enter Title for Coupon" required>
+                                </label>
+                        </div>
+
+                        <div class="row" style="display: flex;align-items: center;justify-content: center;margin-bottom: 8px;">
+                                <label for="dicountAmount"  class="inputLabel" style="padding-left: 7.4px;">StartDate 
+                                        <input type="date" class="form-control input dateInput startDate" id="start" style="border: 1px solid #ced4da;" required>
+                            
+                                </label>
+                            
+                                <label for="expire"  class="inputLabel" style="margin-left: 5px; padding-right: 15px;">  Expire On
+                                        <input type="date" class="form-control input dateInput expireDate" id="expire" style="margin-left: 5px;border: 1px solid #ced4da;" required>
+                                </label>
+                        </div>
+
+
+                        <div class="row" style="display: flex;align-items: center;justify-content: center;margin-bottom: 8px;">
+                                <label for="dicountAmount"  class="inputLabel" style="padding-left: 9.5px;">Min Purchase 
+                                        <input type="number" class="form-control input discountAmt"
+                                         id="min"
+                                        placeholder="Enter Min Amount" required>
+                                </label>
+                            
+                                <label for="expire"  class="inputLabel" style="margin-left: 10px;padding-right: 15px;">Max Discount Amount
+                                        <input type="number" class="form-control input discountAmt"
+                                        id="max"
+                                        placeholder="Enter Max Amount" required>
+                                       
+                                </label>
+                        </div>
+
+                       <br>
+                        <div class="row" style="display: flex;justify-content: center;">
+                                <a  onclick="createCoupon()" href=""><button class="btn btnAdd"  style="margin-left: 10px;">Add Coupon</button></a>
+                        </div>
+                        
+
+
+
+                </div>
+        </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="/assets/js/coupon.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="/assets/js/dashboard.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,351 @@
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.con-form {
+    margin-top: 100px;
+    height: 510px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.loginform {
+    min-height: 420px;
+    background-color: #F7F5F5;
+    border: 1px solid rgb(172, 172, 172);
+}
+
+.loginHeader {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginbtn {
+    text-align: center;
+    color: red;
+    font-size: 22px;
+}
+
+.loginHeader .loginbtn:hover {
+    color: red;
+}
+
+.registerbtn {
+    text-align: center;
+    margin-left: 30px;
+    font-size: 22px;
+    color: #404040;
+}
+
+.loginHeader .registerbtn:hover {
+    color: black;
+}
+
+.con-form h1 {
+    color: #404040;
+    font-family: Poppins;
+    font-size: 30px;
+    font-weight: 300;
+}
+.googleBox{
+    display: flex; 
+    justify-content:center;
+    align-items:center;
+    cursor: pointer;
+}
+.googlefont{
+    font-family: Poppins;
+    text-decoration: none;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    font-size: 14pt;
+    margin-left: 10px;
+}
+.googleBox:hover,:active{
+    color: black;
+}
+
+.inputDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 320px;
+    /* background-color: teal; */
+}
+.google{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    border: 1px solid rgb(150, 150, 150);
+    border-radius: 7px;
+}
+
+.SubmitFrm {
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    /* background-color: tan; */
+}
+
+.inputemail {
+    height: 45px;
+    font-size: 10pt;
+}
+
+.inputpass {
+    margin-top: 20px;
+    height: 45px;
+    font-size: 8pt;
+}
+
+.input-container {
+    height: 120px;
+    width: 30vw;
+}
+
+.checkForm {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    margin-left: 10px;
+    /* background-color: tan; */
+}
+
+.forgotpassword {
+    font-size: 13px;
+    margin-top: 2px;
+    color: #404040;
+}
+
+.forgot a {
+    color: #404040;
+}
+
+.forgot a:hover {
+    color: #404040;
+}
+
+.lblcheckout {
+    font-family: Poppins;
+    font-size: 13px;
+    font-weight: 400;
+    margin-top: 2px;
+    color: #404040;
+}
+
+.btnLogin {
+    background-color: #FFFFFF;
+    width: 130px;
+    border: 1px solid #404040;
+}
+
+/* forgotpassword */
+.Container-1 {
+    min-height: 410px;
+    margin-top: 100px;
+    /* background-color: teal; */
+}
+
+.con-1 {
+    height: 510px;
+    display: flex;
+    flex-direction: column;
+}
+
+.con-2 {
+    height: 410px;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.rowCon-1 {
+    min-height: 510px;
+}
+
+.col1 {
+    height: 410px;
+    display: flex;
+    /* background-color: tan; */
+    /* border: 1px solid black; */
+}
+
+.btnBackCol {
+    height: 70px;
+    /* background-color: aquamarine; */
+}
+
+.col2 {
+    height: 410px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: red; */
+}
+
+.otpContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.backBtn {
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+.textAlign {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.forgotpassword {
+    color: red;
+}
+
+.textAlign a:hover {
+    color: red;
+}
+
+.SubmitRegFrm {
+    display: block;
+    height: 115px;
+}
+
+.input-container {
+    height: 112px;
+}
+
+.btnSend {
+    width: 230px;
+    background-color: #2b2b2b;
+    border-radius: 20px;
+    color: #cccccc;
+}
+
+.backBtn span {
+    color: #2b2b2b;
+}
+
+.backBtn span:hover {
+    color: #2b2b2b;
+}
+
+
+.card {
+    width: 400px;
+    border: none;
+    height: 300px;
+    box-shadow: 0px 5px 20px 0px #d2dae3;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.card h6 {
+    color: #404040;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.inputs input {
+    width: 40px;
+    height: 40px
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0
+}
+
+.card-2 {
+    background-color: #fff;
+    padding: 10px;
+    width: 350px;
+    height: 100px;
+    bottom: -50px;
+    position: absolute;
+    border-radius: 5px
+}
+
+.card-2 .content {
+    margin-top: 50px
+}
+
+.card-2 .content a {
+    color: red
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border: 2px solid red
+}
+
+.validate {
+    border-radius: 20px;
+    height: 40px;
+    background-color: red;
+    border: 1px solid red;
+    width: 140px
+}
+
+.showL-4number span {
+    font-size: 13px;
+}
+
+.background-image {
+    background-image: url('../../images/forgotImage.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.timer {
+    text-align: right;
+    width:44%;
+    font-size: 30px;
+    font-family: Poppins;
+    font-weight: 600;
+    color: #404040;
+}
+
+.bntResend {
+    background-color: transparent;
+    /* Set transparent background color */
+    text-align: center;
+    text-decoration: none;
+    /* Remove default link underline */
+    cursor: pointer;
+    /* Add pointer cursor on hover */
+    outline: none;
+    border-color: #FFFFFF;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.bntResend:active,
+.bntResend:focus {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}

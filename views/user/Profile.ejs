@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/user/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/user/font-awesome.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <link rel="stylesheet" href="/assets/css/user/templatemo-hexashop.css">
+
+    <link rel="stylesheet" href="/assets/css/user/owl-carousel.css">
+
+    <link rel="stylesheet" href="/assets/css/user/lightbox.css">
+
+    <link rel="stylesheet" href="/assets/css/user/profile.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+
+
+<div class="container-fluid" style="padding: 0;margin: 0;">
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky" style="position: fixed;">
+        <a class='menu-trigger' id="menuTrigger" style="position: relative;">
+            <span>Menu</span>
+        </a>
+        <div class="container Nav-con-1">
+            <div class="row row1">
+                <div class="col-10">
+                    <nav class="main-nav" style=" margin-left: 20px;">
+
+                        <!-- ***** Logo Start ***** -->
+                        <a href="/" class="logo" style="padding: 0;">
+                            <img src="/assets/images/logo.png">
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="/#top" class="active">Home</a></li>
+                            <li class="scroll-to-section"><a href="/#men">Men's</a></li>
+                            <li class="scroll-to-section"><a href="/#women">Women's</a></li>
+                            <li class="scroll-to-section"><a href="/#kids">Kid's</a></li>
+                            <li class="scroll-to-section"><a href="/#Contact">Contact</a></li>
+                        </ul>
+
+
+                    </nav>
+
+
+                </div>
+                <div class="col-2 col2">
+                    <a href=""><i class="fa-solid fa-magnifying-glass searchIcon" style="color: #404040;"></i></a>
+                    <a href="/shoppingcart">
+                        <i class="fa-solid fa-cart-shopping cartIcon" style="color: #404040;"></i>
+                    </a>
+                    <a href="/Profile" class="profileLogo">
+                        <img src="/assets/images/profile-Icon.png" class="profileIcon">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+
+
+    <div class="container-fluid outerDiv" id="blur" style="padding: 0px;">
+        <div class="container-fluid conF-1">
+            <!-- <h3 class="myAccount">My Account</h3>  -->
+            <div class="row" style="min-height: 100vh;margin-top: 100px;">
+                <div class="col-md-3 col-sm-12 col3">
+
+                    <div class="row" style="display: flex;align-items: center; padding-left: 20px; padding-top: 20px;">
+                        <label for="imgInput">
+                            <div class="circle">
+                                <img class="profile-pic" id="profilePic"
+                                    src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
+                            </div>
+                            <input class="file-upload" id="imgInput" hidden type="file" accept="image/*"
+                                onclick="cropImage('imgInput','profilePic')" />
+
+                        </label>
+                        <p>Welcome , <% let name; userData.forEach((val) => name = val.userName)%> <%=name%></p>
+                    </div>
+
+
+                    <ul>
+                        <a id="changeIcon">
+                            <li><i class="fa-regular fa-user menuIcon" style="color: black;"></i><span
+                                    class="spanText">Account
+                                    Settings</span>
+                                <span>
+                                    <i id="icon" class="fa rightAngle">&#xf107;</i>
+                                </span>
+                            </li>
+                        </a>
+
+                        <a href="/Profile" id="DropDownLi1" style="display: none;">
+                            <li style="padding-left: 50px; height: 50px;">Profile Information <span  style="width: 30px;"><i
+                                        style="font-size:24px;color:#494949;padding-left:55px;"
+                                        class="fa rightAngle">&#xf105;</i></span></li>
+                        </a>
+
+                        <a href="profileMenu?menu=manageAddress" id="DropDownLi2" style="display: none;">
+                            <li style="padding-left: 50px;height: 50px;">Manage Address <span style="width: 30px;"><i
+                                        style="font-size:24px;color:#494949;padding-left:69px;"
+                                        class="fa rightAngle">&#xf105;</i></span></li>
+                        </a>
+
+
+
+
+
+                        <a href="profileMenu?menu=myOrders">
+                            <li><i class="fa-solid fa-cart-shopping cartIcon menuIcon" style="color: black;"></i><span
+                                    class="spanText">My
+                                    Orders</span>
+                                <span>
+                                    <i style="font-size:24px;color:#494949;" class="fa rightAngle">&#xf105;</i>
+                                </span>
+                            </li>
+                        </a>
+                        <a href="profileMenu?menu=wishlist&page=1">
+                            <li><i class="fa fa-heart menuIcon" style="color: black;"></i><span
+                                    class="spanText">Wishlist</span>
+                                <span>
+                                    <i style="font-size:24px;color:#494949;" class="fa rightAngle">&#xf105;</i>
+                                </span>
+                            </li>
+                        </a>
+                        <a href="profileMenu?menu=coupon">
+                            <li><i class="fa-solid fa-receipt menuIcon" style="color: black;"></i><span
+                                    class="spanText">Coupons</span>
+                                <span>
+                                    <i style="font-size:24px;color:#494949;" class="fa rightAngle">&#xf105;</i>
+                                </span>
+                            </li>
+                        </a>
+                        <a href="profileMenu?menu=Wallet&page=1">
+                            <li><i class="fa-solid fa-wallet menuIcon" style="color: #000000;"></i><span
+                                    class="spanText">Wallet</span>
+                                <span>
+                                    <i style="font-size:24px;color:#494949;" class="fa rightAngle">&#xf105;</i>
+                                </span>
+                            </li>
+                        </a>
+                        <a href="/logout">
+                            <li><img src="/assets/images/logout.png" class="logoutImg"><span class="spanText"
+                                    style="padding-left: 30px; font-size: 13pt;">Logout</span>
+                                <span>
+                                    <i style="font-size:24px;padding-left: 10px; color:#494949;"
+                                        class="fa rightAngle">&#xf105;</i>
+                                </span>
+                            </li>
+                        </a>
+                    </ul>
+                </div>
+                <div class="col-md-9 col-sm-12 col9">
+                    <div class="row"
+                        style="height: 80px;display: flex;align-items: center;justify-content: space-between;padding-left: 40px;padding-right: 40px;">
+                        <h3>Profile Information</h3>
+                        <button class="btnEdit" id="edit">Edit</button>
+                        <button class="btnEdit" id="cancelEdit" style="display: none;">Cancel</button>
+                    </div>
+                    <div class="container">
+                        <form id="updateForm" >
+                            <div class="row">
+
+                                <% userData.forEach((data)=> { %>
+                                    <div class="col-6"
+                                        style=" min-height: 100px;  display: flex; flex-direction: column; justify-content: space-around;">
+                                        <label class="lbl" for="firstName">Full Name
+                                            <input type="text" class="form-control firstNameInput" name="fullName"
+                                                id="fullName" placeholder="Enter Full Name" required
+                                                value="<%=data.userName%>" readonly>
+                                        </label>
+
+
+                                    </div>
+                                    <div class="col-6"
+                                        style=" min-height: 100px;  display: flex; flex-direction: column; justify-content: space-around;">
+                                        <label class="lbl" for="MobileNo"> Mobile Number
+                                            <input type="text" class="form-control firstNameInput" name="mobileNo"
+                                                id="MobileNo" placeholder="Enter Mobile Number" required
+                                                value="<%=data.phoneNo%>" readonly>
+                                        </label>
+
+                                     
+                                    </div>
+                                    <% }) %>
+    
+                            </div>
+                            <a style="width: 100%;display: flex; justify-content: center;">
+                                <input type="button" class="saveChanges" id="savebtn" value="Submit">
+                            </a>
+                        </form>
+                    </div> 
+
+                    <div class="row"style="margin-top: 20px; display: flex;flex-direction: column;align-items: center;justify-content: center;">
+                        <% let oldemail = userData.length > 0 ? userData[0].emailAddress : '' %>
+                        <div class="col-11" style="display: flex;justify-content: space-between;">
+                            <h5 style="width: 50%; display: flex; justify-content: start;font-family: Poppins; font-size: 17pt;font-weight: bold;">Change Email</h5>
+                            <a  onclick="changeEmail('<%=oldemail%>')" style="display: none;" id="emailCancelbtn"><input type="submit" style="background-color: black;color: white;" class="btn btnEdit"  value="Change"></a>
+                        </div>
+                       
+                        <br>
+                    
+                            <div class="col-11"
+                                style="display: flex;flex-direction: column;align-items: start;justify-content: start;padding: 15px;">
+                                <label for="oldpassword" style="width: 50%;color: rgb(107, 107, 107);padding: 0;margin: 0;">Enter new
+                                    Email
+
+                                   
+                                    <input type="text" class="form-control changePassword" name="newEmail"
+                                        id="newEmailAddress" placeholder="<%=oldemail%>" >
+                                </label>
+                                <p id="emailError" style="padding-left:5px;font-size: 9pt;color: red;"></p>
+                            </div>
+
+                       
+                    </div>
+                    <br>
+
+                    <div class="row"style="margin-top: 20px; display: flex;flex-direction: column;align-items: center;justify-content: center;">
+                       
+                        <div class="col-11" style="display: flex;justify-content: space-between;">
+                            <h5 style="width: 50%; display: flex; justify-content: start;font-family: Poppins; font-size: 17pt;font-weight: bold;">Change Password</h5>
+                            <input type="submit" id="passwordCancelbtn" style="background-color: black;color: white;border-radius: 5px;display: none;" class="btn" onclick="changePassword()" value="Change">
+                        </div>
+                       
+                        <br>
+                    
+                            <div class="col-11"
+                                style="display: flex;align-items: center;justify-content: center;padding: 15px;">
+                                <label for="oldpassword" style="width: 50%;color: rgb(107, 107, 107);">Enter old
+                                    password
+                                    <input type="text" class="form-control changePassword" name="oldPassword"
+                                        id="oldpassword" placeholder="Enter old password" required>
+                                </label>
+
+                                <label for="newPassword"
+                                    style="width: 50%;color: rgb(107, 107, 107);margin-left: 20px;">Enter new password
+                                    <input type="text"  class="form-control changePassword" name="newPassword"
+                                        id="newPassword" placeholder="Enter new password" required>
+                                </label>
+                            </div>
+
+                       
+                    </div>
+                    <br>
+
+                    <div class="row" style="margin-top: 20px;">
+                        <h5
+                            style="width: 100%; display: flex; justify-content: center;font-family: Poppins; font-size: 17pt;font-weight: bold;">
+                            FAQs</h5>
+                        <div class="container"
+                            style="padding-left: 100px;padding-right: 100px; min-height: 250px; display: flex;flex-direction: column; justify-content: space-around;">
+
+                            <p>What happens when I update my email address (or mobile number)?</p>
+                            <p>Your login email id (or mobile number) changes, likewise. You'll receive all your account
+                                related
+                                communication on your updated email address (or mobile number).</p>
+
+                            <p>What happens to my existing Flipkart account when I update my email address (or mobile
+                                number)?</p>
+                            <p>Updating your email address (or mobile number) doesn't invalidate your account. Your
+                                account
+                                remains fully functional. You'll continue seeing your Order history, saved information
+                                and personal details.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="popup">
+        <p style="width: 60%; text-align: end; padding-top: 20px;">Crop Your Image Here</p>
+
+        <div class="row imageRow">
+            <div class="col-6 imgDiv">
+                <img src="" alt="" id="image">
+            </div>
+            <div class="col-5 cropDiv">
+                <div id="Croppedimage" class="preview"></div>
+                <div class="row btnRow">
+                    <a href="">
+                        <button class="Cancel"><span><i class="fa-solid fa-xmark"
+                                    style="color: #ffffff;"></i></span>Cancel</button>
+                    </a>
+
+                    <button type="button" id="cropBtn" class="crop"><span><i class="fa-solid fa-crop"
+                                style="color: #ffffff;"></i></span>Crop</button>
+                    <!-- <form action="/Profile" method="post">
+                             <button type="submit" id="" class="crop"><span><i class="fa-solid fa-crop"
+                                    style="color: #ffffff;"></i></span>Save</button>
+                        </form>    -->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- eFooter starts here... -->
+    <%- include('../../views/user/footer.ejs') %>
+        <!-- Footer end  here... -->
+</div>
+
+<div id="open-modal" class="modal-window">
+    <div>
+      <a href="#" title="Close" class="modal-close">Close</a>
+     
+      <div class="row" style="display: flex;justify-content: space-between;padding: 20px;">
+        <h1>Verify OTP</h1>
+        <a href="" style="font-size: 10pt;color: blue;">Resend OTP</a>
+      </div>
+      <div class="row" style="display: flex;flex-direction: column;justify-content:center;">
+        <label for="oldEmailOTP" style="width: 100%;padding: 10px;">
+            <p style="font-size: 9pt;">Enter OTP sent to <span id="otpLabel"></span></p>
+            <input type="number" maxlength="6" id="NewOTP" class="form-control" style="width: 100%;height: 40px;">
+        </label>
+      </div>
+      
+      <div class="row" style="display: flex;align-items: center;justify-content: center;">
+        <a onclick="checkValidOTP()" ><button class="btn btnEdit" style="border-radius:20px;height: 40px;width: 130px;">Submit</button></a>
+      </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+        <script src="/assets/js/profile.js">  </script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>  
+
+
+
+</body>
+
+</html>

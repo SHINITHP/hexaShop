@@ -1,0 +1,370 @@
+.mainConatainer {
+    padding: 0;
+    margin: 0;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.row {
+    padding: 0;
+    margin: 0;
+}
+
+.left-Menu-Bar {
+    width: 17vw;
+    padding: 10px;
+    min-height: 100vh;
+    background: #2A3F54;
+}
+
+.left-Menu-Bar-active {
+    width: 6vw;
+    padding: 10px;
+    min-height: 100vh;
+    background: #2A3F54;
+}
+
+.right-Menu-Bar {
+    width: 83vw;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.left-Menu-Bar .row {
+    display: flex;
+    align-items: center;
+}
+
+.left-Menu-Bar span {
+    font-size: 12pt;
+    font-weight: bold;
+    color: #C4CFDA;
+    padding-left: 10px;
+}
+
+.adminPanel {
+    margin-left: 6px;
+    width: 50px;
+    height: 50px;
+}
+
+.menu_section h3 {
+    padding-left: 23px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: bold;
+    font-size: 11px;
+    margin-bottom: 0;
+    margin-top: 0;
+    text-shadow: 1px 1px #000;
+}
+
+.side-menu-li {
+    height: 50px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.menuBtn {
+    color: #C4CFDA;
+    font-size: 16pt;
+}
+
+.menuBtn span {
+    padding-left: 10px;
+    font-size: 11pt;
+    font-weight: lighter;
+    font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
+}
+
+.side-menu-a-tag {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.nav>li>a {
+    display: flex;
+}
+
+.nav>li>a:focus,
+.nav>li>a:hover {
+    text-decoration: none;
+    background: transparent;
+}
+
+.fa-chevron-right {
+    color: #C4CFDA;
+}
+
+.side-menu-a-tag .fa-chevron-right {
+    font-size: 8pt;
+    color: #C4CFDA;
+    margin-top: 5px;
+    font-size: 10px;
+    min-width: inherit;
+}
+
+.active {
+    border-right: 5px solid #1abb9c;
+    text-shadow: rgba(0, 0, 0, 0.25) 0 -1px 0;
+    background: linear-gradient(#334556, #2C4257), #2A3F54;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
+}
+
+.NavbarRow {
+    height: 60px;
+    background: #EDEDED;
+    border-bottom: 1px solid #D9DEE4;
+    display: flex;
+    align-items: center;
+}
+
+.fa {
+    font-size: 26px;
+}
+
+#MenuBtn {
+    padding-left: 15px;
+    cursor: pointer;
+}
+
+#MenuBtn i {
+    color: #73879C;
+}
+
+#MenuBtn :hover {
+    color: #23527c;
+}
+
+.active-Icons {
+    cursor: pointer;
+    padding: 15px;
+}
+
+.active-Icons img {
+    height: 29px;
+    width: 29px;
+}
+
+li {
+    list-style-type: none;
+}
+
+.menuIcon {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    height: 60px;
+}
+
+.other-Settings {
+    width: 50%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.msgIcon {
+    position: relative;
+    color: black;
+    padding: 0;
+    height: 60px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fa-envelope-o {
+    font-size: 16pt;
+}
+
+.msgIcon:hover {
+    color: black;
+    background-color: #dde6ef;
+}
+
+.profileName {
+    color: black;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 130px;
+    height: 60px;
+}
+
+.profileName:hover {
+    color: black;
+    background-color: #dde6ef;
+}
+
+.fa-chevron-down {
+    padding-left: 15px;
+    font-size: 12pt;
+}
+
+.profileName b {
+    font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
+    font-weight: lighter;
+}
+
+.bg-green {
+    font-size: 10px;
+    font-weight: normal;
+    line-height: 13px;
+    padding: 2px 6px;
+    position: absolute;
+    right: .5px;
+    top: 10px;
+    background-color: #1abb9c;
+}
+
+.log-DropDown {
+    height: 60px;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.logoutTab {
+    height: 60px;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    justify-content: space-between;
+    background-color: red;
+}
+
+.SI-No {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 6%;
+    font-size: 12pt;
+    font-family: Poppins;
+    font-weight: bold;
+}
+
+.msg-Details-Row {
+    font-size: 12pt;
+    font-family: Poppins;
+    font-weight: bold;
+    width: 13.8%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.SI-No-Listing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 6%;
+    font-size: 11pt;
+    font-family: Poppins;
+    font-weight: bold;
+}
+
+.msg-Details-Listing {
+    font-size: 11pt;
+    font-family: Poppins;
+    font-weight: bold;
+    width: 13.8%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 5px;
+}
+
+.Pro-listing {
+    width: 25%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.product-Image {
+    width: 70px;
+    height: 70px;
+}
+
+.pro-Info {
+    padding: 0;
+    padding-left: 10px;
+    width: 75%;
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pro-Info b {
+    padding: 0;
+    width: 100%;
+}
+
+.mrp {
+    padding-left: 5px;
+    text-decoration: line-through;
+}
+
+.req-reason {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.req-Date {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.reject-Req {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: rgb(221, 221, 221);
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.accept-Req{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: rgb(221, 221, 221);
+    margin-left: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dateBox {
+    width: 155px;
+    border-radius: 7px;
+    height: 35px;
+    background-color: white;
+    border: 1px solid rgb(216, 216, 216);
+    text-align: center;
+    outline: none;
+}

@@ -1,0 +1,291 @@
+
+.con-1 {
+    min-height: 800px;
+    width: 300px;
+    background-color: #f3f3f3;
+    border: 10px solid #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+.con-2 {
+    min-height: 800px;
+    width: 79vw;
+    background-color: #f3f3f3;
+    border: 10px solid #ffffff;
+}
+
+.col3 {
+    height: 42px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid rgb(196, 196, 196);
+
+}
+
+.col3 form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.searchInput {
+    width: 95%;
+    height: 40px;
+    border: none;
+    font-family: Poppins;
+    color: #5e5e5e;
+    font-size: 10pt;
+}
+
+.searchInput:focus {
+    border: none;
+    outline: none;
+}
+.col1 h3{
+    font-size: 17pt;
+}
+.btnUser{
+    background-color: #afafaf;
+}
+.btnExport {
+    background-color: black;
+    width: 150px;
+    font-size: 10pt;
+    border: none;
+    color: white;
+    height: 38px;
+    border-radius: 7px;
+}
+
+.btnExport span {
+    margin-right: 10px;
+}
+.col2{
+    display: flex;
+    padding-right: 10px;
+}
+.row3{
+    /* background-color: #5e5e5e; */
+    height: 60px;
+   
+}
+.col7{
+    display: flex;
+    align-items: center;
+}
+.sort-UsageRow{
+    padding: 10px;
+    width: 230px;
+    margin-left: 10px;
+    height: 35px;
+    background-color: white;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #5e5e5e;
+    border: 1px solid rgb(216, 216, 216);
+}
+
+a,
+a:hover{
+    text-decoration: none;
+    color: #4d4d4d;
+    font-family: Poppins;
+    font-size: 11pt;
+}
+
+#all:hover{  
+    color: blue;
+}
+.active:hover{
+    color: green;
+}
+.blocked:hover{
+    color: red;
+}
+#all.clicked{
+    color: blue;
+}
+#active.clicked{
+    color: green;
+}
+#blocked.clicked{
+    color: red;
+}
+
+
+
+
+  .sort-AddedRow{
+    padding-right:25px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 210px;
+    height: 60px;
+  }
+
+  .dateBox{
+    width: 150px;
+    border-radius: 7px;
+    height: 35px;
+    background-color: white;
+    border: 1px solid rgb(216, 216, 216);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .dateBox2{
+    width: 150px;
+    border-radius: 7px;
+    height: 35px;
+    background-color: white;
+    border: 1px solid rgb(216, 216, 216);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+  }
+  .dateInput{
+    border: none;
+    font-family: Poppins;
+    font-size: 11pt;
+    color: #4d4d4d;
+  }
+  .dateInput:focus{
+    outline: none;
+    border: none;
+  }
+  .row4 {
+    height: fit-content;
+    display: flex;
+    /* flex-direction: column;
+    align-items: center; */
+    justify-content: center;
+    min-height: 50px;
+    border-top: 1px solid rgb(112, 112, 112);
+    border-bottom: 1px solid rgb(112, 112, 112);
+}
+.table1{
+    width: 98%;
+}
+.table1 td{
+    vertical-align: middle;
+}
+.tableHead {
+    background-color: white;
+    font-family: Poppins;
+    text-align: center;
+    /* outline: 1px solid rgb(214, 214, 214); */
+    border-bottom: 7px solid #f3f3f3;
+}
+.tableRow{
+    background-color: #e2e2e2;
+    height: 80px;
+    border-bottom: 7px solid #f3f3f3;
+    text-align: center;
+}
+.tableRow td ,
+.tableRow th{
+    vertical-align: middle;
+    font-family: Poppins;
+    color: #4d4d4d;
+}
+th{
+    font-family: Poppins;
+    font-size: 12pt;
+    color: #444444;
+}
+.unlisted {
+    display: none;
+  }
+
+.delete{
+    padding-left: 10px;
+}
+.tableRow td{
+    padding: 4px;
+    font-size: 11pt;
+}
+
+
+.iconbtns {
+    width: 20px;
+    background-color:transparent;
+    /* Set transparent background color */
+    text-align: left;
+    text-decoration: none;
+    /* Remove default link underline */
+    cursor: pointer;
+    /* Add pointer cursor on hover */
+    outline: none;
+    padding: 0;
+    border: none;
+   
+}
+
+.iconbtns:active,
+.iconbtns:focus {
+    border: none;
+    outline: none;
+}
+.btnProducts{
+    background-color: #ebebeb;
+}
+
+.SI-No{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 6%;
+    font-size: 12pt;
+    font-weight: bold;
+    font-family: Poppins;
+}
+.customer-heading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 11.8%;
+    font-size: 12pt;
+    font-weight: bold;
+    font-family: Poppins;
+}
+.Address-Heading{
+    width: 20%;
+}
+.Email-heading{
+    width: 15%;
+}
+.customer-listing-Row{
+    border-bottom: 1px solid rgb(112, 112, 112);
+    min-height: 80px;
+}
+
+.customer-listing{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 11.8%;
+    font-size: 11pt;
+    font-weight: bold;
+    font-family: Poppins;
+}
+.SI-No-listing{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 6%;
+    font-size: 11pt;
+    font-weight: bold;
+    font-family: Poppins;
+}
+.Address-listing{
+    width: 20%;
+}
+.Email-listing{
+    width: 15%;
+}

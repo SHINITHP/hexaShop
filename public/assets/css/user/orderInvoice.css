@@ -1,0 +1,16 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.main-con{
+}
+
+.row-one{
+    padding: 0;
+    margin: 0;
+    background-color: thistle;
+    height: 90px;
+    width: 100px;
+}
+/* background-color: tan; */

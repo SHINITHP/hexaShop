@@ -1,0 +1,283 @@
+html,
+body {
+    font-family: "Montserrat", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+a:hover {
+    color: black;
+}
+.rightAngle{
+    margin-right: 20px;
+}
+.conF-1 {
+    min-height: 800px;
+    margin: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.myAccount {
+    height: 70px;
+    font-family: Poppins;
+    margin-top: 100px;
+    text-shadow: 2px 2px #c7c7c7;
+    padding-left: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.col3 {
+    background-color: #f3f3f3;
+    min-height: 600px;
+    border-top: 15px solid white;
+    border-bottom: 15px solid white;
+    border-left: 15px solid white;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.col9 {
+    min-height: 600px;
+    border: 15px solid white;
+    background-color: #f3f3f3;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+}
+
+.col3 ul {
+    padding: 15px;
+    margin: 0;
+}
+
+.col3 ul li {
+    padding: 0;
+    margin: 0;
+    margin-top: 4px;
+    background-color: white;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.menuIcon {
+    width: 40px;
+    font-size: 24px;
+    padding-left: 7px;
+}
+
+.col3 ul li span {
+    font-family: Poppins;
+    padding-left: 20px;
+    font-size: 1.03rem;
+}
+
+.spanText {
+    width: 230px;
+}
+
+.col3 p {
+    font-family: Poppins;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-size: 12pt;
+    justify-content: start;
+    padding-left: 20px;
+}
+
+.logoutImg {
+    height: 30px;
+}
+
+.circle {
+    border-radius: 100% !important;
+    overflow: hidden;
+    width: 128px;
+    height: 128px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    outline: 1px solid rgb(201, 201, 201);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.imgLabel {
+    border: 1px solid rgb(182, 182, 182);
+}
+
+.col9 h3 {
+    font-family: Poppins;
+    text-shadow: 2px 2px #c7c7c7;
+    font-size: 17pt;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.rightAngle {
+    font-size: 24px;
+    color: #494949;
+}
+
+.plusBtn {
+    font-size: 25pt;
+    padding-left: 10px;
+}
+
+.con1 {
+    height: 80px;
+    border: 3px solid rgb(184, 184, 184);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.con1 p {
+    padding-left: 30px;
+    font-size: 14pt;
+    font-family: Poppins;
+}
+
+.con2 {
+    min-height: 180px;
+    border: 3px solid rgb(184, 184, 184);
+    cursor: pointer;
+}
+
+.con2Row1 {}
+
+.rowcol6-1 {
+    height: 100px;
+    padding: 10px;
+}
+
+.rowcol6-2 {
+    padding: 0;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.rowcol6-2 p {
+    padding-left: 5px;
+    font-size: 12pt;
+    font-family: Poppins;
+}
+
+.stars {
+    display: flex;
+    font-size: 10pt;
+    font-family: Poppins;
+}
+
+.stars li {
+    padding-left: 5px;
+}
+
+.rowcol6-1 img {
+    height: 80px;
+    width: 80px;
+}
+
+.rowcol6-3 {
+    padding-left: 0;
+    height: 100px;
+    display: flex;
+    padding-top: 10px;
+    justify-content: end;
+}
+
+.btn {
+    background-color: black;
+    width: 120px;
+    font-family: Poppins;
+    font-size: 12pt;
+    border: none;
+    color: white;
+    height: 43px;
+}
+
+.btn:hover {
+    color: white;
+}
+
+.con2Row2 {
+    /* background-color: teal; */
+}
+
+.rowcol4-3 {
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.rowcol4-2 {
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.rowcol4-3 p {
+    font-size: 12pt;
+    font-family: Poppins;
+}
+
+.rowcol4-2 p {
+    font-size: 12pt;
+    font-family: Poppins;
+}
+
+.rowcol4-1 {
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.rowcol4-1 h5 {
+    padding-bottom: 10px;
+    font-size: 14pt;
+    font-family: Poppins;
+}
+
+.rowcol4-1 p {
+    font-size: 12pt;
+    font-family: Poppins;
+}
+
+.rowcol4-2 h5 {
+    padding-bottom: 10px;
+    font-size: 14pt;
+    font-family: Poppins;
+}
+
+.rowcol4-3 h5 {
+    padding-bottom: 10px;
+    font-size: 14pt;
+    font-family: Poppins;
+}
+.col3 ul li:hover {
+    background-color: #afafaf;
+}

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+            rel="stylesheet">
+
+        <!-- Css Styles -->
+        <!-- Additional CSS Files -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/user/bootstrap.min.css">
+
+        <link rel="stylesheet" type="text/css" href="/assets/css/user/font-awesome.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <link rel="stylesheet" href="/assets/css/user/templatemo-hexashop.css">
+
+        <link rel="stylesheet" href="/assets/css/user/owl-carousel.css">
+
+        <link rel="stylesheet" href="/assets/css/user/lightbox.css">
+
+        <link rel="stylesheet" href="/assets/css/user/manageAddress.css">
+
+        <link rel="stylesheet" href="/assets/css/user/wallet.css">
+
+        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+        <title>Document</title>
+    </head>
+
+    <body>
+
+
+
+        <div class="container-fluid outerDiv" id="blur" style="padding: 0px;">
+            <!-- ***** Header Area Start ***** -->
+            <header class="header-area header-sticky" style="position: fixed;">
+                <a class='menu-trigger' id="menuTrigger" style="position: relative;">
+                    <span>Menu</span>
+                </a>
+                <div class="container Nav-con-1">
+                    <div class="row row1">
+                        <div class="col-10">
+                            <nav class="main-nav" style=" margin-left: 20px;">
+
+                                <!-- ***** Logo Start ***** -->
+                                <a href="/" class="logo" style="padding: 0;">
+                                    <img src="/assets/images/logo.png">
+                                </a>
+                                <!-- ***** Logo End ***** -->
+                                <!-- ***** Menu Start ***** -->
+                                <ul class="nav">
+                                    <li class="scroll-to-section"><a href="/#top" class="active">Home</a></li>
+                                    <li class="scroll-to-section"><a href="/#men">Men's</a></li>
+                                    <li class="scroll-to-section"><a href="/#women">Women's</a></li>
+                                    <li class="scroll-to-section"><a href="/#kids">Kid's</a></li>
+                                    <li class="scroll-to-section"><a href="/#Contact">Contact</a></li>
+                                </ul>
+
+
+                            </nav>
+
+
+                        </div>
+                        <div class="col-2 col2">
+                            <a href=""><i class="fa-solid fa-magnifying-glass searchIcon"
+                                    style="color: #404040;"></i></a>
+                            <a href="/shoppingcart">
+                                <i class="fa-solid fa-cart-shopping cartIcon" style="color: #404040;"></i>
+                            </a>
+                            <a href="/Profile" class="profileLogo">
+                                <img src="/assets/images/profile-Icon.png" class="profileIcon">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- ***** Header Area End ***** -->
+
+
+
+
+            <div class="container-fluid conF-1">
+                <!-- <h3 class="myAccount">My Account</h3> -->
+                <div class="row" style="min-height: 100vh;margin-top: 100px;">
+                    <div class="col-md-3 col-sm-12 col3">
+                        <div class="row"
+                            style="display: flex;align-items: center; padding-left: 20px; padding-top: 20px;">
+                            <label for="imgInput">
+                                <div class="circle">
+                                    <img class="profile-pic" id="profilePic"
+                                        src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
+                                </div>
+                                <input class="file-upload" id="imgInput" hidden type="file" accept="image/*"
+                                    onclick="cropImage('imgInput','profilePic')" />
+
+                            </label>
+                            <p>Welcome , Shinith </p>
+                        </div>
+
+
+                        <ul>
+                            <a id="changeIcon">
+                                <li><i class="fa-regular fa-user menuIcon" style="color: black;"></i><span
+                                        class="spanText">Account
+                                        Settings</span>
+                                    <span>
+                                        <i style=" margin-right: 20px;" id="icon" class="fa rightAngle">&#xf107;</i>
+                                    </span>
+                                </li>
+                            </a>
+
+
+                            <a href="/Profile" id="DropDownLi1" style="display: none;">
+                                <li style="padding-left: 50px; height: 50px;">Profile Information <span
+                                        style="width: 30px;"><i style="font-size:24px;color:#494949;padding-left:55px;"
+                                            class="fa rightAngle">&#xf105;</i></span></li>
+                            </a>
+
+                            <a href="profileMenu?menu=manageAddress" id="DropDownLi2" style="display: none;">
+                                <li style="padding-left: 50px;height: 50px;">Manage Address <span
+                                        style="width: 30px;"><i style="font-size:24px;color:#494949;padding-left:69px;"
+                                            class="fa rightAngle">&#xf105;</i></span></li>
+                            </a>
+
+
+
+                            <a href="profileMenu?menu=myOrders">
+                                <li><i class="fa-solid fa-cart-shopping cartIcon menuIcon"
+                                        style="color: black;"></i><span class="spanText">My
+                                        Orders</span>
+                                    <span>
+                                        <i style="font-size:24px;color:#494949;" class="fa rightAngle">&#xf105;</i>
+                                    </span>
+                                </li>
+                            </a>
+                            <a href="profileMenu?menu=wishlist">
+                                <li><i class="fa fa-heart menuIcon" style="color: black;"></i><span
+                                        class="spanText">Wishlist</span>
+                                    <span>
+                                        <i style="font-size:24px;color:#494949;" class="fa rightAngle">&#xf105;</i>
+                                    </span>
+                                </li>
+                            </a>
+                            <a href="">
+                                <li><i class="fa-solid fa-receipt menuIcon" style="color: black;"></i><span
+                                        class="spanText">Coupons</span>
+                                    <span>
+                                        <i style="font-size:24px;color:#494949;" class="fa rightAngle">&#xf105;</i>
+                                    </span>
+                                </li>
+                            </a>
+                            <a href="profileMenu?menu=Wallet&page=1">
+                                <li style="background-color: #afafaf;"><i class="fa-solid fa-wallet menuIcon"
+                                        style="color: #000000;"></i><span class="spanText">Wallet</span>
+                                    <span>
+                                        <i style="font-size:24px;color:#494949;" class="fa rightAngle">&#xf105;</i>
+                                    </span>
+                                </li>
+                            </a>
+                            <a href="/logout">
+                                <li><img src="/assets/images/logout.png" class="logoutImg"><span class="spanText"
+                                        style="padding-left: 30px; font-size: 13pt;">Logout</span>
+                                    <span>
+                                        <i style="font-size:24px;padding-left: 10px; color:#494949;"
+                                            class="fa rightAngle">&#xf105;</i>
+                                    </span>
+                                </li>
+                            </a>
+                        </ul>
+
+                    </div>
+                    <div class="col-md-9 col-sm-12 col9">
+                        <div class="row" style="display: flex;justify-content: space-between;align-items: center;">
+                            <h3 style="padding-left: 20px;">My Wallet</h3>
+                            <a href="#open-modal"><button class="form-control" id="AddToWalletBtn"
+                                    style="background-color: black;color:white;width: 140px;height: 35px;margin-right: 30px;font-size: 10pt;font-weight: bold;border-radius: 0;margin-top: 10px;">Add
+                                    To Wallet</button></a>
+                        </div>
+
+                        <br>
+                        <div class="row balanceAmount">
+                            <div class="col-4 balanceBox">
+                                <!-- <i class="fa-solid fa-wallet" style="color: #000000;"></i> -->
+                                <img src="/assets/images/wallet.png" alt="">
+                                <div class="Box">
+                                    <span>
+                                        Balancing Amount
+                                    </span>
+                                    <% if(balance> 0 ){ %>
+                                        <h5>₹ <%=balance%>
+                                        </h5>
+                                        <% } else { %>
+                                            <h5> ₹0 </h5>
+                                            <% } %>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="row" style="display: flex;justify-content: center;min-height: 400px;">
+                            <div class="col-11 columnHeading">
+                                <h5 class="SI">SI</h5>
+                                <h5 class="productData">Product Details</h5>
+                                <h5 class="transactionDetails">Transaction</h5>
+                                <h5 class="amount">Amount</h5>
+                            </div>
+                            <div class="container"
+                                style="min-height:500px;display: flex;flex-direction: column;align-items: center;padding: 0;margin: 0;">
+                                <% if(walletDetails.length===0 ) { %>
+                                    <div class="row"
+                                        style="min-height: 500px;display: flex;align-items: center;justify-content: center;">
+                                        <span style="font-weight: bolder;color: #6e6e6e;">The Wallet section is
+                                            currently empty</span>
+                                    </div>
+                                    <% } else { %>
+                                        <% let count=1 %>
+                                            <% walletDetails.forEach((val,index)=> { %>
+                                                <% if(val.productID) { %>
+                                                    <div class="row detailsRow" style="height: 90px; width: 92%;">
+                                                        <p class="SI">
+                                                            <%=count%>
+                                                                <%count++%>
+                                                        </p>
+                                                        <h6 class="productData">
+                                                            <img src="<%=val.productID.files[0].url%>" alt="">
+                                                            <span style="padding-left: 8px;width: 70%;">
+                                                                <%=val.productID.ProductName%>
+                                                            </span>
+                                                        </h6>
+                                                        <h6 class="transactionDetails">
+                                                            <%=val.transaction%>
+                                                        </h6>
+                                                        <h6 class="amount">₹ <span style="padding-left: 4px;">
+                                                                <%=val.orderID.Amount%>
+                                                            </span></h6>
+
+                                                    </div>
+                                                    <% } %>
+                                                        <% }) %>
+
+                                                            <% } %>
+                            </div>
+                            <% if(route=='wallet' ){ %>
+                                <div class="col-12 " style="text-align: center;">
+                                    <div class="pagination__option">
+                                        <% if(currentPage> 1) { %>
+                                            <a href="/profileMenu?menu=Wallet&page=<%= currentPage > 1 ? parseInt(currentPage) - 1 : currentPage %>"
+                                                style="padding-right: 5px;"><i class="fa fa-angle-left"></i></a>
+                                            <% } %>
+                                                <% for(let i=1; i<=pages; i++) { %>
+                                                    <% if(i==currentPage) { %>
+                                                        <a href="/profileMenu?menu=Wallet&page=<%= i %>"><button
+                                                                style="background-color: black;color: white;width: 35px;height: 35px;border: none;border-radius: 5px;">
+                                                                <%= i %>
+                                                            </button></a>
+                                                        <% } else {%>
+                                                            <a href="/profileMenu?menu=Wallet&page=<%= i %>"><button
+                                                                    style="background-color: black;color: white;width: 35px;height: 35px;border: none;border-radius: 5px;">
+                                                                    <%= i %>
+                                                                </button></a>
+                                                            <% } %>
+                                                                <% } %>
+                                                                    <% if(currentPage < pages ) { %>
+                                                                        <a href="/profileMenu?menu=Wallet&page=<%=parseInt(currentPage) + 1%>"
+                                                                            style="padding-left:5px ;"><i
+                                                                                class="fa fa-angle-right"></i></a>
+                                                                        <% } %>
+                                    </div>
+                                </div>
+                                <% } else{ %>
+                                    <div class="col-12 text-align" style="text-align: center;">
+                                        <div class="pagination__option">
+                                            <% if(currentPage> 1) { %>
+                                                <a href=""><i class="fa fa-angle-left"></i></a>
+                                                <% } %>
+                                                    <% for(let i=1; i<=pages; i++) { %>
+                                                        <% if(i==currentPage) { %>
+                                                            <a href=""><button
+                                                                    style="background-color: black;color: white;width: 35px;height: 35px;border: none;border-radius: 5px;">
+                                                                    <%= i %>
+                                                                </button></a>
+                                                            <% } else {%>
+                                                                <a href=""><button
+                                                                        style="background-color: black;color: white;width: 35px;height: 35px;border: none;border-radius: 5px;">
+                                                                        <%= i %>
+                                                                    </button></a>
+                                                                <% } %>
+                                                                    <% } %>
+                                                                        <% if(currentPage < pages ) { %>
+                                                                            <a href="" style="padding-left:5px ;"><i
+                                                                                    class="fa fa-angle-right"></i></a>
+                                                                            <% } %>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <%- include('../../views/user/footer.ejs') %>
+
+            <div id="open-modal" class="modal-window">
+                <div>
+                    <a href="" title="Close" class="modal-close">Close</a>
+
+                    <div class="row"
+                        style="display: flex;flex-direction: column;justify-content: center;align-items: center;padding: 20px;padding-bottom: 0;">
+                        <h1 style="font-size: 12pt;width: 100%;text-align: center;margin: 0;margin-bottom: 7px;">Add
+                            money to wallet</h1>
+                        <div
+                            style="border: 1px solid rgb(186, 186, 186);border-radius: 10px;min-width: 120px;height: 50px;background-color: rgb(237, 237, 237);display: flex;align-items: center;justify-content: center;">
+                            <img src="/assets/images/wallet.png" alt="" style="width: 30px;height: 30px;">
+                            <b style="margin-left: 8px;font-size: 12pt;">₹
+                                <% if(balance> 0 ){ %>
+                                    <span id="walletAmount">
+                                        <%=balance%>
+                                    </span>
+                                    <% } else { %>
+                                        <span id="walletAmount"> 0 </span>
+                                        <% } %>
+                            </b>
+                        </div>
+                    </div>
+                    <div class="row" style="display: flex;flex-direction: column;justify-content:center;">
+                        <label for="oldEmailOTP" style="width: 100%;padding: 10px;">
+                            <p style="font-size: 9pt;">You need to add : <span id="otpLabel"></span></p>
+                            <input type="number" min="0" id="AddAmount" class="form-control"
+                                style="width: 100%;height: 40px;" placeholder="Enter Your Amount">
+                        </label>
+                    </div>
+
+                    <div class="row" style="display: flex;align-items: center;justify-content: center;">
+                        <a onclick="AddMoneyTOWallet('<%= JSON.stringify(walletDetails[0].userID) %>')"><button
+                                class="btn btnEdit" style="border-radius:20px;height: 40px;width: 160px;">Add To
+                                Wallet</button></a>
+                    </div>
+                </div>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+            <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+            <script>
+
+
+                const urlParams = new URLSearchParams(window.location.search);
+                const success = urlParams.get('success');
+                
+                if (success === 'true') {
+                    // Display the success toast
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Successfully Added',
+                        timer: 5000,
+                        toast: true,
+                        position: 'top',
+                        showConfirmButton: false
+                    });
+                    urlParams.delete('success');
+                    const newUrl = window.location.pathname + '?' + urlParams.toString(); // Construct new URL
+                    history.replaceState(null, '', newUrl);
+                }
+
+                function AddMoneyTOWallet(user) {
+                    let userInfo = JSON.parse(user)
+                    console.log(userInfo, 'addressID')
+                    const AddAmount = document.getElementById('AddAmount').value;
+                    axios.post('/create-payment', { amount: AddAmount })
+                        .then(function (response) {
+                            const responseData = response.data;
+                            console.log(responseData.amount)
+
+
+                            const options = {
+                                key: 'rzp_test_TrCYwkpURRftvO',
+                                amount: responseData.amount,
+                                currency: 'INR',
+                                description: 'Add Money To Wallet',
+                                wallet_id: responseData.id,
+                                handler: function (response) {
+
+                                    console.log(userInfo, 'addressID')
+                                    axios.post('/checkOut?task=AddToWallet', { AddAmount }) // Sending productID as data
+                                        .then(function (response) {
+
+                                            location.href = 'profileMenu?menu=Wallet&page=1&success=true';
+
+                                            setTimeout(function () {
+                                                Swal.fire({
+                                                    icon: 'success',
+                                                    text: 'Successfully Added',
+                                                    timer: 4000,
+                                                    toast: true,
+                                                    position: 'top',
+                                                    showConfirmButton: false
+                                                });
+                                            }, 1000);
+                                        })
+                                        .catch(function (error) {
+                                            console.error('Error adding product to cart:', error);
+                                            // Handle error if needed
+                                        });
+                                },
+                                prefill: {
+                                    name: userInfo.userName,
+                                    email: userInfo.emailAddress,
+                                    contact: userInfo.phoneNo
+                                },
+                                theme: {
+                                    color: '#3399cc' // Customize color
+                                }
+                            };
+
+                            const rzp = new Razorpay(options);
+                            rzp.open();
+
+
+                        })
+                }
+                <!-- account Settings -->
+                const changeIcon = document.getElementById('changeIcon');
+                const dropDownLi1 = document.getElementById('DropDownLi1');
+                const dropDownLi2 = document.getElementById('DropDownLi2');
+                let isDropDownVisible = true;
+
+                changeIcon.addEventListener('click', function () {
+                    let icon = document.getElementById('icon');
+
+                    if (isDropDownVisible) {
+                        icon.innerHTML = '&#xf107;'; // Change to the new icon
+                        dropDownLi1.style.display = 'block';
+                        dropDownLi2.style.display = 'block';
+
+
+                    } else {
+                        icon.innerHTML = '&#xf105;'; // Change back to the original icon
+                        dropDownLi1.style.display = 'none';
+                        dropDownLi2.style.display = 'none';
+                    }
+
+                    // Toggle the state
+                    isDropDownVisible = !isDropDownVisible;
+                });
+
+            </script>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"
+                integrity="sha512-9KkIqdfN7ipEW6B6k+Aq20PV31bjODg4AA52W+tYtAE0jE0kMx49bjJ3FgvS56wzmyfMUHbQ4Km2b7l9+Y/+Eg=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+            <!-- <script src="/assets/js/profile.js"></script> -->
+
+
+
+    </body>
+
+    </html>
+
+</body>
+
+</html>

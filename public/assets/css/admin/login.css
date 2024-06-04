@@ -1,0 +1,90 @@
+body{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.nav{
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid #5e5e5e;
+
+}
+.ConF-1{
+    height: 100vh;
+}
+.col6Row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.col6{
+    height: 450px;
+    background-color: #F7F5F5;
+    border: 1px solid rgb(172, 172, 172);
+}
+.navbar{
+    display: flex;
+    justify-content: center;
+    height: 90px;
+    border-bottom: 1px solid rgb(176, 176, 176);
+}
+.frmRow{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 360px;
+}
+.input-box{
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.inputemail {
+    height: 45px;
+    font-size: 10pt;
+    font-family: Poppins;
+}
+
+.inputpass {
+    margin-top: 20px;
+    height: 45px;
+    font-size: 10pt;
+    font-family: Poppins;
+}
+
+.forgotpassword {
+    font-size: 13px;
+    margin-top: 2px;
+    color: #404040;
+}
+.col12{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    min-height: 230px;
+    /* background-color: tan; */
+}
+.checkbox{
+   font-size: 40px;
+}
+.lblcheckout{
+    font-family: Poppins;
+    font-size: 13px;
+    font-weight: 400;
+    color: #404040;
+    padding-top: 7px;
+    margin-left: 30px;
+}
+.btnLogin {
+    background-color: #FFFFFF;
+    width: 130px;
+    color: black;
+    border: 1px solid #404040;
+}

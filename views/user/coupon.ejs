@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+            rel="stylesheet">
+
+        <!-- Css Styles -->
+        <!-- Additional CSS Files -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/user/bootstrap.min.css">
+
+        <link rel="stylesheet" type="text/css" href="/assets/css/user/font-awesome.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <link rel="stylesheet" href="/assets/css/user/templatemo-hexashop.css">
+
+        <link rel="stylesheet" href="/assets/css/user/owl-carousel.css">
+
+        <link rel="stylesheet" href="/assets/css/user/lightbox.css">
+
+        <link rel="stylesheet" href="/assets/css/user/manageAddress.css">
+
+        <link rel="stylesheet" href="/assets/css/user/coupon.css">
+
+        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" />
+
+        <title>Document</title>
+    </head>
+
+    <body>
+
+
+
+
+        <!-- ***** Header Area Start ***** -->
+        <header class="header-area header-sticky" style="position: fixed;">
+            <a class='menu-trigger' id="menuTrigger" style="position: relative;">
+                <span>Menu</span>
+            </a>
+            <div class="container Nav-con-1">
+                <div class="row row1">
+                    <div class="col-10">
+                        <nav class="main-nav" style=" margin-left: 20px;">
+
+                            <!-- ***** Logo Start ***** -->
+                            <a href="/" class="logo" style="padding: 0;">
+                                <img src="/assets/images/logo.png">
+                            </a>
+                            <!-- ***** Logo End ***** -->
+                            <!-- ***** Menu Start ***** -->
+                            <ul class="nav">
+                                <li class="scroll-to-section"><a href="/#top" class="active">Home</a></li>
+                                <li class="scroll-to-section"><a href="/#men">Men's</a></li>
+                                <li class="scroll-to-section"><a href="/#women">Women's</a></li>
+                                <li class="scroll-to-section"><a href="/#kids">Kid's</a></li>
+                                <li class="scroll-to-section"><a href="/#Contact">Contact</a></li>
+                            </ul>
+
+
+                        </nav>
+
+
+                    </div>
+                    <div class="col-2 col2">
+                        <a href=""><i class="fa-solid fa-magnifying-glass searchIcon" style="color: #404040;"></i></a>
+                        <a href="/shoppingcart">
+                            <i class="fa-solid fa-cart-shopping cartIcon" style="color: #404040;"></i>
+                        </a>
+                        <a href="/Profile" class="profileLogo">
+                            <img src="/assets/images/profile-Icon.png" class="profileIcon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- ***** Header Area End ***** -->
+
+
+
+        <div class="container-fluid outerDiv" id="blur" style="padding: 0px;">
+            <div class="container-fluid conF-1">
+                <!-- <h3 class="myAccount">My Account</h3> -->
+                <div class="row" style="min-height: 100vh;margin-top: 100px;">
+                    <div class="col-md-3 col-sm-12 col3">
+                        <div class="row"
+                            style="display: flex;align-items: center; padding-left: 20px; padding-top: 20px;">
+                            <label for="imgInput">
+                                <div class="circle">
+                                    <img class="profile-pic" id="profilePic"
+                                        src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
+                                </div>
+                                <input class="file-upload" id="imgInput" hidden type="file" accept="image/*"
+                                    onclick="cropImage('imgInput','profilePic')" />
+
+                            </label>
+                            <p>Welcome , Shinith </p>
+                        </div>
+
+
+                        <ul>
+                            <a id="changeIcon">
+                                <li><i class="fa-regular fa-user menuIcon" style="color: black;"></i><span
+                                        class="spanText">Account
+                                        Settings</span>
+                                    <span>
+                                        <i id="icon" class="fa rightAngle">&#xf107;</i>
+                                    </span>
+                                </li>
+                            </a>
+
+
+                            <a href="/Profile" id="DropDownLi1">
+                                <li style="padding-left: 68px; height:50px;">Profile Information <span><i
+                                            style="font-size:24px;color:#494949;padding-left:63px;"
+                                            class="fa rightAngle">&#xf105;</i></span></li>
+                            </a>
+
+                            <a href="profileMenu?menu=manageAddress" id="DropDownLi2">
+                                <li style="padding-left: 68px;height:50px;">Manage Address
+                                    <span><i style="font-size:24px;color:#494949;padding-left:79px;"
+                                            class="fa rightAngle">&#xf105;</i></span>
+                                </li>
+                            </a>
+
+
+
+                            <a href="profileMenu?menu=myOrders">
+                                <li><i class="fa-solid fa-cart-shopping cartIcon menuIcon"
+                                        style="color: black;"></i><span class="spanText">My
+                                        Orders</span>
+                                    <span>
+                                        <i style="font-size:24px;color:#494949;" class="fa rightAngle">&#xf105;</i>
+                                    </span>
+                                </li>
+                            </a>
+                            <a href="profileMenu?menu=wishlist">
+                                <li><i class="fa fa-heart menuIcon" style="color: black;"></i><span
+                                        class="spanText">Wishlist</span>
+                                    <span>
+                                        <i style="font-size:24px;color:#494949;" class="fa rightAngle">&#xf105;</i>
+                                    </span>
+                                </li>
+                            </a>
+                            <a href="">
+                                <li><i class="fa-solid fa-receipt menuIcon" style="color: black;"></i><span
+                                        class="spanText">Coupons</span>
+                                    <span>
+                                        <i style="font-size:24px;color:#494949;" class="fa rightAngle">&#xf105;</i>
+                                    </span>
+                                </li>
+                            </a>
+                            <a href="profileMenu?menu=Wallet">
+                                <li style="background-color: #afafaf;"><i class="fa-solid fa-wallet menuIcon" style="color: #000000;"></i><span
+                                        class="spanText">Wallet</span>
+                                    <span>
+                                        <i style="font-size:24px;color:#494949;" class="fa rightAngle">&#xf105;</i>
+                                    </span>
+                                </li>
+                            </a>
+                            <a href="/logout">
+                                <li><img src="/assets/images/logout.png" class="logoutImg"><span class="spanText"
+                                        style="padding-left: 30px; font-size: 13pt;">Logout</span>
+                                    <span>
+                                        <i style="font-size:24px;padding-left: 10px; color:#494949;"
+                                            class="fa rightAngle">&#xf105;</i>
+                                    </span>
+                                </li>
+                            </a>
+                        </ul>
+
+                    </div>
+                    <div class="col-md-9 col-sm-12 col9">
+                        <h3 style="width: 100%;padding-left: 20px;">Available Coupons</h3>
+                        <br>
+                        <div class="container" style="padding: 9px;">
+                            <div class="row couponRow">
+
+                            </div>
+                        </div>
+                        
+
+                        
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+            <!-- eFooter starts here... -->
+            <%- include('../../views/user/footer.ejs') %>
+                <!-- Footer end  here... -->
+
+                <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+                <script>
+                    <!-- account Settings -->
+                    const changeIcon = document.getElementById('changeIcon');
+                    const dropDownLi1 = document.getElementById('DropDownLi1');
+                    const dropDownLi2 = document.getElementById('DropDownLi2');
+                    let isDropDownVisible = true;
+
+                    changeIcon.addEventListener('click', function () {
+                        let icon = document.getElementById('icon');
+
+                        if (isDropDownVisible) {
+                            icon.innerHTML = '&#xf107;'; // Change to the new icon
+                            dropDownLi1.style.display = 'block';
+                            dropDownLi2.style.display = 'block';
+
+
+                        } else {
+                            icon.innerHTML = '&#xf105;'; // Change back to the original icon
+                            dropDownLi1.style.display = 'none';
+                            dropDownLi2.style.display = 'none';
+                        }
+
+                        // Toggle the state
+                        isDropDownVisible = !isDropDownVisible;
+                    });
+
+                </script>
+
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+
+                <!-- <script src="/assets/js/profile.js"></script> -->
+
+
+
+    </body>
+
+    </html>
+
+</body>
+
+</html>

@@ -1,0 +1,384 @@
+.row2 {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+  }
+  
+  .pageHead {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    font-family: Poppins;
+    border: none;
+    background-color: transparent;
+  }
+  
+  .col2 {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    font-family: Poppins;
+  }
+  
+  .pageHead h3 {
+    text-shadow: 2px 2px #c9c9c9;
+    font-weight: 500;
+    padding-left: 5px;
+    margin: 0;
+  }
+  .col3 {
+    height: 42px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid rgb(196, 196, 196);
+
+}
+
+.outerDiv {
+    padding: 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+  }
+  
+  .outerDiv#blur.active {
+    filter: blur(15px);
+  }
+  
+  #popup {
+    position: fixed;
+    top: 51%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40vw;
+    min-height: 550px;
+    padding: 0 5px 30px;
+    background-color: white;
+    border: 1px solid rgb(153, 153, 153);
+    border-radius: 5px;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.05s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #popup.active {
+    visibility: visible;
+    opacity: 1;
+    transition: 0.05s ease;
+  }
+  #popup h3 {
+    text-shadow: 2px 2px #c9c9c9;
+    font-weight: 500;
+    text-align: center;
+    padding-top: 10px;
+  }
+  .CouponcodeInput{
+    height: 40px;
+    width: 100%;
+    font-size: 9pt;
+    background-color: #f6f6f6;
+
+    border-right-color: white;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  } 
+  .inputLabel{
+    width: 50%;
+    font-family: Poppins;
+    color: #979797;
+    font-size: 12pt;
+    
+  }
+  .input{
+    height: 40px;
+    width: 100%;
+    font-size: 9pt;
+    background-color: #f6f6f6;
+    border: 1px solid #ced4da;
+  }  
+  .formRow{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .codeLabel{
+    /* display: flex; */
+    font-size: 11pt;
+    width: 100%;
+    font-family: Poppins;
+    color: #979797;
+    font-weight: normal;
+  }
+  .btngenerate{
+    margin-top: 24px;
+    /* width: 100%; */
+    font-size: 9pt;
+    background-color: #f6f6f6;
+    font-family: Poppins;
+    height: 40px;
+    border: none;
+    outline: none;
+    border: 1px solid #ced4da;
+   
+  }
+  .btngenerate:hover{
+    background-color: #dbdbdb;
+  }
+  .btngenerate:focus{
+    outline: none;
+  }
+  .btnCancel{
+    background-color: black;
+    color: white;
+    width: 140px;
+    border-radius: 5px;
+  }
+  .btnAdd{
+    background-color: black;
+    color: white;
+    width: 200px;
+    border-radius: 15px;
+  }
+  .btn:hover{
+    color: white;
+  }
+.dateInput {
+    font-family: Poppins;
+    font-size: 11pt;
+    color: #4d4d4d;
+    cursor: pointer;
+    border: 1px solid #ced4da;
+}
+.row3{
+    /* background-color: #5e5e5e; */
+    height: 60px;
+   
+}
+.col7{
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+}
+.sort-UsageRow{
+    padding: 10px;
+    width: 250px;
+    margin-left: 10px;
+    height: 35px;
+    background-color: white;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #5e5e5e;
+    border: 1px solid rgb(216, 216, 216);
+}
+
+.sort-AddedRow{
+    padding-right:25px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 210px;
+    height: 60px;
+  }
+
+  .dateBox{
+    width: 170px;
+    border-radius: 7px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid rgb(216, 216, 216);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .dateBox2{
+    width: 170px;
+    border-radius: 7px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid rgb(216, 216, 216);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+  }
+  .dateInput{
+    border: none;
+    font-family: Poppins;
+    font-size: 11pt;
+    color: #4d4d4d;
+  }
+  .dateInput:focus{
+    outline: none;
+    border: none;
+  }
+  .headingDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15.66%;
+    height: 50px;
+    font-size: 12pt;
+    font-family: Poppins;
+    font-weight: bold;
+  }
+  .contentDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 15.66%;
+    min-height: 80px;
+    font-size: 11pt;
+    font-family: Poppins;
+    overflow: hidden;
+    font-weight: bold;
+
+  }
+  .btnPDF{
+    background-color: black;
+    width: 100px;
+    color: white;
+  }
+  .btnPDF:hover{
+    background-color: black;
+    color: white;
+  }
+  .btnPDF span{
+    padding-right: 5px;
+  }
+  .btnExcel{
+    margin-left: 5px;
+    background-color: black;
+    width: 100px;
+    color: white;
+  }
+  .btnExcel:hover{
+    background-color: black;
+    color: white;
+  }
+  .btnExcel span{
+    padding-right: 5px;
+  }
+  .dropbtn {
+    background-color: #f6f6f6;
+    border: 1px solid rgb(204, 204, 204);
+    color: #495057;
+    width: 100%;
+    height: 40px;
+    font-size: 10pt;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: Poppins;
+  }
+  
+  .dropbtn span {
+    padding-left: 20px;
+    font-size: 12pt;
+  }
+
+
+
+   
+.modal-window {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.25);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  &:target {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  & > div {
+    width: 500px;
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    background: white;
+  }
+  header {
+    font-weight: bold;
+  }
+  h1 {
+    font-size: 150%;
+    margin: 0 0 15px;
+  }
+}
+
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+  &:hover {
+    color: black;
+  }
+}
+.modal-window {
+  & > div {
+    border-radius: 1rem;
+  }
+}
+
+/* .modal-window div:not(:last-of-type) {
+  margin-bottom: 15px;
+} */
+.addCoupon-head-Row{
+  text-shadow: 2px 2px #c9c9c9;
+  font-family: Poppins;
+  font-weight: 500;
+  font-size: 15pt;
+  position: absolute;
+  left: 0;
+  text-align: center;
+  top: 0;
+  width: 140px;
+  text-decoration: none;
+  padding-bottom: 10px;
+}
+
+
+
+
+
+@media (max-width: 767px) {
+  .col9 {
+      display: none;
+  }
+  .rightAngle{
+      padding-right: 20px;
+  }
+  .spanText {
+      width: 70vw;
+  }
+  .col3{
+      min-height: 600px;
+  }
+  .conF-1{
+      min-height: 650px;
+  }
+}

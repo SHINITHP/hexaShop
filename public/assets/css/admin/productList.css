@@ -1,0 +1,438 @@
+.btnDashboard {
+  background-color: #ebebeb;
+}
+
+.btnColor {
+  background-color: #afafaf;
+}
+
+
+
+.btnSearch {
+  width: 30px;
+  background-color: transparent;
+  /* Set transparent background color */
+  text-align: left;
+  text-decoration: none;
+  /* Remove default link underline */
+  cursor: pointer;
+  /* Add pointer cursor on hover */
+  outline: none;
+  padding: 0;
+  border: none;
+  margin-top: 7px;
+}
+
+.btnSearch:active,
+.btnSearch:focus {
+  border: none;
+  outline: none;
+}
+
+.MessageRow {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14pt;
+  font-family: Poppins;
+  color: rgb(184, 14, 14);
+  border-left: 15px solid #ffffff;
+  border-right: 15px solid #ffffff;
+}
+
+.MessageRow p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Categrory starts here.....*/
+.row-Filter {
+  /* background-color: tan; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 110px;
+}
+
+.box {
+  padding-left: 0px;
+  padding-right: 0px;
+  background-color: white;
+  height: 70px;
+  border-radius: 13px;
+  margin-left: 10px;
+  border: 1px solid rgb(183, 182, 182);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.a-tag-box {
+  width: 100%;
+  height: 70px;
+  border-radius: 13px;
+  margin-left: 7px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.image {
+  height: 60px;
+  width: 60px;
+  background-color: tan;
+}
+
+.text {
+  margin-left: 20px;
+  font-family: Poppins;
+  color: rgb(62, 62, 62);
+  font-size: 11pt;
+}
+
+/* add-category */
+.row2 {
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.column1 {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  font-family: Poppins;
+}
+
+.col2 {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  font-family: Poppins;
+}
+
+.column1 h3 {
+  text-shadow: 2px 2px #c9c9c9;
+  font-weight: 500;
+  padding-left: 60px;
+}
+
+.btnCancel {
+  background-color: black;
+  width: 150px;
+  font-size: 10pt;
+  border: none;
+  color: white;
+  height: 38px;
+  border-radius: 7px;
+}
+
+.btnCancel span {
+  margin-right: 10px;
+}
+
+.Thumbnail-box {
+
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  border: 1px solid rgb(205, 205, 205);
+  border-radius: 15px;
+}
+
+.row-addCat {
+  display: flex;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.General-box {
+  border: 1px solid rgb(205, 205, 205);
+  margin: 10px;
+  background-color: white;
+  border-radius: 15px;
+}
+
+.heading-row {
+  background-color: thistle;
+  display: flex;
+  justify-content: start;
+  height: 50px;
+}
+
+#drop-area4 {
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+  background-color: #f3f3f3;
+  text-align: center;
+  border-radius: 10px;
+}
+
+#input-file4 {
+  font-size: 10pt;
+  font-family: Poppins;
+}
+
+#img-view4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  border: 2px dashed #bbb5ff;
+  background-color: #f7f8ff;
+  background-position: center;
+  background-size: cover;
+}
+
+#img-view4 img {
+  width: 70px;
+  height: 70px;
+}
+
+#img-view4 p {
+  font-size: 8pt;
+  font-family: Poppins;
+  color: rgb(92, 92, 92);
+}
+
+.Heading {
+  text-align: center;
+  width: 100%;
+  font-size: 13pt;
+  font-family: Poppins;
+  color: rgb(70, 70, 70);
+}
+
+.catField-box {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.lbl {
+  padding-top: 10px;
+  padding-left: 3px;
+  color: #5e5e5e;
+  font-size: 10pt;
+  font-family: Poppins;
+}
+
+.dropbtn {
+  background-color: white;
+  border: 1px solid rgb(204, 204, 204);
+  color: #495057;
+  width: 100%;
+  height: 34px;
+  font-size: 10pt;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: Poppins;
+}
+
+.dropbtn span {
+  padding-left: 20px;
+  font-size: 12pt;
+}
+
+.dropbtn:focus {
+  outline: none;
+}
+
+.SaveBtnRow {
+  display: flex;
+  justify-content: center;
+}
+
+.btnSaveProduct {
+  background-color: black;
+  width: 300px;
+  font-size: 10pt;
+  border: none;
+  color: white;
+  height: 38px;
+  border-radius: 20px;
+}
+
+td h6 {
+  margin-top: 5px;
+  font-size: 0.8rem;
+}
+
+.iconbtns {
+  width: 20px;
+  background-color: transparent;
+  /* Set transparent background color */
+  text-align: left;
+  text-decoration: none;
+  /* Remove default link underline */
+  cursor: pointer;
+  /* Add pointer cursor on hover */
+  outline: none;
+  padding: 0;
+  border: none;
+
+}
+
+.iconbtns:active,
+.iconbtns:focus {
+  border: none;
+  outline: none;
+}
+
+.product-heading {
+  min-height: 50px;
+  border-top: 1px solid rgb(112, 112, 112);
+  border-bottom: 1px solid rgb(112, 112, 112);
+  /* background-color: thistle; */
+}
+
+.product-listing {
+  padding-top: 10px;
+  border-bottom: 1px solid rgb(112, 112, 112);
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 80px;
+  /* background-color: #495057; */
+}
+
+.details-Row {
+  display: flex;
+  flex-direction: column;
+}
+
+h3 {
+  font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.col7 {
+  display: flex;
+  align-items: center;
+}
+
+.sort-UsageRow {
+  padding: 10px;
+  width: 230px;
+  margin-left: 10px;
+  height: 35px;
+  background-color: white;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #5e5e5e;
+  border: 1px solid rgb(216, 216, 216);
+}
+
+.sort-AddedRow {
+  padding-right: 25px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 210px;
+  height: 60px;
+}
+
+.dateBox {
+  width: 155px;
+  border-radius: 7px;
+  height: 35px;
+  background-color: white;
+  border: 1px solid rgb(216, 216, 216);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dateBox2 {
+  width: 155px;
+  border-radius: 7px;
+  height: 35px;
+  background-color: white;
+  border: 1px solid rgb(216, 216, 216);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.dateInput {
+  border: none;
+  font-family: Poppins;
+  font-size: 11pt;
+  color: #4d4d4d;
+}
+
+.dateInput:focus {
+  outline: none;
+  border: none;
+}
+
+.pro-list-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  width: 8.28%;
+  padding: 0;
+  margin: 0;
+}
+
+.pro-listing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  width: 8.28%;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.pro-listing b {
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.Si-num {
+  width: 6%;
+}
+
+.product-Field {
+  width: 20%;
+}
+
+.discripion-Field {
+  width: 16%;
+}
+
+.product-Image {
+  width: 60px;
+  
+  background-color: #bbb5ff;
+}
+.row2 .col-3{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
