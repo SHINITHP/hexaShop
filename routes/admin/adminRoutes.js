@@ -8,7 +8,7 @@ const {
     orderHistory,OrderTasks,messageBox,updateRequest,coupon,couponTasks,salesReport,
     offers,salesFilter,offerTasks,editOffer,DeleteOffer,deletCoupon,DashboardSales
 } = require('../../controller/admin/adminController.js')
-const upload = require('../../controller/admin/multer.js')
+const upload = require('../../utils/multer.js')
 const adminAuth = require('../../middlewares/adminMiddleware.js')
 
 

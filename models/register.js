@@ -7,8 +7,8 @@ const connect = mongoose.connect(process.env.DATABASE_KEY)
 connect.then(()=>{
     console.log("Database Connected Successfully!");
 })
-.catch(()=>{
-    console.log("Database is not connected!");
+.catch((error)=>{
+    console.log("Database is not connected!",error);
 })
 
 // create a schema

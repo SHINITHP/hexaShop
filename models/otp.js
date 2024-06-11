@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mailSender = require('../controller/user/sendEmail');
+const mailSender = require('../utils/sendEmail');
 
 const otpSchema = new mongoose.Schema({
     emailAddress: {

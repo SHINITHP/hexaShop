@@ -1,7 +1,7 @@
 const passport = require('passport'); 
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 require('dotenv').config()
-const usermodel = require('../../models/register.js')
+const usermodel = require('../models/register.js')
 
 
 //session cookies

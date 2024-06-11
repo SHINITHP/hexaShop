@@ -1,4 +1,4 @@
-const UserModel = require('../../models/register.js')
+const userModel = require('../../models/register.js')
 const addressModel = require('../../models/address.js')
 const addtToCartModel = require('../../models/cart.js')
 const appliedCoupon = require('../../models/AppliedCoupon.js')
@@ -6,7 +6,7 @@ const subCategorySchema = require('../../models/category.js')
 const couponModel = require('../../models/coupon.js')
 const orderSummary = require('../../models/orderSummary.js')
 const orderSchema = require('../../models/order.js')
-const OTPModel = require('../../models/otp.js')
+const otpModel = require('../../models/otp.js')
 const walletSchema = require('../../models/wallet.js')
 const wishlistSchema = require('../../models/wishlist.js')
 const productModel = require('../../models/products.js')
@@ -16,12 +16,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config()
 const Razorpay = require('razorpay')
 const crypto = require('crypto');
-const { getUserId, randomToken, generateSimpleUniqueId , generateUniqueFourDigitNumber} = require('../../utils/functions.js')
-const path = require('path');
-const fs = require('fs-extra')
-const easyinvoice = require('easyinvoice')
-const puppeteer = require('puppeteer')
-// Example usage
+const { getUserId, randomToken, generateSimpleUniqueId, generateUniqueFourDigitNumber } = require('../../utils/functions.js')
 const uniqueId = generateSimpleUniqueId();
 const pdf = require('html-pdf');
 let GlobalUser = {
@@ -40,7 +35,7 @@ const razorpay = new Razorpay({
 //..................................................................................................................................................
 
 const onlinPayment = async (req, res) => {
-  let amount = req.body.amount;
+  const amount = req.body.amount;
   const paymentData = {
     amount: amount * 100, // Amount in paise (100 paise = 1 INR)
     currency: 'INR',
@@ -57,14 +52,19 @@ const onlinPayment = async (req, res) => {
 //..................................................................................................................................................
 
 const verifyPayment = async (req, res) => {
-  const payment = req.body.payment
-  const order = req.body.order
-  let hmac = crypto.createHash('sha256', process.env.RAZORPAYKEY)
-  hmac.update(payment.razorpay_order_id + '|' + payment.razorpay_payment_id)
-  hmac = hmac.digest('hex')
-  if (hmac == payment.razorpay_signature) {
-    res.status(200).send('Payment verified successfully.');
+  try {
+    const payment = req.body.payment
+    const order = req.body.order
+    let hmac = crypto.createHash('sha256', process.env.RAZORPAYKEY)
+    hmac.update(payment.razorpay_order_id + '|' + payment.razorpay_payment_id)
+    hmac = hmac.digest('hex')
+    if (hmac == payment.razorpay_signature) {
+      res.status(200).send('Payment verified successfully.');
+    }
+  } catch (error) {
+    console.log(error)
   }
+
 }
 //..................................................................................................................................................
 
@@ -75,19 +75,18 @@ const generatePDF = async (req, res) => {
     const date = new Date();
     const formattedDate = `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
     const invoiceData = JSON.parse(req.query.data);
-    console.log('orders :',invoiceData)
-    res.render('user/invoice', { invoiceData ,formattedDate , invoiceNum}, (err, html) => {
+    res.render('user/invoice', { invoiceData, formattedDate, invoiceNum }, (err, html) => {
       if (err) {
-          return res.status(500).send('Error generating HTML');
+        return res.status(500).send('Error generating HTML');
       }
       pdf.create(html).toStream((err, stream) => {
-          if (err) {
-              return res.status(500).send('Error creating PDF');
-          }
-          res.setHeader('Content-type', 'application/pdf');
-          stream.pipe(res);
+        if (err) {
+          return res.status(500).send('Error creating PDF');
+        }
+        res.setHeader('Content-type', 'application/pdf');
+        stream.pipe(res);
       });
-  });
+    });
 
   } catch (err) {
     console.error('Error fetching orders or generating invoice:', err);
@@ -98,155 +97,153 @@ const generatePDF = async (req, res) => {
 
 //show landing page 
 const landingPage = async (req, res) => {
+  try {
+    const subCategories = await subCategorySchema.find({})
+    const token = req.cookies.jwtUser; // Assuming token is stored in cookies
+    const userID = getUserId(token);
+    const wishlist = await wishlistSchema.find({ userID: userID })
+    const productID = wishlist.map((val) => val.productID)
+    let allProducts = await productModel.find({})
+    let brandNames = allProducts.map((val) => val.BrandName)
+    let uniqueBrandNames = [...new Set(brandNames)]; //to filter the unique brandNames
 
-  const subCategories = await subCategorySchema.find({})
-  const token = req.cookies.jwtUser; // Assuming token is stored in cookies
-  const userID = getUserId(token);
-  const wishlist = await wishlistSchema.find({ userID: userID })
-  const productID = wishlist.map((val) => val.productID)
-  let allProducts = await productModel.find({})
-  let BrandNames = allProducts.map((val) => val.BrandName)
-  let uniqueBrandNames = [...new Set(BrandNames)]; //to filter the unique brandNames
+    //to show index page:
+    if (req.path == '/') {
+      try {
+        const productData = await productModel.find({})
+        res.render('user/index', { productData, userId: '', productID })
+      } catch (error) {
+        console.log(error)
+      }
+    } else if (req.query.task == 'showAllPro') {
+      const page = req.query.page;
+      const perPage = 4;
+      let docCount;
+      const productData = await productModel.find({})
+        .countDocuments()
+        .then(documents => {
+          docCount = documents;
 
-  //to show index page:
-  if (req.path == '/') {
-    try {
-      const ProductData = await productModel.find({})
-      res.render('user/index', { ProductData, userId: '', productID })
-    } catch (error) {
-      console.log(error)
-    }
-  } else if (req.query.task == 'showAllPro') {
-
-    // console.log('else statement')
-    const page = req.query.page;
-    const perPage = 4;
-    let docCount;
-    const ProductData = await productModel.find({})
-      .countDocuments()
-      .then(documents => {
-        docCount = documents;
-
-        return productModel.find({})
-          .skip((page - 1) * perPage)
-          .limit(perPage)
-      })
-      .then(ProductData => {
-        res.render('user/allProducts', {
-          route: 'allProducts',
-          ProductData,
-          task: 'showAllPro',
-          category: '',
-          subCategories,
-          uniqueBrandNames,
-          currentPage: page,
-          totalDocuments: docCount,
-          pages: Math.ceil(docCount / perPage)
+          return productModel.find({})
+            .skip((page - 1) * perPage)
+            .limit(perPage)
         })
-      })
-  } else if (req.query.task === 'filterCategory') {
-    const category = req.query.cat
-    const page = req.query.page;
-    const perPage = 4;
-    let docCount;
-    const ProductData = await productModel.find({ CategoryName: category })
-      .countDocuments()
-      .then(documents => {
-        docCount = documents;
-        return productModel.find({ CategoryName: category })
-          .skip((page - 1) * perPage)
-          .limit(perPage)
-      })
-      .then(ProductData => {
-        res.render('user/allProducts', {
-          route: 'filterCategory',
-          ProductData,
-          category,
-          subCategories,
-          uniqueBrandNames,
-          currentPage: page,
-          totalDocuments: docCount,
-          pages: Math.ceil(docCount / perPage)
+        .then(productData => {
+          res.render('user/allProducts', {
+            route: 'allProducts',
+            productData,
+            task: 'showAllPro',
+            category: '',
+            subCategories,
+            uniqueBrandNames,
+            currentPage: page,
+            totalDocuments: docCount,
+            pages: Math.ceil(docCount / perPage)
+          })
         })
-      })
-  } else if (req.query.task == 'search') {
-    try {
-      if (req.query.cat === '') {
-        let data = req.query.text;
-        const searchText = new RegExp("^" + data, "i")
-        const page = req.query.page;
-        const perPage = 4;
-        let docCount;
-        const ProductData = await productModel.find({ ProductName: { $regex: searchText } })
-          .countDocuments()
-          .then(documents => {
-            docCount = documents;
-            return productModel.find({ ProductName: { $regex: searchText } })
-              .skip((page - 1) * perPage)
-              .limit(perPage)
+    } else if (req.query.task === 'filterCategory') {
+      const category = req.query.cat
+      const page = req.query.page;
+      const perPage = 4;
+      let docCount;
+      const productData = await productModel.find({ CategoryName: category })
+        .countDocuments()
+        .then(documents => {
+          docCount = documents;
+          return productModel.find({ CategoryName: category })
+            .skip((page - 1) * perPage)
+            .limit(perPage)
+        })
+        .then(productData => {
+          res.render('user/allProducts', {
+            route: 'filterCategory',
+            productData,
+            category,
+            subCategories,
+            uniqueBrandNames,
+            currentPage: page,
+            totalDocuments: docCount,
+            pages: Math.ceil(docCount / perPage)
           })
-          .then(ProductData => {
-            console.log('ProductData', ProductData)
-            res.render('user/allProducts', {
-              route: 'search',
-              ProductData,
-              category: '',
-              data,
-              subCategories,
-              uniqueBrandNames,
-              currentPage: page,
-              totalDocuments: docCount,
-              pages: Math.ceil(docCount / perPage)
-            })
-          })
-      } else {
-        try {
-          let cat = req.query.cat;
+        })
+    } else if (req.query.task == 'search') {
+      try {
+        if (req.query.cat === '') {
           let data = req.query.text;
           const searchText = new RegExp("^" + data, "i")
           const page = req.query.page;
           const perPage = 4;
           let docCount;
-          const ProductData = await productModel.find({
-            ProductName: { $regex: searchText },
-            CategoryName: { $in: cat }
-          })
+          const productData = await productModel.find({ ProductName: { $regex: searchText } })
             .countDocuments()
             .then(documents => {
               docCount = documents;
-              return productModel.find({
-                ProductName: { $regex: searchText },
-                CategoryName: { $in: cat }
-              })
+              return productModel.find({ ProductName: { $regex: searchText } })
                 .skip((page - 1) * perPage)
                 .limit(perPage)
             })
-            .then(ProductData => {
-              console.log('ProductData', ProductData)
+            .then(productData => {
               res.render('user/allProducts', {
                 route: 'search',
-                ProductData,
-                category: cat,
+                productData,
+                category: '',
+                data,
                 subCategories,
                 uniqueBrandNames,
-                data,
                 currentPage: page,
                 totalDocuments: docCount,
                 pages: Math.ceil(docCount / perPage)
               })
             })
+        } else {
+          try {
+            let cat = req.query.cat;
+            let data = req.query.text;
+            const searchText = new RegExp("^" + data, "i")
+            const page = req.query.page;
+            const perPage = 4;
+            let docCount;
+            const productData = await productModel.find({
+              ProductName: { $regex: searchText },
+              CategoryName: { $in: cat }
+            })
+              .countDocuments()
+              .then(documents => {
+                docCount = documents;
+                return productModel.find({
+                  ProductName: { $regex: searchText },
+                  CategoryName: { $in: cat }
+                })
+                  .skip((page - 1) * perPage)
+                  .limit(perPage)
+              })
+              .then(productData => {
+                res.render('user/allProducts', {
+                  route: 'search',
+                  productData,
+                  category: cat,
+                  subCategories,
+                  uniqueBrandNames,
+                  data,
+                  currentPage: page,
+                  totalDocuments: docCount,
+                  pages: Math.ceil(docCount / perPage)
+                })
+              })
 
-        } catch (error) {
-          console.log(error)
+          } catch (error) {
+            console.log(error)
+          }
+
         }
-
+      } catch (error) {
+        console.log(error)
       }
-    } catch (error) {
-      console.log(error)
+
     }
-
+  } catch (error) {
+    console.log(error)
   }
-
 }
 //..................................................................................................................................................
 
@@ -254,22 +251,16 @@ const allProductFilter = async (req, res) => {
   const subCategories = await subCategorySchema.find({})
   const token = req.cookies.jwtUser; // Assuming token is stored in cookies
   const userID = getUserId(token);
-
-  console.log(userID)
   const wishlist = await wishlistSchema.find({ userID: userID })
   const productID = wishlist.map((val) => val.productID)
   let allProducts = await productModel.find({})
-  let BrandNames = allProducts.map((val) => val.BrandName)
-  let uniqueBrandNames = [...new Set(BrandNames)];
-
-  // console.log('i=hi brooo')
-  console.log('else statement', req.query.sortOrder)
+  let brandNames = allProducts.map((val) => val.BrandName)
+  let uniqueBrandNames = [...new Set(brandNames)];
   const sortOrder = req.query.sortOrder === 'LowToHigh' ? 1 : -1;
-  // console.log('sortOrder :', sortOrder)
   const page = req.query.page;
   const perPage = 4;
   let docCount;
-  const ProductData = await productModel.find({}).sort({ SalesRate: sortOrder })
+  const productData = await productModel.find({}).sort({ SalesRate: sortOrder })
     .countDocuments()
     .then(documents => {
       docCount = documents;
@@ -278,10 +269,10 @@ const allProductFilter = async (req, res) => {
         .skip((page - 1) * perPage)
         .limit(perPage)
     })
-    .then(ProductData => {
+    .then(productData => {
       res.render('user/allProducts', {
         route: 'Sort',
-        ProductData,
+        productData,
         task: req.query.sortOrder,
         category: '',
         subCategories,
@@ -296,8 +287,8 @@ const allProductFilter = async (req, res) => {
 
 const priceFilter = async (req, res) => {
   let allProducts = await productModel.find({})
-  let BrandNames = allProducts.map((val) => val.BrandName)
-  let uniqueBrandNames = [...new Set(BrandNames)];
+  let brandNames = allProducts.map((val) => val.BrandName)
+  let uniqueBrandNames = [...new Set(brandNames)];
   if (req.query.task === 'priceFilter') {
     try {
       const subCategories = await subCategorySchema.find({})
@@ -306,13 +297,12 @@ const priceFilter = async (req, res) => {
       let docCount;
       const minimum = req.body.minimum;
       const maximum = req.body.maximum;
-      const BrandName = req.body.brandName;
+      const brandName = req.body.brandName;
       if (req.query.cat !== '') {
-        console.log('BrandName : ', BrandName)
-        const ProductData = await productModel.find({
+        const productData = await productModel.find({
           SalesRate: { $gte: minimum, $lte: maximum },
           CategoryName: req.query.cat,
-          BrandName: BrandName
+          BrandName: brandName
         })
           .countDocuments()
           .then(documents => {
@@ -321,15 +311,15 @@ const priceFilter = async (req, res) => {
             return productModel.find({
               SalesRate: { $gte: minimum, $lte: maximum },
               CategoryName: req.query.cat,
-              BrandName: BrandName
+              BrandName: brandName
             })
               .skip((page - 1) * perPage)
               .limit(perPage)
           })
-          .then(ProductData => {
+          .then(productData => {
             res.render('user/allProducts', {
               route: 'priceFilter',
-              ProductData,
+              productData,
               category: '',
               subCategories,
               uniqueBrandNames,
@@ -340,10 +330,10 @@ const priceFilter = async (req, res) => {
           })
       } else {
         console.log('hi')
-        const ProductData = await productModel.find({
+        const productData = await productModel.find({
           $or: [
             { SalesRate: { $gte: minimum, $lte: maximum } },
-            { BrandName: BrandName }
+            { BrandName: brandName }
           ]
         })
           .countDocuments()
@@ -352,16 +342,16 @@ const priceFilter = async (req, res) => {
             return productModel.find({
               $or: [
                 { SalesRate: { $gte: minimum, $lte: maximum } },
-                { BrandName: BrandName }
+                { BrandName: brandName }
               ]
             })
               .skip((page - 1) * perPage)
               .limit(perPage)
           })
-          .then(ProductData => {
+          .then(productData => {
             res.render('user/allProducts', {
               route: 'priceFilter',
-              ProductData,
+              productData,
               category: '',
               subCategories,
               uniqueBrandNames,
@@ -371,8 +361,6 @@ const priceFilter = async (req, res) => {
             })
           })
       }
-
-
     } catch (error) {
       console.log(error)
     }
@@ -445,43 +433,48 @@ const logout = async (req, res) => {
   const token = req.cookies.jwtUser; // Assuming token is stored in cookies
   const userID = getUserId(token);
   res.clearCookie('jwtUser');
-  await UserModel.findByIdAndUpdate(userID, { $set: { logged: false } })  // Clear the cookie
+  await userModel.findByIdAndUpdate(userID, { $set: { logged: false } })  // Clear the cookie
   res.redirect('/')
 }
 //..................................................................................................................................................
 
 const filterProducts = async (req, res) => {
-  let allProducts = await productModel.find({})
-  let BrandNames = allProducts.map((val) => val.BrandName)
-  let uniqueBrandNames = [...new Set(BrandNames)];
-  const subCategories = await subCategorySchema.find({})
+  try {
+    let allProducts = await productModel.find({})
+    let brandNames = allProducts.map((val) => val.BrandName)
+    let uniqueBrandNames = [...new Set(brandNames)];
+    const subCategories = await subCategorySchema.find({})
 
-  if (req.query.subCategory) {
-    let subCategory = req.query.subCategory
-    let category = req.query.category
-    const page = req.query.page;
-    const perPage = 4;
-    let docCount;
-    const ProductData = await productModel.find({ CategoryName: category, subCategory: subCategory })
-      .countDocuments()
-      .then(documents => {
-        docCount = documents;
-        return productModel.find({ CategoryName: category, subCategory: subCategory })
-          .skip((page - 1) * perPage)
-          .limit(perPage)
-      })
-      .then(ProductData => {
-        res.render('user/allProducts', {
-          route: 'allProducts',
-          ProductData,
-          category: '',
-          subCategories,
-          uniqueBrandNames,
-          currentPage: page,
-          totalDocuments: docCount,
-          pages: Math.ceil(docCount / perPage)
+    if (req.query.subCategory) {
+      let subCategory = req.query.subCategory
+      let category = req.query.category
+      const page = req.query.page;
+      const perPage = 4;
+      let docCount;
+      const productData = await productModel.find({ CategoryName: category, subCategory: subCategory })
+        .countDocuments()
+        .then(documents => {
+          docCount = documents;
+          return productModel.find({ CategoryName: category, subCategory: subCategory })
+            .skip((page - 1) * perPage)
+            .limit(perPage)
         })
-      })
+        .then(productData => {
+          res.render('user/allProducts', {
+            route: 'allProducts',
+            productData,
+            category: '',
+            subCategories,
+            uniqueBrandNames,
+            currentPage: page,
+            totalDocuments: docCount,
+            pages: Math.ceil(docCount / perPage)
+          })
+        })
+    }
+
+  } catch (error) {
+    console.log(error)
   }
 
 }
@@ -493,10 +486,9 @@ const profile = async (req, res) => {
   const userID = await getUserId(token); // Verify token and get userID 
   try {
     const userInfo = await addressModel.find({ userID: userID }).populate('userID')
-    const data = await UserModel.findById(userID).select('-password');
-    let userData = data ? [data] : [];
+    const data = await userModel.findById(userID).select('-password');
+    const userData = data ? [data] : [];
     res.render('user/Profile', { error: '', userInfo, userData })
-
   } catch (error) {
     console.error('Token verification failed:', error);
   }
@@ -504,117 +496,121 @@ const profile = async (req, res) => {
 //..................................................................................................................................................
 
 const profileMenu = async (req, res) => {
-  if (req.path == '/profileMenu') {
-    const token = req.cookies.jwtUser; // Assuming token is stored in cookies
-    const userID = getUserId(token); // Verify token and get userID 
-    const userAddress = await addressModel.find({ userID: userID })
-    if (req.query.menu == 'manageAddress') {
-      res.render('user/manageAddress', { userAddress })
-    }
-    else if (req.query.menu == 'myOrders') {
-      const orderDetails = await orderSchema.find({ userID: userID })
-        .populate('productID')
-        .populate('addressID')
-        .sort({ _id: -1 }); // Sorting by _id in descending order 
-      res.render('user/myOrders', { orderDetails });
-    }
-    else if (req.query.menu === 'wishlist') {
-      const page = req.query.page;
-      const perPage = 4;
-      let docCount;
-      const wishlist = await wishlistSchema.find({ userID: userID })
-        .populate('productID')
-        .countDocuments()
-        .then(documents => {
-          docCount = documents;
-          return wishlistSchema.find({ userID: userID })
-            .populate('productID')
-            .skip((page - 1) * perPage)
-            .limit(perPage)
-        })
-        .then(wishlist => {
-          if (wishlist.length > 0) {
-            res.render('user/wishlist', {
-              route: 'wishlist',
-              wishlist,
-              currentPage: page,
-              totalDocuments: docCount,
-              pages: Math.ceil(docCount / perPage),
-            })
-          } else {
-            res.render('user/wishlist', {
-              route: 'wishlist',
-              wishlist,
-              currentPage: page,
-              totalDocuments: docCount,
-              pages: Math.ceil(docCount / perPage),
-            })
-          }
-        })
-      // res.render('user/wishlist', { wishlist })
-    }
-    else if (req.query.menu == 'Wallet') {
-      const page = req.query.page;
-      const perPage = 4;
-      let docCount;
-      const lastdetails = await walletSchema.findOne({ userID: userID }).sort({ added: -1 });
-      const walletDetails = await walletSchema.find({ userID: userID })
-        .populate('userID')
-        .populate('productID')
-        .populate('orderID')
-        .countDocuments()
-        .then(documents => {
-          docCount = documents;
-          return walletSchema.find({ userID: userID })
-            .populate('userID')
-            .populate('productID')
-            .populate('orderID')
-            .skip((page - 1) * perPage)
-            .limit(perPage)
-        })
-        .then(walletDetails => {
-          if (walletDetails.length > 0) {
-            res.render('user/wallet', {
-              route: 'wallet',
-              walletDetails,
-              currentPage: page,
-              totalDocuments: docCount,
-              pages: Math.ceil(docCount / perPage),
-              balance: lastdetails.balance
-            })
-          } else {
-            res.render('user/wallet', {
-              route: 'wallet',
-              walletDetails,
-              currentPage: page,
-              totalDocuments: docCount,
-              pages: Math.ceil(docCount / perPage),
-              balance: ''
-            })
-          }
-        })
-    } else if (req.query.menu === 'coupon') {
-      res.render('user/coupon')
-    } else if (req.query.menu === 'trackOrder') {
-      try {
-        const token = req.cookies.jwtUser; // Assuming token is stored in cookies
-        const userID = getUserId(token);
-        const id = req.query.id;
-        const data = await orderSchema.findById(id)
-          .populate('addressID')
-          .populate('productID')
-        const trackDetails = data ? [data] : [];
-        res.render('user/trackOrder', { trackDetails })
-      } catch (error) {
-        console.log(error)
+  try {
+    if (req.path == '/profileMenu') {
+      const token = req.cookies.jwtUser; // Assuming token is stored in cookies
+      const userID = getUserId(token); // Verify token and get userID 
+      const userAddress = await addressModel.find({ userID: userID })
+      if (req.query.menu == 'manageAddress') {
+        res.render('user/manageAddress', { userAddress })
       }
+      else if (req.query.menu == 'myOrders') {
+        const orderDetails = await orderSchema.find({ userID: userID })
+          .populate('productID')
+          .populate('addressID')
+          .sort({ _id: -1 }); // Sorting by _id in descending order 
+        res.render('user/myOrders', { orderDetails });
+      }
+      else if (req.query.menu === 'wishlist') {
+        const page = req.query.page;
+        const perPage = 4;
+        let docCount;
+        const wishlist = await wishlistSchema.find({ userID: userID })
+          .populate('productID')
+          .countDocuments()
+          .then(documents => {
+            docCount = documents;
+            return wishlistSchema.find({ userID: userID })
+              .populate('productID')
+              .skip((page - 1) * perPage)
+              .limit(perPage)
+          })
+          .then(wishlist => {
+            if (wishlist.length > 0) {
+              res.render('user/wishlist', {
+                route: 'wishlist',
+                wishlist,
+                currentPage: page,
+                totalDocuments: docCount,
+                pages: Math.ceil(docCount / perPage),
+              })
+            } else {
+              res.render('user/wishlist', {
+                route: 'wishlist',
+                wishlist,
+                currentPage: page,
+                totalDocuments: docCount,
+                pages: Math.ceil(docCount / perPage),
+              })
+            }
+          })
+        // res.render('user/wishlist', { wishlist })
+      }
+      else if (req.query.menu == 'Wallet') {
+        const page = req.query.page;
+        const perPage = 4;
+        let docCount;
+        const lastdetails = await walletSchema.findOne({ userID: userID }).sort({ added: -1 });
+        const walletDetails = await walletSchema.find({ userID: userID })
+          .populate('userID')
+          .populate('productID')
+          .populate('orderID')
+          .countDocuments()
+          .then(documents => {
+            docCount = documents;
+            return walletSchema.find({ userID: userID })
+              .populate('userID')
+              .populate('productID')
+              .populate('orderID')
+              .skip((page - 1) * perPage)
+              .limit(perPage)
+          })
+          .then(walletDetails => {
+            if (walletDetails.length > 0) {
+              res.render('user/wallet', {
+                route: 'wallet',
+                walletDetails,
+                currentPage: page,
+                totalDocuments: docCount,
+                pages: Math.ceil(docCount / perPage),
+                balance: lastdetails.balance
+              })
+            } else {
+              res.render('user/wallet', {
+                route: 'wallet',
+                walletDetails,
+                currentPage: page,
+                totalDocuments: docCount,
+                pages: Math.ceil(docCount / perPage),
+                balance: ''
+              })
+            }
+          })
+      } else if (req.query.menu === 'coupon') {
+        res.render('user/coupon')
+      } else if (req.query.menu === 'trackOrder') {
+        try {
+          const token = req.cookies.jwtUser; // Assuming token is stored in cookies
+          const userID = getUserId(token);
+          const id = req.query.id;
+          const data = await orderSchema.findById(id)
+            .populate('addressID')
+            .populate('productID')
+          const trackDetails = data ? [data] : [];
+          res.render('user/trackOrder', { trackDetails })
+        } catch (error) {
+          console.log(error)
+        }
 
+      }
     }
+  } catch (error) {
+    console.log(error)
   }
 }
 //..................................................................................................................................................
 
-const DeleteData = async (req, res) => {
+const deleteData = async (req, res) => {
   const { productID } = req.query;
   if (req.query.menu == 'removeWishlist') {
     try {
@@ -643,13 +639,13 @@ const saveUserAddress = async (req, res) => {
         country, cityDistrictTown, phoneNo,
         fullName
       } = req.body
-      const UserAddress = {
+      const userAddress = {
         addressType, address, pincode,
         state, gender, emailAddress,
         country, cityDistrictTown, phoneNo,
         fullName, userID
       }
-      await addressModel.create(UserAddress);
+      await addressModel.create(userAddress);
       res.redirect('/profileMenu?menu=manageAddress')
     } catch (error) {
       console.log(error)
@@ -725,27 +721,19 @@ const saveUserAddress = async (req, res) => {
     const orderID = req.query.id
     const reqReason = req.body.reqReason
     const optionalReason = req.body.data
-    console.log('i am herree ', req.query.id, orderID, optionalReason, reqReason)
-
-    // { $set: { quantity: req.body.newQty
     const value = await orderSchema.findByIdAndUpdate(
       orderID,
       { $set: { requestReason: reqReason, request: true, comment: optionalReason, reqDate: Date.now() } }
     );
-    console.log('value : ', value)
 
   } else if (req.query.type === 'returnOrder') {
-    console.log('returnOrder ')
-    console.log('helolo hii', req.query.id)
-
     let optionalComment = req.query.optionalreason === '' ? 'empty' : req.body.optionalreason
-    // console.log(optionalComment)
     try {
       await orderSchema.findByIdAndUpdate(req.query.id,
         {
           $set: { return: true, requestReason: req.body.reason, comment: optionalComment }
         })
-    } catch (error) {
+    } catch (error) { 
       console.log(error)
     }
   }
@@ -1003,7 +991,7 @@ const checkOutTasks = async (req, res) => {
           Amount: req.body.total,
           Size: val.size,
           PaymentMethod: paymentMethod,
-          deliveryCharge:req.body.deliveryCharge
+          deliveryCharge: req.body.deliveryCharge
         }
       })
       ProductData.forEach(async element => {
@@ -1011,8 +999,8 @@ const checkOutTasks = async (req, res) => {
       })
       const orderData = await orderSchema.create(orderDetails);
       const order = await Promise.all(ProductData.map(async (val, i) => {
-        const checkWallet = await walletSchema.findOne({ userID: val.userID }).sort({ added: -1 }); 
-        const balance = checkWallet ? checkWallet.balance - req.body.total : orderData[i].Amount; 
+        const checkWallet = await walletSchema.findOne({ userID: val.userID }).sort({ added: -1 });
+        const balance = checkWallet ? checkWallet.balance - req.body.total : orderData[i].Amount;
         return {
           userID: val.userID,
           productID: val.productID._id,
@@ -1020,7 +1008,7 @@ const checkOutTasks = async (req, res) => {
           balance: balance,
           transaction: 'Debit'
         };
-      }));  
+      }));
       let returnData;
       const UpdatedData = ProductData.map((val, index) => {
         return returnData = {
@@ -1063,21 +1051,21 @@ const checkOutTasks = async (req, res) => {
           Added: val.productID.Added,
           SI: val.productID.SI
         }
-      }) 
+      })
       const id = orderDetails[0].productID;
-      await productModel.findByIdAndUpdate(id, UpdatedData[0], { new: true }); 
-      for (const element of ProductData) { 
+      await productModel.findByIdAndUpdate(id, UpdatedData[0], { new: true });
+      for (const element of ProductData) {
         const orderDetails = await orderSummary.deleteMany({ productID: element.productID._id });
         const addToCart = await addtToCartModel.deleteMany({ productID: element.productID._id });
 
-      } 
-      await walletSchema.create(order) 
+      }
+      await walletSchema.create(order)
     } catch (error) {
       console.log(error)
     }
   } else if (req.query.task === 'failedPayment') {
     const orderID = req.body.orderID;
-    console.log('orderID :', orderID) 
+    console.log('orderID :', orderID)
     try {
       await orderSchema.findByIdAndUpdate(orderID, { $set: { Status: 'Order Placed' } }, { new: true });
       res.json({ message: 'success' })
@@ -1085,17 +1073,17 @@ const checkOutTasks = async (req, res) => {
       console.log(error)
     }
   }
-  else if (req.query.task === 'RazorPay') { 
+  else if (req.query.task === 'RazorPay') {
     const paymentMethod = req.body.paymentMethod;
     const ProductData = JSON.parse(req.body.ProductData);
     const addressID = req.body.addressID;
     const couponDiscount = req.body.couponDiscount
-    const productCount = couponDiscount / ProductData.length;  
+    const productCount = couponDiscount / ProductData.length;
     const couponData = {
       userID: userID,
       couponCode: req.body.AppliedCode
-    } 
-    await appliedCoupon.create(couponData) 
+    }
+    await appliedCoupon.create(couponData)
     try {
       let details;
       const orderDetails = ProductData.map((val) => {
@@ -1110,7 +1098,7 @@ const checkOutTasks = async (req, res) => {
           PaymentMethod: paymentMethod,
           couponDiscount: productCount
         }
-      }) 
+      })
 
       let returnData;
       const UpdatedData = ProductData.map((val, index) => {
@@ -1154,31 +1142,31 @@ const checkOutTasks = async (req, res) => {
           Added: val.productID.Added,
           SI: val.productID.SI
         }
-      }) 
+      })
       const id = orderDetails[0].productID;
       await productModel.findByIdAndUpdate(id, UpdatedData[0], { new: true });
 
-      for (const element of ProductData) { 
+      for (const element of ProductData) {
         const orderDetails = await orderSummary.deleteMany({ productID: element.productID._id });
         const addToCart = await addtToCartModel.deleteMany({ productID: element.productID._id });
 
-      } 
-      const orderData = await orderSchema.create(orderDetails) 
+      }
+      const orderData = await orderSchema.create(orderDetails)
     } catch (error) {
       console.log(error)
     }
 
-  } else if (req.query.task === 'RazorPay-Failed') { 
+  } else if (req.query.task === 'RazorPay-Failed') {
     const paymentMethod = req.body.paymentMethod;
     const ProductData = JSON.parse(req.body.ProductData);
     const addressID = req.body.addressID;
     const couponDiscount = req.body.couponDiscount
-    const productCount = couponDiscount / ProductData.length;  
+    const productCount = couponDiscount / ProductData.length;
     const couponData = {
       userID: userID,
       couponCode: req.body.AppliedCode
-    } 
-    await appliedCoupon.create(couponData) 
+    }
+    await appliedCoupon.create(couponData)
     try {
       let details;
       const orderDetails = ProductData.map((val) => {
@@ -1194,15 +1182,15 @@ const checkOutTasks = async (req, res) => {
           couponDiscount: productCount,
           Status: 'Failed'
         }
-      })  
-      const id = orderDetails[0].productID; 
-      for (const element of ProductData) { 
+      })
+      const id = orderDetails[0].productID;
+      for (const element of ProductData) {
         await orderSummary.deleteMany({ productID: element.productID._id });
-        await addtToCartModel.deleteMany({ productID: element.productID._id }); 
-      } 
-      await orderSchema.create(orderDetails) 
+        await addtToCartModel.deleteMany({ productID: element.productID._id });
+      }
+      await orderSchema.create(orderDetails)
 
-      res.json({message:'success'})
+      res.json({ message: 'success' })
     } catch (error) {
       console.log(error)
     }
@@ -1213,7 +1201,7 @@ const checkOutTasks = async (req, res) => {
     const ProductData = JSON.parse(req.body.ProductData);
     const addressID = req.body.addressID;
     const couponDiscount = req.body.couponDiscount
-    const partialCount = couponDiscount / ProductData.length;  
+    const partialCount = couponDiscount / ProductData.length;
     try {
       let details;
       const orderDetails = ProductData.map((val) => {
@@ -1227,9 +1215,9 @@ const checkOutTasks = async (req, res) => {
           Size: val.size,
           PaymentMethod: paymentMethod,
           couponDiscount: partialCount,
-          deliveryCharge:req.body.deliveryCharge
+          deliveryCharge: req.body.deliveryCharge
         }
-      }) 
+      })
 
       let returnData;
       const UpdatedData = ProductData.map((val, index) => {
@@ -1273,20 +1261,20 @@ const checkOutTasks = async (req, res) => {
           Added: val.productID.Added,
           SI: val.productID.SI
         }
-      }) 
+      })
       const id = orderDetails[0].productID;
-      await productModel.findByIdAndUpdate(id, UpdatedData[0], { new: true }); 
-      for (const element of ProductData) { 
+      await productModel.findByIdAndUpdate(id, UpdatedData[0], { new: true });
+      for (const element of ProductData) {
         const orderDetails = await orderSummary.deleteMany({ productID: element.productID._id });
         const addToCart = await addtToCartModel.deleteMany({ productID: element.productID._id });
       }
-      const orderData = await orderSchema.create(orderDetails) 
+      const orderData = await orderSchema.create(orderDetails)
     } catch (error) {
       console.log(error)
     }
 
   }
-  else if (req.query.task === 'addAddress') { 
+  else if (req.query.task === 'addAddress') {
     try {
       const {
         addressType, address, pincode,
@@ -1308,30 +1296,30 @@ const checkOutTasks = async (req, res) => {
       console.log(error)
     }
   } else if (req.query.task === 'checkCoupon') {
-    try { 
+    try {
       const currentDate = new Date(); // Get today's date
       const couponExist = await couponModel.findOne({
         couponCode: req.body.couponCode,
         Expire: { $gte: currentDate },
         status: 'Listed'
-      }); 
-      const cartData = await addtToCartModel.find({ userID: userID }) 
-      const couponUsed = await appliedCoupon.findOne({ userID: userID, couponCode: req.body.couponCode }) 
-      if (couponApplied === false) { 
-        if (couponExist) { 
-          if (!couponUsed) { 
+      });
+      const cartData = await addtToCartModel.find({ userID: userID })
+      const couponUsed = await appliedCoupon.findOne({ userID: userID, couponCode: req.body.couponCode })
+      if (couponApplied === false) {
+        if (couponExist) {
+          if (!couponUsed) {
             couponApplied = true;
             res.json({ message: couponExist.discountAmount })
           } else {
-            res.json({ error: 'Coupon Is Already Applied', message: couponExist.discountAmount }) 
+            res.json({ error: 'Coupon Is Already Applied', message: couponExist.discountAmount })
           }
 
         } else {
-          res.json({ error: 'Coupon Is Already Expired' }) 
+          res.json({ error: 'Coupon Is Already Expired' })
         }
 
       } else {
-        res.json({ error: 'Coupon Is Already Applied', message: couponExist.discountAmount }) 
+        res.json({ error: 'Coupon Is Already Applied', message: couponExist.discountAmount })
       }
 
     } catch (error) {
@@ -1349,7 +1337,7 @@ const removeCartProduct = async (req, res) => {
   const token = req.cookies.jwtUser; // Assuming token is stored in cookies
   const userID = getUserId(token); // Verify token and get userID
   try {
-    if (req.query.task === 'deleteCartItem') { 
+    if (req.query.task === 'deleteCartItem') {
       await addtToCartModel.findOneAndDelete({ _id: req.query.id, userID: userID });
       res.redirect('/shoppingcart');
     }
@@ -1361,18 +1349,18 @@ const removeCartProduct = async (req, res) => {
 }
 //..................................................................................................................................................
 
-const updateProfile = async (req, res) => { 
+const updateProfile = async (req, res) => {
   const token = req.cookies.jwtUser; // Assuming token is stored in cookies
   const userID = getUserId(token); // Verify token and get userID
-  const oldEmail = await UserModel.findById(userID, { _id: 0, emailAddress: 1 });
+  const oldEmail = await userModel.findById(userID, { _id: 0, emailAddress: 1 });
   const emailAddress = oldEmail.emailAddress;
   if (req.query.task === 'checkEmailotp') {
-    try { 
+    try {
       const newOTP = req.body.NewOTP
       const newEmail = req.body.newEmail;
-      const response = await OTPModel.find({ emailAddress }).sort({ createdAt: -1 }).limit(1);  
+      const response = await otpModel.find({ emailAddress }).sort({ createdAt: -1 }).limit(1);
       if (newOTP === response[0].otp) {
-        await UserModel.findByIdAndUpdate(userID, { $set: { emailAddress: newEmail } })
+        await userModel.findByIdAndUpdate(userID, { $set: { emailAddress: newEmail } })
         res.json({ message: 'success' })
       } else {
         res.json({ message: 'error' })
@@ -1382,25 +1370,25 @@ const updateProfile = async (req, res) => {
     }
   }
   else if (req.query.task === 'changePassword') {
-    try { 
+    try {
       const oldPassword = req.body.oldPassword;
       const newPassword = req.body.newPassword;
-      const Password = await UserModel.findById(userID, { _id: 0, password: 1 }) 
+      const Password = await userModel.findById(userID, { _id: 0, password: 1 })
       const isPasswordMatch = await bcrypt.compare(oldPassword, Password.password)
       let hashedPassword;
-      if (isPasswordMatch) { 
-        hashedPassword = await bcrypt.hash(newPassword, 10); 
-        await UserModel.findByIdAndUpdate(userID, { $set: { password: hashedPassword } })
+      if (isPasswordMatch) {
+        hashedPassword = await bcrypt.hash(newPassword, 10);
+        await userModel.findByIdAndUpdate(userID, { $set: { password: hashedPassword } })
         res.json({ message: 'Success' })
       } else {
         res.json({ message: 'error' })
-      } 
+      }
     } catch (error) {
       console.log(error)
     }
   } else if (req.query.task === 'changeinfo') {
-    console.log('hi bro', req.body.fullName, req.body.mobileNo) 
-    const result = await UserModel.findByIdAndUpdate(userID, { $set: { userName: req.body.fullName, phoneNo: req.body.mobileNo } });
+    console.log('hi bro', req.body.fullName, req.body.mobileNo)
+    const result = await userModel.findByIdAndUpdate(userID, { $set: { userName: req.body.fullName, phoneNo: req.body.mobileNo } });
     console.log(result)
     res.redirect('/Profile')
   }
@@ -1413,9 +1401,9 @@ const profileTasks = async (req, res) => {
     const token = req.cookies.jwtUser; // Assuming token is stored in cookies
     const userID = getUserId(token);
     const newEmail = req.body.newEmailAddress;
-    const emailExist = await UserModel.find({ emailAddress: newEmail }) 
+    const emailExist = await userModel.find({ emailAddress: newEmail })
     if (emailExist.length === 0) {
-      const oldEmail = await UserModel.findById(userID, { _id: 0, emailAddress: 1 }); 
+      const oldEmail = await userModel.findById(userID, { _id: 0, emailAddress: 1 });
       const emailAddress = oldEmail.emailAddress;
       if (newEmail === oldEmail.emailAddress) {
         res.json({ message: 'SameEmail' })
@@ -1424,27 +1412,27 @@ const profileTasks = async (req, res) => {
           upperCaseAlphabets: false,
           lowerCaseAlphabets: false,
           specialChars: false,
-        }) 
-        let result = await OTPModel.findOne({ otp: otp });
+        })
+        let result = await otpModel.findOne({ otp: otp });
         while (result) {
           otp = otpGenerator.generate(6, {
             upperCaseAlphabets: false,
           });
-          result = await OTPModel.findOne({ otp: otp });
+          result = await otpModel.findOne({ otp: otp });
         }
         const otpPayload = { emailAddress, otp };
-        await OTPModel.create(otpPayload);
+        await otpModel.create(otpPayload);
         res.json({ message: 'success' })
       }
     } else {
       res.json({ message: 'AlreadyExist' })
-    } 
+    }
   } catch (error) {
     console.log(error)
   }
 }
 //..................................................................................................................................................
- 
+
 //send OTP for the registration of user 
 const sentOTP = async (req, res) => {
   try {
@@ -1454,9 +1442,9 @@ const sentOTP = async (req, res) => {
     GlobalUser.emailAddress = req.body.emailAddress
     GlobalUser.password = req.body.password
 
-    const emailAddress = GlobalUser.emailAddress 
-    const checkUserPresent = await UserModel.findOne({ emailAddress });// Check if user is already present
-    
+    const emailAddress = GlobalUser.emailAddress
+    const checkUserPresent = await userModel.findOne({ emailAddress });// Check if user is already present
+
     if (checkUserPresent) {// If user found with provided email
       return res.status(401).json({
         success: false,
@@ -1470,16 +1458,16 @@ const sentOTP = async (req, res) => {
       specialChars: false,
     })
     //just check the otp is correct 
-    let result = await OTPModel.findOne({ otp: otp });
+    let result = await otpModel.findOne({ otp: otp });
     while (result) {
       otp = otpGenerator.generate(6, {
         upperCaseAlphabets: false,
       });
-      result = await OTPModel.findOne({ otp: otp });
+      result = await otpModel.findOne({ otp: otp });
     }
     //save the otp to the database
     const otpPayload = { emailAddress, otp };
-    await OTPModel.create(otpPayload);
+    await otpModel.create(otpPayload);
     res.render('user/enterOtp', { message: '', timer: '2:00' })//render the enterotp page
   } catch (error) {
     console.log(error.message);
@@ -1499,15 +1487,15 @@ const resendOtp = async (req, res) => {
       lowerCaseAlphabets: false,
       specialChars: false,
     })
-    let result = await OTPModel.findOne({ otp: otp });
+    let result = await otpModel.findOne({ otp: otp });
     while (result) {
       otp = otpGenerator.generate(6, {
         upperCaseAlphabets: false,
       });
-      result = await OTPModel.findOne({ otp: otp });
+      result = await otpModel.findOne({ otp: otp });
     }
     const otpPayload = { emailAddress, otp };
-    const otpBody = await OTPModel.create(otpPayload);
+    const otpBody = await otpModel.create(otpPayload);
     res.render('user/enterOtp', { message: '', timer: '2:00' })
   } catch (error) {
     console.log(error.message);
@@ -1525,11 +1513,11 @@ const createUser = async (req, res) => {
     const password = GlobalUser.password
 
     const { otp1, otp2, otp3, otp4, otp5, otp6 } = req.body
-    const combinedOTP = otp1 + otp2 + otp3 + otp4 + otp5 + otp6; 
-    const response = await OTPModel.find({ emailAddress }).sort({ createdAt: -1 }).limit(1); 
-    if (combinedOTP !== response[0].otp) { 
+    const combinedOTP = otp1 + otp2 + otp3 + otp4 + otp5 + otp6;
+    const response = await otpModel.find({ emailAddress }).sort({ createdAt: -1 }).limit(1);
+    if (combinedOTP !== response[0].otp) {
       res.render('user/enterOtp', { message: 'Invalid OTP', timer: '2:00' })
-    } else { 
+    } else {
       let hashedPassword;
       try {
         hashedPassword = await bcrypt.hash(password, 10);
@@ -1542,13 +1530,13 @@ const createUser = async (req, res) => {
       // hash the password
       GlobalUser.password = hashedPassword
       //store the user data to mongodb
-      const createdUser = await UserModel.create(GlobalUser); 
+      const createdUser = await userModel.create(GlobalUser);
       const Token = randomToken(createdUser._id)
-      res.cookie('jwtUser', Token, { httpOnly: true, maxAge: MaxExpTime * 1000 }); 
+      res.cookie('jwtUser', Token, { httpOnly: true, maxAge: MaxExpTime * 1000 });
       res.redirect('/')
     }
 
-  } catch (error) { 
+  } catch (error) {
     res.render('user/enterOtp', { message: 'OTP Time Out', timer: timer })
   }
 }
@@ -1558,17 +1546,17 @@ const createUser = async (req, res) => {
 const userLogin = (async (req, res) => {
   try {
     const { emailAddress, password } = req.body
-    const userExist = await UserModel.findOne({ emailAddress: emailAddress });
+    const userExist = await userModel.findOne({ emailAddress: emailAddress });
     //check the user is exist or not
     if (userExist) {
       const isPasswordMatch = await bcrypt.compare(password, userExist.password)
       if (isPasswordMatch) {
-        if (userExist.status === true) { 
+        if (userExist.status === true) {
           const Token = randomToken(userExist._id)
           console.log(Token)
           res.cookie('jwtUser', Token, { httpOnly: true, maxAge: MaxExpTime * 1000 });
-          await UserModel.findByIdAndUpdate(userExist._id, { $set: { logged: true } }) 
-          res.redirect('/') 
+          await userModel.findByIdAndUpdate(userExist._id, { $set: { logged: true } })
+          res.redirect('/')
         }
         else {
           res.render('user/login', { error: "User Blocked!" })
@@ -1590,24 +1578,24 @@ const userLogin = (async (req, res) => {
 const postsendEmailOtp = async (req, res) => {
   try {
     GlobalUser.emailAddress = req.body.emailAddress
-    const emailAddress = GlobalUser.emailAddress 
-    const checkUserPresent = await UserModel.findOne({ emailAddress });
+    const emailAddress = GlobalUser.emailAddress
+    const checkUserPresent = await userModel.findOne({ emailAddress });
     console.log(checkUserPresent);
-    if (checkUserPresent) { 
+    if (checkUserPresent) {
       otp = otpGenerator.generate(6, {
         upperCaseAlphabets: false,
         lowerCaseAlphabets: false,
         specialChars: false,
       })
-      let result = await OTPModel.findOne({ otp: otp });
+      let result = await otpModel.findOne({ otp: otp });
       while (result) {
         otp = otpGenerator.generate(6, {
           upperCaseAlphabets: false,
         });
-        result = await OTPModel.findOne({ otp: otp });
+        result = await otpModel.findOne({ otp: otp });
       }
       const otpPayload = { emailAddress, otp };
-      await OTPModel.create(otpPayload);
+      await otpModel.create(otpPayload);
       res.redirect('/forgotEnterOtp')
     } else {
       res.render('user/sendEmailOtp', { message: 'User not found !' })
@@ -1626,7 +1614,7 @@ const postForgotEnterOtp = async (req, res) => {
     const { otp1, otp2, otp3, otp4, otp5, otp6 } = req.body
     const combinedOTP = otp1 + otp2 + otp3 + otp4 + otp5 + otp6;
 
-    const response = await OTPModel.find({ emailAddress }).sort({ createdAt: -1 }).limit(1);  
+    const response = await otpModel.find({ emailAddress }).sort({ createdAt: -1 }).limit(1);
     if (response.length === 0 || combinedOTP !== response[0].otp) {
       res.render('user/enterOtp', { message: 'Invalid OTP', timer: '2:00' })
     } else {
@@ -1642,15 +1630,15 @@ const postForgotEnterOtp = async (req, res) => {
 const createPassword = async (req, res) => {
   try {
     const emailAddress = GlobalUser.emailAddress
-    const password = req.body.password 
-    const response = await OTPModel.find({ emailAddress }).sort({ createdAt: -1 }).limit(1);
+    const password = req.body.password
+    const response = await otpModel.find({ emailAddress }).sort({ createdAt: -1 }).limit(1);
     if (response.length === 0 || otp !== response[0].otp) {
       return res.status(400).json({
         success: false,
         message: 'The OTP is not valid',
       });
     }
-    const user = await UserModel.findOne({ emailAddress });
+    const user = await userModel.findOne({ emailAddress });
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
@@ -1687,7 +1675,7 @@ const productOverview = async (req, res) => {
     let isWishlisted = false;
     if (wishListExist.length > 0) {
       isWishlisted = true;
-    } 
+    }
     const productColor = await productModel.find({ ProductName: ProductData[0].ProductName })
     const firstProduct = ProductData[0];
     const CategoryName = firstProduct.CategoryName;
@@ -1701,28 +1689,28 @@ const productOverview = async (req, res) => {
 const updateCart = async (req, res) => {
   try {
     const token = req.cookies.jwtUser; // Assuming token is stored in cookies
-    const userID = getUserId(token); 
-    const data = await addtToCartModel.findById(req.body.id).populate('productID') 
-    let productSize = data.productID.ProductSize; 
+    const userID = getUserId(token);
+    const data = await addtToCartModel.findById(req.body.id).populate('productID')
+    let productSize = data.productID.ProductSize;
     let b;
     let filter = productSize.filter((val, i) => {
-      if (val.size === data.size) { 
+      if (val.size === data.size) {
         b = val.quantity;
       }
       return b;
-    }) 
+    })
     if (req.body.type === 'increment') {
-      if (data.quantity + 1 <= b) { 
+      if (data.quantity + 1 <= b) {
         const updateddata = await addtToCartModel.findByIdAndUpdate(req.body.id, { $set: { quantity: req.body.newQty, totalPrice: data.productID.SalesRate * req.body.newQty, totalMRP: data.productID.MRP * req.body.newQty } })
         res.json(updateddata)
       } else {
         let limit = 'finished'
         res.json(limit)
       }
-    } else if (req.body.type === 'decrement') { 
+    } else if (req.body.type === 'decrement') {
       const updateddata = await addtToCartModel.findByIdAndUpdate(req.body.id, { $set: { quantity: req.body.newQty, totalPrice: data.productID.SalesRate * req.body.newQty, totalMRP: data.productID.MRP * req.body.newQty } })
       res.json(updateddata)
-    } 
+    }
   } catch (error) {
     console.log(error)
   }
@@ -1739,6 +1727,6 @@ module.exports = {
   logout, profile, profileMenu, google, shoppingCart, updateCart, sendEmailOtp, postsendEmailOtp,
   forgotEnterOtp, postForgotEnterOtp, resetPassword, createPassword, saveUserAddress, filterProducts,
   enterOtp, sentOTP, createUser, resendOtp, productOverview, saveImage, overviewFilter, checkOut,
-  checkOutTasks, orderDetails, updateProfile, onlinPayment, verifyPayment, priceFilter, DeleteData,
+  checkOutTasks, orderDetails, updateProfile, onlinPayment, verifyPayment, priceFilter, deleteData,
   profileTasks, generatePDF, allProductFilter
 }

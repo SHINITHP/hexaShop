@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser')
 const methodOverride = require('method-override')
 const passport = require('passport')
 const session = require('express-session');
-const passportSetup = require('./controller/user/googleOuath.js')
+const passportSetup = require('./utils/googleOuath.js')
 require('dotenv').config()
 const fetch = require('node-fetch'); 
 
@@ -36,14 +36,10 @@ app.use(methodOverride('_method'))
 app.use('/',userRouter);
 app.use('/adminLogin',adminRoutes)
 
-// app.get('*', (req, res) => {
-//   res.render('user/404Error')
-// })
-
-
-app.get('/sample', (req, res) => {
-  res.render('user/invoice')
+app.get('*', (req, res) => {
+  res.render('user/404Error')
 })
+
 
 const port = process.env.port||8000
 app.listen(port,(err)=>{

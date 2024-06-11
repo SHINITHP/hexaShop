@@ -5,12 +5,12 @@ const {
     logout, profile, profileMenu, google, shoppingCart, updateCart, sendEmailOtp, postsendEmailOtp,
     forgotEnterOtp, postForgotEnterOtp, resetPassword, createPassword, saveUserAddress, filterProducts,
     enterOtp, sentOTP, createUser, resendOtp, productOverview, saveImage, overviewFilter, checkOut,
-    checkOutTasks, orderDetails, updateProfile,onlinPayment,verifyPayment,priceFilter,DeleteData,profileTasks,
+    checkOutTasks, orderDetails, updateProfile,onlinPayment,verifyPayment,priceFilter,deleteData,profileTasks,
     generatePDF,allProductFilter
 } = require("../../controller/user/userConroller.js");
 const { userAuth } = require('../../middlewares/authMiddleware.js')
 const passport = require('passport')
-require('../../controller/user/googleOuath.js')
+require('../../utils/googleOuath.js')
 const { loginAuth } = require('../../middlewares/loginMiddleware.js')
 
 
@@ -34,7 +34,7 @@ router.route('/filterCategory').get(landingPage)//listCategory
 router.route('/Profile').get(userAuth, profile).post(profileTasks).patch(updateProfile)
 router.route('/checkOut').get(userAuth, checkOut).post(checkOutTasks).put(updateCheckout)
 router.route('/logout').get(logout)//logout
-router.route('/profileMenu').get(userAuth,profileMenu).post(userAuth,saveUserAddress).put(saveUserAddress).delete(DeleteData)
+router.route('/profileMenu').get(userAuth,profileMenu).post(userAuth,saveUserAddress).put(saveUserAddress).delete(deleteData)
 router.route('/create-payment').post(userAuth,onlinPayment)
 router.route('/verify-Payment').post(verifyPayment)
 module.exports = router

@@ -361,9 +361,16 @@
                     </div>
 
                     <div class="row" style="display: flex;align-items: center;justify-content: center;">
-                        <a onclick="AddMoneyTOWallet('<%= JSON.stringify(walletDetails[0].userID) %>')"><button
+                        <% if(walletDetails.length < 1) { %> 
+                            <a onclick="AddMoneyTOWallet()"><button
                                 class="btn btnEdit" style="border-radius:20px;height: 40px;width: 160px;">Add To
                                 Wallet</button></a>
+                        <% } else { %>
+                                <a onclick="AddMoneyTOWallet('<%= JSON.stringify(walletDetails[0].userID) %>')"><button
+                                class="btn btnEdit" style="border-radius:20px;height: 40px;width: 160px;">Add To
+                                Wallet</button></a>
+                        <% } %>
+                        
                     </div>
                 </div>
             </div>
