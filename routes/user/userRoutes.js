@@ -1,13 +1,15 @@
 const express = require('express')
 const router = express.Router()
 const {
-    registerPage, removeCartProduct, updateCheckout, landingPage, loginPage, userLogin,
-    logout, profile, profileMenu, google, shoppingCart, updateCart, sendEmailOtp, postsendEmailOtp,
-    forgotEnterOtp, postForgotEnterOtp, resetPassword, createPassword, saveUserAddress, filterProducts,
-    enterOtp, sentOTP, createUser, resendOtp, productOverview, saveImage, overviewFilter, checkOut,
-    checkOutTasks, orderDetails, updateProfile,onlinPayment,verifyPayment,priceFilter,deleteData,profileTasks,
-    generatePDF,allProductFilter
+    logout, profile, profileMenu, shoppingCart,updateCart,saveUserAddress,resendOtp,
+    orderDetails, updateProfile,deleteData,profileTasks,generatePDF
 } = require("../../controller/user/userConroller.js");
+const { loginPage,userLogin,google } = require('../../controller/user/auth/loginController.js')
+const { postForgotEnterOtp,postsendEmailOtp,sendEmailOtp,forgotEnterOtp,resetPassword,createPassword } = require('../../controller/user/auth/forgotPasswordController.js')
+const { registerPage, createUser,enterOtp,sentOTP } = require('../../controller/user/auth/registerController.js')
+const { checkOut,checkOutTasks,updateCheckout } = require('../../controller/user/order/orderController.js')
+const { verifyPayment,onlinPayment } = require('../../controller/user/order/paymentController.js')
+const { landingPage,productOverview,overviewFilter,priceFilter,allProductFilter,filterProducts,removeCartProduct } = require('../../controller/user/product/productController.js')
 const { userAuth } = require('../../middlewares/authMiddleware.js')
 const passport = require('passport')
 require('../../utils/googleOuath.js')

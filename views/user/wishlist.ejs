@@ -228,7 +228,13 @@
                                         </div>
                                         <div class="col-4 rowcol4-2">
                                             <h5>Availability</h5>
-                                            <p>In Stock</p>
+                                            <p>
+                                            <%if(val.productID.ProductSize[0].quantity > 0){ %>
+                                                In Stock 
+                                            <% } else { %>
+                                                Out Of Stock
+                                            <% } %>
+                                        </p>
                                         </div>
                                         <div class="col-4 rowcol4-3">
                                             <h5>Price</h5>

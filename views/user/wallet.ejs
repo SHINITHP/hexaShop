@@ -362,7 +362,7 @@
 
                     <div class="row" style="display: flex;align-items: center;justify-content: center;">
                         <% if(walletDetails.length < 1) { %> 
-                            <a onclick="AddMoneyTOWallet()"><button
+                            <a onclick="AddMoneyTOWallet('<%=userID%>')"><button
                                 class="btn btnEdit" style="border-radius:20px;height: 40px;width: 160px;">Add To
                                 Wallet</button></a>
                         <% } else { %>
@@ -379,6 +379,15 @@
             <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
             <script>
 
+                function isJsonString(str) {
+                    try {
+                      JSON.parse(str);
+                      return true;
+                    } catch (e) {
+                      return false;
+                    }
+                  }
+                  
 
                 const urlParams = new URLSearchParams(window.location.search);
                 const success = urlParams.get('success');
@@ -399,8 +408,7 @@
                 }
 
                 function AddMoneyTOWallet(user) {
-                    let userInfo = JSON.parse(user)
-                    console.log(userInfo, 'addressID')
+                    let userInfo = isJsonString(user) ? JSON.parse(user) : user;
                     const AddAmount = document.getElementById('AddAmount').value;
                     axios.post('/create-payment', { amount: AddAmount })
                         .then(function (response) {
