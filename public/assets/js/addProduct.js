@@ -12,7 +12,25 @@ function validateImageFile() {
 }
 
 
-
+document.getElementById('addProductsForm').addEventListener('submit', function(event) {
+    const formControl = document.querySelectorAll('.form-control') 
+    let inputs;
+    formControl.forEach((val) => {
+        inputs = val.value;
+        if (inputs.trim() === '' || /\s/.test(inputs)) {
+            event.preventDefault(); // Prevent form submission
+            Swal.fire({
+                icon: 'info',
+                title: '<span style="color: red">Please ensure that to Enter Correct Details!</span>',
+                timer: 4000, // Duration in milliseconds
+                toast: true,
+                position: 'top', // Toast position
+                showConfirmButton: false
+            });
+        }
+    })
+    
+});
 
 // function SaveProducts() {
 //     console.log('hi bro iam in button')

@@ -15,17 +15,26 @@ const customerDetails = async (req, res) => {
 
 //listed and ulisted for CustomerDetails page
 const updateUser = async (req, res) => {
-    const user = await userModel.findById(req.query.id)
-    console.log('jhegwggtr  ', req.query.id)
-    if (user.status === true) {
-        await userModel.findByIdAndUpdate(req.query.id, { status: false })
-        res.clearCookie('jwtUser');//removing the cookies
-        res.redirect('/adminLogin/CustomerDetails')
+    try {
+        const user = await userModel.findById(req.query.id)
+        switch (user.status) {
+            case true:
+                await userModel.findByIdAndUpdate(req.query.id, { status: false });
+                res.clearCookie('jwtUser'); // removing the cookies
+                res.redirect('/adminLogin/CustomerDetails');
+                break;
+            case false:
+                await userModel.findByIdAndUpdate(req.query.id, { status: true });
+                res.redirect('/adminLogin/CustomerDetails');
+                break;
+            default:
+                res.status(400).send('Invalid user status');
+                break;
+        }
+    } catch (error) {
+        console.log(error)
     }
-    else if (user.status === false) {
-        await userModel.findByIdAndUpdate(req.query.id, { status: true })
-        res.redirect('/adminLogin/CustomerDetails')
-    }
+   
 }
 
 //CustomerDetails get Request

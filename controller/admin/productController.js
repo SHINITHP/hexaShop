@@ -8,21 +8,30 @@ const cloudinary = require('../../utils/cloudinary.js')
 
 //productlist get method
 const productList = async (req, res) => {
-    if (req.path === '/ProductList') {
-        const productDetails = await ProductModel.find({})
-        res.render('admin/ProductList', { productDetails, message: ' ' })
+    try {
+        let productDetails,subCategory,productInfo;
+        switch (req.path) {
+            case '/ProductList':
+                productDetails = await ProductModel.find({});
+                res.render('admin/ProductList', { productDetails, message: ' ' });
+                break;
+            case '/ProductList/addProducts':
+                subCategory = await subCategorySchema.distinct('subCategory');
+                res.render('admin/addProducts', { subCategory, success: '' });
+                break;
+            case '/editProducts':
+                subCategory = await subCategorySchema.distinct('subCategory');
+                productInfo = await ProductModel.findById(req.query.id);
+                res.render('admin/editProducts', { subCategory, productInfo, success: '' });
+                break;
+            default:
+                res.status(404).send('Not Found');
+                break;
+        }
+    } catch (error) {
+     console.log(error)   
     }
-    else if (req.path === '/ProductList/addProducts') {
-        const subCategory = await subCategorySchema.distinct('subCategory');
-        // console.log(subCategory);
-        res.render('admin/addProducts', { subCategory, success: '' })
-    }
-    else if (req.path === '/editProducts') {
-        const subCategory = await subCategorySchema.distinct('subCategory');
-        const productInfo = await ProductModel.findById(req.query.id)
-        // console.log(productInfo);
-        res.render('admin/editProducts', { subCategory, productInfo, success: '' })
-    }
+    
 
 }
 

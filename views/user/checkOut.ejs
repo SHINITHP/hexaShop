@@ -220,9 +220,18 @@
                                         <p>₹ <span id="cartTotal">
                                                 <%= totalPrice %>
                                             </span></p>
-                                        <p>-₹<span id="discountAmt">
-                                            <% let Discount = cartDetails.reduce((acc, curr) => acc + (curr.totalMRP - (curr.productID.SalesRate * curr.quantity) + curr.productID.SalesRate * curr.productID.offer / 100 ), 0); %>
-                                                <%=Discount%>
+                                        <p>₹<span id="discountAmt">
+                                            <% let Discount = cartDetails.reduce((acc, curr) => { 
+                                                if(curr.productID.offer > 0){ 
+                                                    return acc + (curr.totalMRP - (curr.productID.SalesRate * curr.quantity) + (curr.productID.SalesRate * curr.quantity * curr.productID.offer / 100));
+                                                } else { 
+                                                    return acc + (curr.totalMRP - (curr.productID.SalesRate * curr.quantity));
+                                                }
+                                            }, 0) %>
+                                            
+                                            <%= Discount %>
+                                            
+                        
                                             </span></p>
                                             <p>₹<span id="deliveryCharge"></span></p>    
                                         <p style="padding-right: 27px;">----------</p>
@@ -535,10 +544,7 @@
                                     <p>₹ <span id="cartTotal">
                                             <%= totalPrice %>
                                         </span></p>
-                                    <p>-₹<span id="discountAmt">
-
-                                            <%=totalDiscount%>
-                                        </span></p>
+                                    <p>₹<span id="discountAmt"><%=totalDiscount%></span></p>
                                     <p style="padding-right: 27px;">---------</p>
                                     <p>₹<span id="toTalAmount"></span></p>
                                 </div>

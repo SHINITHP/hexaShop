@@ -9,37 +9,38 @@ const { generateSimpleUniqueId } = require('../../utils/functions.js')
 
 const coupon = async (req, res) => {
     try {
-        if (req.query.task === 'All') {
-            const coupons = await couponSchema.find({})
-            res.render('admin/Coupon', { coupons })
-        } else if (req.query.task === 'Active') {
-            const coupons = await couponSchema.find({ status: 'Listed' })
-            res.render('admin/Coupon', { coupons })
+        let coupons;
+
+        switch (req.query.task) {
+            case 'All':
+                coupons = await couponSchema.find({});
+                break;
+            case 'Active':
+                coupons = await couponSchema.find({ status: 'Listed' });
+                break;
+            case 'Expired':
+                console.log('Unlisted');
+                coupons = await couponSchema.find({ status: 'Unlisted' });
+                break;
+            case 'customDate':
+                const startDate = req.query.startDate;
+                const endDate = req.query.endDate;
+
+                coupons = await couponSchema.find({
+                    startDate: {
+                        $gte: new Date(startDate), // Start of the specified date range
+                    },
+                    Expire: {
+                        $lte: new Date(endDate), // End of the specified date range
+                    }
+                }).sort({ startDate: 1 });
+                break;
+            default:
+                coupons = await couponSchema.find({});
+                break;
         }
-        else if (req.query.task === 'Expired') {
-            console.log('Unlisted')
-            const coupons = await couponSchema.find({ status: 'Unlisted' })
-            res.render('admin/Coupon', { coupons })
-        } else if (req.query.task === 'customDate') {
-            const startDate = req.query.startDate
-            const endDate = req.query.endDate
 
-            const coupons = await couponSchema.find({
-                startDate: {
-                    $gte: new Date(startDate), // Start of the specified date range
-                },
-                Expire: {
-                    $lte: new Date(endDate), // Start of the specified date range
-                }
-
-            }).sort({ OrderDate: 1 })
-
-            res.render('admin/Coupon', { coupons })
-        } else {
-            const coupons = await couponSchema.find({})
-            res.render('admin/Coupon', { coupons })
-        }
-
+        res.render('admin/Coupon', { coupons });
     } catch (error) {
         console.log(error)
     }
@@ -102,21 +103,22 @@ const deletCoupon = async (req, res) => {
 //to show the offer page
 const offers = async (req, res) => {
     try {
-        if (req.query.filter === 'All') {
-            const offers = await offerSchema.find({}).populate('productID');
-            res.render('admin/offers', { offers })
-        } else if (req.query.filter === 'Listed') {
-            const offers = await offerSchema.find({ status: 'Listed' }).populate('productID');
-            res.render('admin/offers', { offers })
+        let offers;
+        switch (req.query.filter) {
+            case 'All':
+                offers = await offerSchema.find({}).populate('productID');
+                break;
+            case 'Listed':
+                offers = await offerSchema.find({ status: 'Listed' }).populate('productID');
+                break;
+            case 'Unlisted':
+                offers = await offerSchema.find({ status: 'Unlisted' }).populate('productID');
+                break;
+            default:
+                offers = await offerSchema.find({}).populate('productID');
+                break;
         }
-        else if (req.query.filter === 'Unlisted') {
-            const offers = await offerSchema.find({ status: 'Unlisted' }).populate('productID');
-            res.render('admin/offers', { offers })
-        }
-        else {
-            const offers = await offerSchema.find({}).populate('productID');
-            res.render('admin/offers', { offers })
-        }
+        res.render('admin/offers', { offers });
     } catch (error) {
         console.log(error)
     }
@@ -201,5 +203,5 @@ const deleteOffer = async (req, res) => {
 }
 
 module.exports = {
-    coupon, couponTasks, deletCoupon,offers,offerTasks,editOffer,deleteOffer
+    coupon, couponTasks, deletCoupon, offers, offerTasks, editOffer, deleteOffer
 }

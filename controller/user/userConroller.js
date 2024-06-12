@@ -21,7 +21,7 @@ const uniqueId = generateSimpleUniqueId();
 const pdf = require('html-pdf');
 let globalUser = {
   userName: "",
-  phoneNo: "",    
+  phoneNo: "",
   emailAddress: "",
   password: ""
 };
@@ -70,11 +70,16 @@ const shoppingCart = async (req, res) => {
 
 //logout get Request
 const logout = async (req, res) => {
-  const token = req.cookies.jwtUser; // Assuming token is stored in cookies
-  const userID = getUserId(token);
-  res.clearCookie('jwtUser');
-  await userModel.findByIdAndUpdate(userID, { $set: { logged: false } })  // Clear the cookie
-  res.redirect('/')
+  try {
+    const token = req.cookies.jwtUser; // Assuming token is stored in cookies
+    const userID = getUserId(token);
+    res.clearCookie('jwtUser');
+    await userModel.findByIdAndUpdate(userID, { $set: { logged: false } })  // Clear the cookie
+    res.redirect('/')
+  } catch (error) {
+    console.log(error)
+  }
+
 }
 //..................................................................................................................................................
 
@@ -232,114 +237,119 @@ const saveImage = async (req, res) => {
   const userID = getUserId(token); // Verify token and get userID
 }
 const saveUserAddress = async (req, res) => {
-  const token = req.cookies.jwtUser; // Assuming token is stored in cookies
-  const userID = getUserId(token); // Verify token and get userID
-  if (req.query.type === 'addAddress') {
-    try {
-      const {
-        addressType, address, pincode,
-        state, gender, emailAddress,
-        country, cityDistrictTown, phoneNo,
-        fullName
-      } = req.body
-      const userAddress = {
-        addressType, address, pincode,
-        state, gender, emailAddress,
-        country, cityDistrictTown, phoneNo,
-        fullName, userID
-      }
-      await addressModel.create(userAddress);
-      res.redirect('/profileMenu?menu=manageAddress')
-    } catch (error) {
-      console.log(error)
-    }
-
-  } else if (req.query.task === 'addToCart') {
-    try {
-      const productID = req.body.productID
-      const data = await productModel.findById(productID);
-      const cartExist = await addtToCartModel.find({ productID: productID })
-      if (cartExist.length > 0) {
-        res.json({ message: 'Already Exist' })
-      } else {
-        const details = {
-          userID,
-          productID,
-          quantity: 1,
-          totalPrice: data.SalesRate,
-          size: data.ProductSize[0].size,
-          totalMRP: data.MRP
+  try {
+    const token = req.cookies.jwtUser; // Assuming token is stored in cookies
+    const userID = getUserId(token); // Verify token and get userID
+    if (req.query.type === 'addAddress') {
+      try {
+        const {
+          addressType, address, pincode,
+          state, gender, emailAddress,
+          country, cityDistrictTown, phoneNo,
+          fullName
+        } = req.body
+        const userAddress = {
+          addressType, address, pincode,
+          state, gender, emailAddress,
+          country, cityDistrictTown, phoneNo,
+          fullName, userID
         }
-        await addtToCartModel.create(details)
-        res.json({ message: 'success' })
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  else if (req.query.type === 'manageAddress') {
-    try {
-      const addressID = req.body.addressID
-      const selected = req.body.selected
-      await addressModel.updateMany({}, { $set: { selected: false } })
-      await addressModel.findOneAndUpdate({ _id: addressID }, { $set: { selected: selected } })
-      res.redirect('/profileMenu?menu=manageAddress')
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  else if (req.query.type === 'deleteAddress') {
-    try {
-      const id = req.body.id
-      await addressModel.findByIdAndDelete(id)
-      res.redirect('/profileMenu?menu=manageAddress')
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  else if (req.query.type === 'updateAddress') {
-    try {
-      const id = req.query.id;
-      const data = {
-        fullName: req.body.fullName,
-        emailAddress: req.body.emailAddress,
-        phoneNo: req.body.mobileNo,
-        cityDistrictTown: req.body.cityDistrictTown,
-        state: req.body.state,
-        country: req.body.country,
-        pincode: req.body.pinCode,
-        gender: req.body.gender,
-        address: req.body.address,
-        addressType: req.body.addressType
+        await addressModel.create(userAddress);
+        res.redirect('/profileMenu?menu=manageAddress')
+      } catch (error) {
+        console.log(error)
       }
 
-      await addressModel.findByIdAndUpdate(id, data, { new: true });
-      res.redirect('/profileMenu?menu=manageAddress')
-    } catch (error) {
-      console.log(error)
+    } else if (req.query.task === 'addToCart') {
+      try {
+        const productID = req.body.productID
+        const data = await productModel.findById(productID);
+        const cartExist = await addtToCartModel.find({ productID: productID })
+        if (cartExist.length > 0) {
+          res.json({ message: 'Already Exist' })
+        } else {
+          const details = {
+            userID,
+            productID,
+            quantity: 1,
+            totalPrice: data.SalesRate,
+            size: data.ProductSize[0].size,
+            totalMRP: data.MRP
+          }
+          await addtToCartModel.create(details)
+          res.json({ message: 'success' })
+        }
+      } catch (error) {
+        console.log(error)
+      }
     }
-  }
-  else if (req.query.type === 'cancelRequest') {
-
-    const orderID = req.query.id
-    const reqReason = req.body.reqReason
-    const optionalReason = req.body.data
-    const value = await orderSchema.findByIdAndUpdate(
-      orderID,
-      { $set: { requestReason: reqReason, request: true, comment: optionalReason, reqDate: Date.now() } }
-    );
-
-  } else if (req.query.type === 'returnOrder') {
-    let optionalComment = req.query.optionalreason === '' ? 'empty' : req.body.optionalreason
-    try {
-      await orderSchema.findByIdAndUpdate(req.query.id,
-        {
-          $set: { return: true, requestReason: req.body.reason, comment: optionalComment }
-        })
-    } catch (error) { 
-      console.log(error)
+    else if (req.query.type === 'manageAddress') {
+      try {
+        const addressID = req.body.addressID
+        const selected = req.body.selected
+        await addressModel.updateMany({}, { $set: { selected: false } })
+        await addressModel.findOneAndUpdate({ _id: addressID }, { $set: { selected: selected } })
+        res.redirect('/profileMenu?menu=manageAddress')
+      } catch (error) {
+        console.log(error)
+      }
     }
+    else if (req.query.type === 'deleteAddress') {
+      try {
+        const id = req.body.id
+        await addressModel.findByIdAndDelete(id)
+        res.redirect('/profileMenu?menu=manageAddress')
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    else if (req.query.type === 'updateAddress') {
+      try {
+        const id = req.query.id;
+        const data = {
+          fullName: req.body.fullName,
+          emailAddress: req.body.emailAddress,
+          phoneNo: req.body.mobileNo,
+          cityDistrictTown: req.body.cityDistrictTown,
+          state: req.body.state,
+          country: req.body.country,
+          pincode: req.body.pinCode,
+          gender: req.body.gender,
+          address: req.body.address,
+          addressType: req.body.addressType
+        }
+
+        await addressModel.findByIdAndUpdate(id, data, { new: true });
+        res.redirect('/profileMenu?menu=manageAddress')
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    else if (req.query.type === 'cancelRequest') {
+
+      const orderID = req.query.id
+      const reqReason = req.body.reqReason
+      const optionalReason = req.body.data
+      const value = await orderSchema.findByIdAndUpdate(
+        orderID,
+        { $set: { requestReason: reqReason, request: true, comment: optionalReason, reqDate: Date.now() } }
+      );
+
+    } else if (req.query.type === 'returnOrder') {
+      let optionalComment = req.query.optionalreason === '' ? 'empty' : req.body.optionalreason
+      try {
+        await orderSchema.findByIdAndUpdate(req.query.id,
+          {
+            $set: { return: true, requestReason: req.body.reason, comment: optionalComment }
+          })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  } catch (error) {
+    console.log(error)
   }
+
 }
 //..................................................................................................................................................
 
@@ -406,7 +416,8 @@ const orderDetails = async (req, res) => {
 //..................................................................................................................................................
 
 const updateProfile = async (req, res) => {
-  const token = req.cookies.jwtUser; // Assuming token is stored in cookies
+  try {
+    const token = req.cookies.jwtUser; // Assuming token is stored in cookies
   const userID = getUserId(token); // Verify token and get userID
   const oldEmail = await userModel.findById(userID, { _id: 0, emailAddress: 1 });
   const emailAddress = oldEmail.emailAddress;
@@ -448,6 +459,10 @@ const updateProfile = async (req, res) => {
     console.log(result)
     res.redirect('/Profile')
   }
+  } catch (error) {
+    console.log(error)
+  }
+  
 
 }
 //..................................................................................................................................................
@@ -558,7 +573,7 @@ const updateCart = async (req, res) => {
 
 //export all the above functions
 module.exports = {
-  profileTasks, generatePDF,logout, profile, profileMenu, shoppingCart, updateCart,saveUserAddress,
-  resendOtp,orderDetails, updateProfile, deleteData,
-  
+  profileTasks, generatePDF, logout, profile, profileMenu, shoppingCart, updateCart, saveUserAddress,
+  resendOtp, orderDetails, updateProfile, deleteData,
+
 }

@@ -5,20 +5,27 @@ require('dotenv').config()
 
 
 const category = async (req, res) => {
-    if (req.path === '/Category') {
-        const categoryData = await subCategorySchema.find({})
-        // console.log(categoryData);
-        res.render('admin/Category', { categoryData })
+    try {
+        switch (req.path) {
+            case '/Category':
+                // Find all categories
+                const categoryData = await subCategorySchema.find({});
+                res.render('admin/Category', { categoryData });
+                break;
+            case '/addCategory':
+                res.render('admin/addCategory', { success: '' });
+                break;
+            default:
+                if (req.params.id) {
+                    // Find category by ID
+                    const categoryData = await subCategorySchema.findById(req.params.id);
+                    res.render('admin/editCategory', { categoryData, success: '' });
+                }
+                break;
+        }
+    } catch (error) {
+        console.log(error)
     }
-    else if (req.path === '/addCategory') {
-        res.render('admin/addCategory', { success: '' })
-    }
-    else if (req.params.id) {
-        const categoryData = await subCategorySchema.findById(req.params.id);
-        // console.log(categoryData);
-        res.render('admin/editCategory', { categoryData, success: '' })
-    }
-
 }
 
 const categoryPost = async (req, res) => {
@@ -109,7 +116,6 @@ const categoryEdit = async (req, res) => {
         }
     } catch (error) {
         console.log('Admin controller error:', error)
-
     }
 }
 
