@@ -71,6 +71,7 @@ const shoppingCart = async (req, res) => {
 //logout get Request
 const logout = async (req, res) => {
   try {
+    
     const token = req.cookies.jwtUser; // Assuming token is stored in cookies
     const userID = getUserId(token);
     res.clearCookie('jwtUser');

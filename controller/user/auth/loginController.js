@@ -19,7 +19,7 @@ const crypto = require('crypto');
 const { getUserId, randomToken, generateSimpleUniqueId, generateUniqueFourDigitNumber } = require('../../../utils/functions.js')
 const uniqueId = generateSimpleUniqueId();
 const pdf = require('html-pdf');
-const MaxExpTime = 3 * 24 * 60 * 60
+const MaxExpTime = 60 * 5 
 
 
 // show login page
