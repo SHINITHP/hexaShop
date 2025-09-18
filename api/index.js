@@ -13,8 +13,8 @@ const userRouter = require("../routes/user/userRoutes.js")
 const adminRoutes = require('../routes/admin/adminRoutes.js')
 
 app.set("view engine","ejs")
-app.use(express.static(path.join(__dirname,"public"))); 
-app.use(express.json({ limit: '50mb' }));
+app.set('views', path.join(__dirname, '../views'));
+app.use(express.static(path.join(__dirname, '../public')));app.use(express.json({ limit: '50mb' }));
 // Increase payload size limit for URL-encoded data (e.g., 50 MB)
 app.use(express.urlencoded({ limit: '50mb', extended: false }));
 
