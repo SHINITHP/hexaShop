@@ -5,12 +5,12 @@ const cookieParser = require('cookie-parser')
 const methodOverride = require('method-override')
 const passport = require('passport')
 const session = require('express-session');
-const passportSetup = require('./utils/googleOuath.js')
+const passportSetup = require('../utils/googleOuath.js')
 require('dotenv').config()
 const fetch = require('node-fetch'); 
 
-const userRouter = require("./routes/user/userRoutes")
-const adminRoutes = require('./routes/admin/adminRoutes.js')
+const userRouter = require("../routes/user/userRoutes.js")
+const adminRoutes = require('../routes/admin/adminRoutes.js')
 
 app.set("view engine","ejs")
 app.use(express.static(path.join(__dirname,"public"))); 
