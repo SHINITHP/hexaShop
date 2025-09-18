@@ -5,15 +5,16 @@ const cookieParser = require('cookie-parser')
 const methodOverride = require('method-override')
 const passport = require('passport')
 const session = require('express-session');
-const passportSetup = require('./utils/googleOuath.js')
+const passportSetup = require('../utils/googleOuath.js')
 require('dotenv').config()
 const fetch = require('node-fetch'); 
 
-const userRouter = require("./routes/user/userRoutes")
-const adminRoutes = require('./routes/admin/adminRoutes.js')
+const userRouter = require("../routes/user/userRoutes.js")
+const adminRoutes = require('../routes/admin/adminRoutes.js')
 
 app.set("view engine","ejs")
-app.use(express.static(path.join(__dirname,"public"))); 
+app.set('views', path.join(__dirname, '../views'));
+app.use(express.static(path.join(__dirname,"../public"))); 
 app.use(express.json({ limit: '50mb' }));
 // Increase payload size limit for URL-encoded data (e.g., 50 MB)
 app.use(express.urlencoded({ limit: '50mb', extended: false }));
