@@ -359,6 +359,7 @@ const orderDetails = async (req, res) => {
   const token = req.cookies.jwtUser; // Assuming token is stored in cookies
   const userID = getUserId(token); // Verify token and get userID
 
+  // console.log('req.body.cartData', req.body.cartData)
   try {
     const cartItems = JSON.parse(req.body.cartData);
 

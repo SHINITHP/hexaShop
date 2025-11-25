@@ -4,7 +4,8 @@ const crypto = require('crypto')
 const getUserId = (token) => {
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        return decoded.id; // Return the decoded userID
+        console.log('decoded id in getUserId:', decoded);
+        return decoded.user._id; // Return the decoded userID
     } catch (err) {
         return null; // Return null if verification fails
     }
